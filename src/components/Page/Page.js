@@ -2,7 +2,7 @@ import Header from "../Header/Header";
 
 import Analitics from "../Analitics/Analitics";
 import Invoices from "../Invoices/Invoices";
-const Page = () => {
+const Page = ({ Analitics, Invoices }) => {
   return (
     <div className="wrapper">
       <Header />
@@ -11,8 +11,8 @@ const Page = () => {
           <section className="invoices">
             <div className="invoices__container">
               <h2 className="invoices__title">INVOICES</h2>
-              <Invoices />
-              <Analitics />
+              {Invoices}
+              {Analitics}
             </div>
           </section>
         </div>

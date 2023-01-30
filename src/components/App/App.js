@@ -1,4 +1,6 @@
 import Page from "../Page/Page";
+import Invoices from "../Invoices/Invoices";
+import Analitics from "../Analitics/Analitics";
 export function AddLibrary(urlOfTheLibrary) {
   const script = document.createElement("script");
   script.src = urlOfTheLibrary;
@@ -8,7 +10,7 @@ export function AddLibrary(urlOfTheLibrary) {
 function App() {
   return (
     <>
-      <Page />
+      <Page Invoices={<Invoices />} Analitics={<Analitics />} />
 
       {AddLibrary("../../app.min.js")}
     </>
