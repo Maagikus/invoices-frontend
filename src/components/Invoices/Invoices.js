@@ -1,13 +1,15 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Filter from "../Filters/Filter";
 import { NormalCard, ListCard } from "../Cards/Cards";
-
+import { useResize } from "../../hooks/useResize.hook";
 const Invoices = () => {
+  const { isScreenSm } = useResize();
   const [isList, setIsList] = useState(true);
   const [isFilterActive, setIsFilterActive] = useState(false);
   const onActiveFilter = () => {
     setIsFilterActive(!isFilterActive);
   };
+
   return (
     <div className="invoices__body body-invoices">
       <div className="body-invoices__header">
@@ -63,7 +65,7 @@ const Invoices = () => {
                   : "content-invoices__cards "
               }
             >
-              {isList ? (
+              {isList && isScreenSm ? (
                 <>
                   <ListCard />
                   <ListCard />
