@@ -44,7 +44,7 @@ export const ListCard = () => {
             <div className="card-content__state stat-success">Success</div>
           </div>
         </div>
-        <div className="card-content__view card-content__view-right card-content__view-bg _icon-eye"></div>
+        <button className="card-content__view card-content__view-right card-content__view-bg _icon-eye"></button>
       </div>
     </div>
   );
@@ -56,7 +56,7 @@ export const NormalCard = () => {
         <div className="card-content__status">
           <span className="card-content__title">status</span>
 
-          <div className="card-content__view card-content__view-bg _icon-eye"></div>
+          <button className="card-content__view card-content__view-bg _icon-eye"></button>
         </div>
         <div className="card-content__state stat-success">Success</div>
       </div>

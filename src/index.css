@@ -146,6 +146,7 @@
 ._icon-M:before {
   content: "\e913";
   color: #fbbd00;
+  font-size: 13px;
 }
 
 ._icon-presets:before {
@@ -186,6 +187,7 @@
 ._icon-transactions:before {
   content: "\e920";
   color: #fbbd00;
+  font-size: 13px;
 }
 
 * {
@@ -1607,7 +1609,7 @@ input {
 }
 
 .content-invoices__card {
-  cursor: pointer;
+ 
   background: #ffffff;
   border-left: 0.125rem solid #fbbd00;
   -webkit-box-shadow: 0.125rem 0.125rem 0.25rem rgba(0, 0, 0, 0.25);
@@ -1694,6 +1696,7 @@ input {
 .card-content__item {
   display: -webkit-box;
   display: -ms-flexbox;
+  white-space: nowrap;
   display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
@@ -1761,6 +1764,7 @@ input {
 }
 
 .card-content__view-bg {
+	cursor: pointer;
   width: 1.625rem;
   height: 1.625rem;
   background: #fbbd00;
@@ -1892,6 +1896,7 @@ input {
   -webkit-box-direction: normal;
   -ms-flex-direction: column;
   flex-direction: column;
+  justify-content: space-between;
   gap: 0.625rem;
 }
 
@@ -1999,6 +2004,7 @@ input {
   padding-left: 0.5rem;
   /* height: 1.25rem; */
   background: #ffffff;
+  padding: 0px 15px 0px 0px;
   border: 0.0625rem solid #e6e6e6;
   border-radius: 0.625rem;
   flex-wrap: wrap;
@@ -2738,4 +2744,55 @@ input {
 .my-node-exit-active {
   opacity: 0;
   transition: opacity 200ms;
+}
+
+.array-filter{
+	position: relative;
+}
+
+.array-filter__clear{
+	position: absolute;
+	width: 10px;
+	height: 10px;
+	top: 4px;
+	right: 5px;
+
+}
+.array-filter__delete-all {
+	width: 10px;
+	height: 10px;
+	cursor: pointer;
+	position: relative;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	justify-content: center;
+}
+
+.array-filter__delete-all::before,
+.array-filter__delete-all::after {
+	content: "";
+	position: absolute;
+	width: 0.58875rem;
+	height: 0.13125rem;
+	border-radius: 0.15625rem;
+	background-color: #df1010;
+}
+
+.array-filter__delete-all::after {
+	-webkit-transform: rotate(-45deg);
+	-ms-transform: rotate(-45deg);
+	transform: rotate(-45deg);
+}
+
+.array-filter__delete-all::before {
+	content: "";
+	-webkit-transform: rotate(45deg);
+	-ms-transform: rotate(45deg);
+	transform: rotate(45deg);
 }

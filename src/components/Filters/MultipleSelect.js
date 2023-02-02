@@ -6,10 +6,22 @@ const MultiSelect = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedArr, setSelectedArr] = useState([]);
   const [selectedElement, setSelectedElement] = useState(null);
-  const options = ["qqqq", "wwwww", "eeeee"];
+  const options = ["qqqq", "wwwww", "eeeee", "Select All"];
   const onSelect = (e) => {
-    setSelectedElement(e.target.textContent);
-    setSelectedArr([...selectedArr, e.target.textContent]);
+    //  setSelectedElement(e.target.textContent);
+    if (e.target.textContent === "Select All") {
+      const filteredArr = options.filter(
+        (item) => item !== e.target.textContent
+      );
+      setSelectedArr([...filteredArr]);
+      return;
+    } else {
+      setSelectedArr([...selectedArr, e.target.textContent]);
+    }
+  };
+  const onDeleteAll = (e) => {
+    e.stopPropagation();
+    setSelectedArr([]);
   };
   const onMouseLeave = () => {
     setIsOpen(false);
@@ -19,7 +31,7 @@ const MultiSelect = () => {
     // console.log(e.target.parentElement.textContent);
 
     setSelectedArr(
-      selectedArr.filter((item) => item != e.target.parentElement.textContent)
+      selectedArr.filter((item) => item !== e.target.parentElement.textContent)
     );
   };
   return (
@@ -50,6 +62,13 @@ const MultiSelect = () => {
                   onClick={() => setIsOpen(!isOpen)}
                   className="filter__array array-filter"
                 >
+                  <div
+                    onClick={(e) => onDeleteAll(e)}
+                    class="array-filter__clear"
+                  >
+                    <span className="array-filter__delete-all"></span>
+                  </div>
+
                   {selectedArr.length > 0 ? (
                     selectedArr.map((item, index) => {
                       return (
@@ -79,19 +98,21 @@ const MultiSelect = () => {
                   >
                     {options.map((item, index) => {
                       return (
-                        <div
-                          onClick={(e) => onSelect(e)}
-                          onTouchEnd={(e) => onSelect(e)}
-                          key={index}
-                          className={
-                            selectedArr.includes(item)
-                              ? "tools-filter__item active"
-                              : "tools-filter__item "
-                          }
-                        >
-                          {item}
-                          <span className="tools-filter__cicle"></span>
-                        </div>
+                        <>
+                          <div
+                            onClick={(e) => onSelect(e)}
+                            onTouchEnd={(e) => onSelect(e)}
+                            key={index}
+                            className={
+                              selectedArr.includes(item)
+                                ? "tools-filter__item active"
+                                : "tools-filter__item "
+                            }
+                          >
+                            {item}
+                            <span className="tools-filter__cicle"></span>
+                          </div>
+                        </>
                       );
                     })}
                   </div>
