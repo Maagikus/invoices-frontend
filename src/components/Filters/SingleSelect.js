@@ -10,6 +10,9 @@ const SingleSelect = () => {
     setSelected(e.target.textContent);
     setIsOpen(false);
   };
+  const onDeleteAll = () => {
+    setSelected("nothing");
+  };
   return (
     <div className="filters__item">
       <div data-spollers className="spollers">
@@ -38,6 +41,12 @@ const SingleSelect = () => {
                   onClick={() => setIsOpen(!isOpen)}
                   className="filter__array array-filter"
                 >
+                  <div
+                    onClick={(e) => onDeleteAll(e)}
+                    class="array-filter__clear"
+                  >
+                    <span className="array-filter__delete-all"></span>
+                  </div>
                   <div className="array-filter__selectd">{selected}</div>
                 </div>
                 <CSSTransition

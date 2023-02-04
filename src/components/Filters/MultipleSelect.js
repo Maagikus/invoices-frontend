@@ -14,7 +14,7 @@ const MultiSelect = () => {
         (item) => item !== e.target.textContent
       );
       setSelectedArr([...filteredArr]);
-      return;
+      // return;
     } else {
       setSelectedArr([...selectedArr, e.target.textContent]);
     }

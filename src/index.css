@@ -1739,8 +1739,11 @@ input {
   font-weight: 300;
   line-height: 1.1666666667;
   color: #000;
+  /* align-self: end; */
 }
-
+.header-title{
+	align-self: end;
+}
 @supports (
   font-size: clamp(0.625rem, 0.5860136452rem + 0.1949317739vw, 0.75rem)
 ) {
@@ -2001,10 +2004,10 @@ input {
 
 .filter__array {
   cursor: pointer;
-  padding-left: 0.5rem;
+  /* padding-left: 0.5rem; */
   /* height: 1.25rem; */
   background: #ffffff;
-  padding: 0px 15px 0px 0px;
+  padding: 0px 15px 0px 8px;
   border: 0.0625rem solid #e6e6e6;
   border-radius: 0.625rem;
   flex-wrap: wrap;
@@ -2276,6 +2279,7 @@ input {
   -webkit-box-align: end;
   -ms-flex-align: end;
   align-items: end;
+  align-self: center;
 }
 
 .item-transaction__item-wide {

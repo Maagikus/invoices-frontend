@@ -54,7 +54,7 @@ export const NormalCard = () => {
     <div className="content-invoices__card card-content">
       <div className="card-content__item">
         <div className="card-content__status">
-          <span className="card-content__title">status</span>
+          <span className="card-content__title header-title">status</span>
 
           <button className="card-content__view card-content__view-bg _icon-eye"></button>
         </div>
