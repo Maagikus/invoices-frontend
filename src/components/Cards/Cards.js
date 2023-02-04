@@ -53,12 +53,13 @@ export const NormalCard = () => {
   return (
     <div className="content-invoices__card card-content">
       <div className="card-content__item">
-        <div className="card-content__status">
-          <span className="card-content__title header-title">status</span>
-
+        <div className="card-content__wrapp">
+          <div className="card-content__status">
+            <span className="card-content__title header-title">status</span>
+            <div className="card-content__state stat-success">Success</div>
+          </div>
           <button className="card-content__view card-content__view-bg _icon-eye"></button>
         </div>
-        <div className="card-content__state stat-success">Success</div>
       </div>
       <div className="card-content__item">
         <span className="card-content__title">uuid</span>

@@ -207,7 +207,6 @@ const Header = () => {
                 </li>
               </ul>
             </li>
-            <div className="menu__logout">Log out</div>
           </ul>
         </nav>
       </div>
