@@ -2814,9 +2814,12 @@ input {
 	gap: 3px;
 }
 
-.item-transaction__item-bottom{
+/* .item-transaction__item-bottom{
 	align-self: end;
-}
+} */
 /* .menu__icon{
 	align-self: end;
 } */
+.item-transaction__item-bottom{
+padding: 14px 0px 0px 0px;
+}
