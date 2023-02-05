@@ -362,7 +362,7 @@ export const TransactionCard = () => {
             </div>
           </div>
 
-          <div className="item-transaction__item item-transaction__item-right invoices-inform">
+          <div className="item-transaction__item item-transaction__item-bottom item-transaction__item-right invoices-inform">
             <div className="item-transaction__title invoices-inform__title"></div>
             <div className="item-transaction__value item-transaction__value-bg invoices-inform__value _icon-eye"></div>
           </div>

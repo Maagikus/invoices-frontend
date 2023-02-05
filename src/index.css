@@ -967,6 +967,9 @@ input {
   line-height: 1.2;
   text-align: center;
   letter-spacing: -0.01em;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 }
 
 .footer__item a {
@@ -1231,6 +1234,7 @@ input {
   display: -ms-flexbox;
   display: flex;
   gap: 0.6875rem;
+  align-items: center;
 }
 
 .item-menu__link {
@@ -2394,7 +2398,7 @@ input {
 
 @media (max-width: 109em) {
   .header {
-    padding-top: 1.25rem;
+    padding-top: 1.75rem;
   }
 
   .icon-menu {
@@ -2809,3 +2813,10 @@ input {
 	flex-direction: column;
 	gap: 3px;
 }
+
+.item-transaction__item-bottom{
+	align-self: end;
+}
+/* .menu__icon{
+	align-self: end;
+} */
