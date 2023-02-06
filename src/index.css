@@ -2821,6 +2821,9 @@ input {
 	align-self: end;
 } */
 .item-transaction__item-bottom{
-padding: 14px 0px 0px 0px;
+	padding: 14px 0px 0px 0px;
 	align-self: end;
+}
+.menu__icon{
+	width:15px;
 }
