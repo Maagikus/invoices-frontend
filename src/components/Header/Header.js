@@ -26,7 +26,7 @@ const Header = () => {
         className={isMenuOpen ? "main__menu menu active" : "main__menu menu"}
       >
         <div className="menu__header header-menu">
-          <a href="#" className="header-menu__logo _icon-logo">
+          <a href="/#" className="header-menu__logo _icon-logo">
             <span>BeezyyCashier</span>
           </a>
           <div className="header-menu__user">
@@ -63,13 +63,13 @@ const Header = () => {
           <ul className="menu__list">
             <li className="menu__item">
               <div className="menu__icon _icon-home"></div>
-              <a href="#" className="menu__link">
+              <a href="/#" className="menu__link">
                 Home
               </a>
             </li>
             <li className="menu__item">
               <div className="menu__icon _icon-analitics"></div>
-              <a href="#" className="menu__link active">
+              <a href="/#" className="menu__link active">
                 Analitics
               </a>
             </li>
@@ -78,19 +78,19 @@ const Header = () => {
               <ul className="item-menu__submenu">
                 <li className="item-menu__item">
                   <div className="menu__icon _icon-invoice"></div>
-                  <a href="#" className="item-menu__link">
+                  <a href="/#" className="item-menu__link">
                     Invoices
                   </a>
                 </li>
                 <li className="item-menu__item">
                   <div className="menu__icon _icon-transactions"></div>
-                  <a href="#" className="item-menu__link">
+                  <a href="/#" className="item-menu__link">
                     Transactions
                   </a>
                 </li>
                 <li className="item-menu__item">
                   <div className="menu__icon menu__icon-bg _icon-Group-16"></div>
-                  <a href="#" className="item-menu__link">
+                  <a href="/#" className="item-menu__link">
                     Refund
                   </a>
                 </li>
@@ -101,19 +101,19 @@ const Header = () => {
               <ul className="item-menu__submenu">
                 <li className="item-menu__item">
                   <div className="menu__icon _icon-C"></div>
-                  <a href="#" className="item-menu__link">
+                  <a href="/#" className="item-menu__link">
                     Customers
                   </a>
                 </li>
                 <li className="item-menu__item">
                   <div className="menu__icon _icon-M"></div>
-                  <a href="#" className="item-menu__link">
+                  <a href="/#" className="item-menu__link">
                     Merchants
                   </a>
                 </li>
                 <li className="item-menu__item">
                   <div className="menu__icon _icon-S"></div>
-                  <a href="#" className="item-menu__link">
+                  <a href="/#" className="item-menu__link">
                     Stuff
                   </a>
                 </li>
@@ -124,25 +124,25 @@ const Header = () => {
               <ul className="item-menu__submenu">
                 <li className="item-menu__item">
                   <div className="menu__icon _icon-project"></div>
-                  <a href="#" className="item-menu__link">
+                  <a href="/#" className="item-menu__link">
                     Projects
                   </a>
                 </li>
                 <li className="item-menu__item">
                   <div className="menu__icon _icon-cascade"></div>
-                  <a href="#" className="item-menu__link">
+                  <a href="/#" className="item-menu__link">
                     Cascade
                   </a>
                 </li>
                 <li className="item-menu__item">
                   <div className="menu__icon menu__icon-line"></div>
-                  <a href="#" className="item-menu__link">
+                  <a href="/#" className="item-menu__link">
                     Limits
                   </a>
                 </li>
                 <li className="item-menu__item">
                   <div className="menu__icon _icon-route"></div>
-                  <a href="#" className="item-menu__link">
+                  <a href="/#" className="item-menu__link">
                     Route
                   </a>
                 </li>
@@ -150,31 +150,31 @@ const Header = () => {
             </li>
             <li className="menu__item">
               <div className="menu__icon _icon-reports"></div>
-              <a href="#" className="menu__link">
+              <a href="/#" className="menu__link">
                 Reports
               </a>
             </li>
             <li className="menu__item">
               <div className="menu__icon menu__icon-bg _icon-integrations"></div>
-              <a href="#" className="menu__link">
+              <a href="/#" className="menu__link">
                 New integrations
               </a>
             </li>
             <li className="menu__item">
               <div className="menu__icon _icon-accounts"></div>
-              <a href="#" className="menu__link">
+              <a href="/#" className="menu__link">
                 Accounts/Organizations
               </a>
             </li>
             <li className="menu__item">
               <div className="menu__icon menu__icon-bg _icon-withdrawals"></div>
-              <a href="#" className="menu__link">
+              <a href="/#" className="menu__link">
                 Withdrawals
               </a>
             </li>
             <li className="menu__item">
               <div className="menu__icon _icon-ticets"></div>
-              <a href="#" className="menu__link">
+              <a href="/#" className="menu__link">
                 Tickets
               </a>
             </li>
@@ -183,25 +183,25 @@ const Header = () => {
               <ul className="item-menu__submenu">
                 <li className="item-menu__item">
                   <div className="menu__icon _icon-connectors"></div>
-                  <a href="#" className="item-menu__link">
+                  <a href="/#" className="item-menu__link">
                     Connectors
                   </a>
                 </li>
                 <li className="item-menu__item">
                   <div className="menu__icon _icon-confic"></div>
-                  <a href="#" className="item-menu__link">
+                  <a href="/#" className="item-menu__link">
                     Connector config
                   </a>
                 </li>
                 <li className="item-menu__item">
                   <div className="menu__icon _icon-access"></div>
-                  <a href="#" className="item-menu__link">
+                  <a href="/#" className="item-menu__link">
                     Access instance
                   </a>
                 </li>
                 <li className="item-menu__item">
                   <div className="menu__icon _icon-presets"></div>
-                  <a href="#" className="item-menu__link">
+                  <a href="/#" className="item-menu__link">
                     Presets
                   </a>
                 </li>

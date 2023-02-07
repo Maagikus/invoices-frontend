@@ -1,7 +1,4 @@
 import Header from "../Header/Header";
-
-import Analitics from "../Analitics/Analitics";
-import Invoices from "../Invoices/Invoices";
 const Page = ({ Analitics, Invoices }) => {
   return (
     <div className="wrapper">
@@ -21,7 +18,7 @@ const Page = ({ Analitics, Invoices }) => {
         <div className="footer__container">
           <div className="footer__item">
             2022
-            <a href="#" className="footer__link">
+            <a href="/#" className="footer__link">
               BEEZYY CASHIER SYSTEM
             </a>
             LTD, ALL RIGHTS RESERVED

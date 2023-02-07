@@ -1,14 +1,12 @@
 import { useState } from "react";
-import { CSSTransition, TransitionGroup } from "react-transition-group";
+import { CSSTransition } from "react-transition-group";
 
 const MultiSelect = () => {
   const [isShowMultiSelect, setIsShowMultiSelect] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [selectedArr, setSelectedArr] = useState([]);
-  const [selectedElement, setSelectedElement] = useState(null);
   const options = ["qqqq", "wwwww", "eeeee", "Select All"];
   const onSelect = (e) => {
-    //  setSelectedElement(e.target.textContent);
     if (e.target.textContent === "Select All") {
       const filteredArr = options.filter(
         (item) => item !== e.target.textContent
@@ -28,8 +26,6 @@ const MultiSelect = () => {
   };
   const onDelete = (e) => {
     e.stopPropagation();
-    // console.log(e.target.parentElement.textContent);
-
     setSelectedArr(
       selectedArr.filter((item) => item !== e.target.parentElement.textContent)
     );

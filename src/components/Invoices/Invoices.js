@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Filter from "../Filters/Filter";
 import { NormalCard, ListCard } from "../Cards/Cards";
 import { useResize } from "../../hooks/useResize.hook";

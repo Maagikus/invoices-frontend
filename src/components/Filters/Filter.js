@@ -1,16 +1,11 @@
 import { useState } from "react";
-import { CSSTransition, TransitionGroup } from "react-transition-group";
+import { CSSTransition } from "react-transition-group";
 
 import MultipleSelect from "./MultipleSelect";
 import SingleSelect from "./SingleSelect";
 const Filter = () => {
   const [isShowInput, setIsShowInput] = useState(false);
 
-  // const onSelect = (e) => {
-  //   setIsSelected(!isSelected);
-  //   setFilterItems([...filterItems, e.target.textContent]);
-  // };
-  // console.log(filterItems);
   return (
     <form action="#" className="filters__form">
       <div className="filters__item">

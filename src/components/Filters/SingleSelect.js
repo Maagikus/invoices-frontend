@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { CSSTransition, TransitionGroup } from "react-transition-group";
+import { CSSTransition } from "react-transition-group";
 
 const SingleSelect = () => {
   const [isShowSingleSelect, setIsShowSingleSelect] = useState(false);
