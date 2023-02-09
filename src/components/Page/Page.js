@@ -1,15 +1,25 @@
 import Header from "../Header/Header";
-const Page = ({ Analitics, Invoices }) => {
+
+const Page = ({ Analitics, Invoices, Transaction, Refound }) => {
   return (
     <div className="wrapper">
       <Header />
       <main className="page">
-        <div className="main">
+        {/* <div className="main">
           <section className="invoices">
             <div className="invoices__container">
               <h2 className="invoices__title">INVOICES</h2>
               {Invoices}
               {Analitics}
+            </div>
+          </section>
+        </div> */}
+        <div className="main">
+          <section className="invoices">
+            <div className="invoices__container">
+              <h2 className="invoices__title">TRANSACTIONS</h2>
+              {Transaction}
+              {Refound}
             </div>
           </section>
         </div>

@@ -1,6 +1,9 @@
 import Page from "../Page/Page";
 import Invoices from "../Invoices/Invoices";
 import Analitics from "../Analitics/Analitics";
+import Transaction from "../Transaction/Transaction";
+import Refound from "../Refound/Refound";
+
 export function AddLibrary(urlOfTheLibrary) {
   const script = document.createElement("script");
   script.src = urlOfTheLibrary;
@@ -10,7 +13,12 @@ export function AddLibrary(urlOfTheLibrary) {
 function App() {
   return (
     <>
-      <Page Invoices={<Invoices />} Analitics={<Analitics />} />
+      <Page
+        Transaction={<Transaction />}
+        Invoices={<Invoices />}
+        Analitics={<Analitics />}
+        Refound={<Refound />}
+      />
 
       {AddLibrary("../../app.min.js")}
     </>
