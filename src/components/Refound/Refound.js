@@ -1,5 +1,7 @@
-import { SingleCardInformation, ListCard } from "../Cards/Cards";
+import { SingleCardInformation, ListCard, NormalCard } from "../Cards/Cards";
+import { useResize } from "../../hooks/useResize.hook";
 const Refound = () => {
+  const { isScreenSm } = useResize();
   return (
     <div className="invoices__body single-card">
       <div className="single-card__content">
@@ -7,7 +9,7 @@ const Refound = () => {
         <div className="single-card__transactions transactions">
           <div className="transactions__title">RELATED INVOICE</div>
           <div className="transactions__items">
-            <ListCard />
+            {isScreenSm ? <ListCard /> : <NormalCard />}
           </div>
         </div>
       </div>

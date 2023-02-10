@@ -1,8 +1,10 @@
 import { useState } from "react";
 import Filter from "../Filters/Filter";
 import { TransitionCardTile, TransactionCard } from "../Cards/Cards";
+import { useResize } from "../../hooks/useResize.hook";
 
 const Transaction = () => {
+  const { isScreenMd } = useResize();
   const [isList, setIsList] = useState(true);
   const [isFilterActive, setIsFilterActive] = useState(false);
   const onActiveFilter = () => {
@@ -64,15 +66,17 @@ const Transaction = () => {
                   : "transactions__items "
               }
             >
-              {isList ? (
+              {isList && isScreenMd ? (
                 <>
-                  <TransitionCardTile />
-                  <TransitionCardTile />
-                  <TransitionCardTile />
+                  <TransactionCard />
+                  <TransactionCard />
+                  <TransactionCard />
                 </>
               ) : (
                 <>
-                  <TransactionCard />
+                  <TransitionCardTile />
+                  <TransitionCardTile />
+                  <TransitionCardTile />
                 </>
               )}
             </div>
