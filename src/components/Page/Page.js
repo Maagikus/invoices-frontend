@@ -5,7 +5,7 @@ const Page = ({ Analitics, Invoices, Transaction, Refound }) => {
     <div className="wrapper">
       <Header />
       <main className="page">
-        {/* <div className="main">
+        <div className="main">
           <section className="invoices">
             <div className="invoices__container">
               <h2 className="invoices__title">INVOICES</h2>
@@ -13,7 +13,7 @@ const Page = ({ Analitics, Invoices, Transaction, Refound }) => {
               {Analitics}
             </div>
           </section>
-        </div> */}
+        </div>
         <div className="main">
           <section className="invoices">
             <div className="invoices__container">

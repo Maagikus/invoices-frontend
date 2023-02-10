@@ -60,7 +60,7 @@ const MultiSelect = () => {
                 >
                   <div
                     onClick={(e) => onDeleteAll(e)}
-                    class="array-filter__clear"
+                    className="array-filter__clear"
                   >
                     <span className="array-filter__delete-all"></span>
                   </div>
