@@ -61,7 +61,7 @@ const Transaction = () => {
           <div className="content-invoices__wrapper">
             <div
               className={
-                isList
+                !isList
                   ? "transactions__items transactions__items-tile"
                   : "transactions__items "
               }
