@@ -1,28 +1,14 @@
 import Header from "../Header/Header";
+import InvoicesPage from "./InvoicesPage";
+import TransactionPage from "./TransactionPage";
 
-const Page = ({ Analitics, Invoices, Transaction, Refound }) => {
+const Page = () => {
   return (
     <div className="wrapper">
       <Header />
       <main className="page">
-        <div className="main">
-          <section className="invoices">
-            <div className="invoices__container">
-              <h2 className="invoices__title">INVOICES</h2>
-              {Invoices}
-              {Analitics}
-            </div>
-          </section>
-        </div>
-        <div className="main">
-          <section className="invoices">
-            <div className="invoices__container">
-              <h2 className="invoices__title">TRANSACTIONS</h2>
-              {Transaction}
-              {Refound}
-            </div>
-          </section>
-        </div>
+        <InvoicesPage />
+        <TransactionPage />
       </main>
       <footer className="footer">
         <div className="footer__container">
