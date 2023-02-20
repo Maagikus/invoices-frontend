@@ -674,3 +674,179 @@ export const TransitionCardTile = () => {
     </div>
   );
 };
+export const RefundCard = () => {
+  return (
+    <div className="transactions__item item-transaction">
+      <div className="item-transaction__column ">
+        <div className="item-transaction__row">
+          <div className="item-transaction__item invoices-inform">
+            <div className="item-transaction__title invoices-inform__title">
+              uuid
+            </div>
+            <div className="item-transaction__value invoices-inform__value">
+              4cbe30d0-7f6f-4062-95da-ed1b79901813
+            </div>
+          </div>
+          <div className="item-transaction__item invoices-inform">
+            <div className="item-transaction__title invoices-inform__title">
+              invoice uuid
+            </div>
+            <div className="item-transaction__value invoices-inform__value">
+              bcea9877-976b-47d4-b578-ad179f62a27b
+            </div>
+          </div>
+          <div className="item-transaction__item item-transaction__item-right invoices-inform">
+            <div className="item-transaction__title invoices-inform__title">
+              project
+            </div>
+            <div className="item-transaction__value invoices-inform__value invoices-inform__value-highlight">
+              Guide Project
+            </div>
+          </div>
+          <div className="item-transaction__item item-transaction__item-right invoices-inform">
+            <div className="item-transaction__title invoices-inform__title">
+              status
+            </div>
+            <div className="item-transaction__value invoices-inform__value stat-success">
+              Success
+            </div>
+          </div>
+        </div>
+        <div className="item-transaction__row">
+          <div className="item-transaction__item item-transaction__item-wide invoices-inform">
+            <div className="item-transaction__title invoices-inform__title">
+              date
+            </div>
+            <div className="item-transaction__value invoices-inform__value">
+              Dec 11, 2022 3:20:47 PM
+            </div>
+          </div>
+
+          <div className="item-transaction__item item-transaction__item-right invoices-inform">
+            <div className="item-transaction__title invoices-inform__title">
+              amount
+            </div>
+            <div className="item-transaction__value invoices-inform__value invoices-inform__value-highlight">
+              10 HKD
+            </div>
+          </div>
+
+          <div className="item-transaction__item item-transaction__item-bottom item-transaction__item-right invoices-inform">
+            <div className="item-transaction__title invoices-inform__title"></div>
+            <div className="item-transaction__value item-transaction__value-bg invoices-inform__value _icon-eye"></div>
+          </div>
+        </div>
+
+        <div className="item-transaction__row">
+          <div className="item-transaction__item item-transaction__item-wide invoices-inform">
+            <div className="item-transaction__title invoices-inform__title">
+              message
+            </div>
+            <div className="item-transaction__value  invoices-inform__value">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor ...
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+export const RefundCardMobile = () => {
+  return (
+    <div className="transactions__item transactions__item-tile mobile-item-transaction">
+      <div className="mobile-item-transaction__column">
+        <div className="mobile-item-transaction__row">
+          <div className="mobile-item-transaction__item invoices-inform">
+            <div className="mobile-item-transaction__title invoices-inform__title">
+              {" "}
+              status{" "}
+            </div>
+            <div className="mobile-item-transaction__value invoices-inform__value stat-success">
+              {" "}
+              Success{" "}
+            </div>
+          </div>
+
+          <div className="mobile-item-transaction__item invoices-inform">
+            <div className="mobile-item-transaction__title invoices-inform__title"></div>
+            <div className="mobile-item-transaction__value mobile-item-transaction__value-bg invoices-inform__value _icon-eye"></div>
+          </div>
+        </div>
+        <div className="mobile-item-transaction__row">
+          <div className="mobile-item-transaction__item invoices-inform">
+            <div className="mobile-item-transaction__title invoices-inform__title">
+              {" "}
+              uuid{" "}
+            </div>
+            <div className="mobile-item-transaction__value invoices-inform__value">
+              {" "}
+              4cbe30d0-7f6f-4062-95da-ed1b79901813{" "}
+            </div>
+          </div>
+        </div>
+        <div className="mobile-item-transaction__row">
+          <div className="mobile-item-transaction__item invoices-inform">
+            <div className="mobile-item-transaction__title invoices-inform__title">
+              {" "}
+              Invoice uuid{" "}
+            </div>
+            <div className="mobile-item-transaction__value invoices-inform__value">
+              {" "}
+              bcea9877-976b-47d4-b578-ad179f62a27b{" "}
+            </div>
+          </div>
+        </div>
+
+        <div className="mobile-item-transaction__row">
+          <div className="mobile-item-transaction__item invoices-inform">
+            <div className="mobile-item-transaction__title invoices-inform__title">
+              {" "}
+              project{" "}
+            </div>
+            <div className="mobile-item-transaction__value invoices-inform__value-highlight invoices-inform__value">
+              {" "}
+              Guide Project{" "}
+            </div>
+          </div>
+          <div className="mobile-item-transaction__item invoices-inform">
+            <div className="mobile-item-transaction__title mobile-item-transaction__title-right invoices-inform__title">
+              {" "}
+              amount{" "}
+            </div>
+            <div className="mobile-item-transaction__value invoices-inform__value-highlight invoices-inform__value">
+              {" "}
+              10 HKD{" "}
+            </div>
+          </div>
+        </div>
+        <div className="mobile-item-transaction__row">
+          <div className="mobile-item-transaction__item invoices-inform">
+            <div className="mobile-item-transaction__title invoices-inform__title">
+              {" "}
+              date{" "}
+            </div>
+            <div className="mobile-item-transaction__value invoices-inform__value">
+              {" "}
+              Dec 11, 2022 3:20:47 PM{" "}
+            </div>
+          </div>
+        </div>
+
+        <div className="mobile-item-transaction__row">
+          <div className="mobile-item-transaction__item invoices-inform">
+            <div className="mobile-item-transaction__title invoices-inform__title">
+              {" "}
+              message{" "}
+            </div>
+            <div className="mobile-item-transaction__value invoices-inform__value">
+              {" "}
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor ...{" "}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};

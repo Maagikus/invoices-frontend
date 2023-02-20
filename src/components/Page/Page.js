@@ -1,12 +1,14 @@
 import Header from "../Header/Header";
 import InvoicesPage from "./InvoicesPage";
 import TransactionPage from "./TransactionPage";
+import RefundsPage from "./RefundsPage";
 
 const Page = () => {
   return (
     <div className="wrapper">
       <Header />
       <main className="page">
+        <RefundsPage />
         <InvoicesPage />
         <TransactionPage />
       </main>
