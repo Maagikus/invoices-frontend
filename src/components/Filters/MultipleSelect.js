@@ -11,10 +11,11 @@ const MultiSelect = () => {
       const filteredArr = options.filter(
         (item) => item !== e.target.textContent
       );
-      setSelectedArr([...filteredArr]);
-      // return;
+      setSelectedArr(Array.from(new Set([...filteredArr])));
     } else {
-      setSelectedArr([...selectedArr, e.target.textContent]);
+      setSelectedArr(
+        Array.from(new Set([...selectedArr, e.target.textContent]))
+      );
     }
   };
   const onDeleteAll = (e) => {
