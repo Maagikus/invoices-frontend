@@ -730,15 +730,10 @@ export const RefundCard = () => {
               10 HKD
             </div>
           </div>
-
-          <div className="item-transaction__item item-transaction__item-bottom item-transaction__item-right invoices-inform">
-            <div className="item-transaction__title invoices-inform__title"></div>
-            <div className="item-transaction__value item-transaction__value-bg invoices-inform__value _icon-eye"></div>
-          </div>
         </div>
 
         <div className="item-transaction__row">
-          <div className="item-transaction__item item-transaction__item-wide invoices-inform">
+          <div className="item-transaction__item item-transaction__item-wide-4 invoices-inform">
             <div className="item-transaction__title invoices-inform__title">
               message
             </div>
@@ -746,6 +741,10 @@ export const RefundCard = () => {
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
               eiusmod tempor ...
             </div>
+          </div>
+          <div className="item-transaction__item item-transaction__item-bottom item-transaction__item-right invoices-inform">
+            <div className="item-transaction__title invoices-inform__title"></div>
+            <div className="item-transaction__value item-transaction__value-bg invoices-inform__value _icon-eye"></div>
           </div>
         </div>
       </div>

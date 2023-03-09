@@ -2895,3 +2895,7 @@ input {
 }
 .refund-column {
 }
+.item-transaction__item-wide-4 {
+  grid-column-start: 1;
+  grid-column-end: 4;
+}
