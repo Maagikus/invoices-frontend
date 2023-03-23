@@ -849,3 +849,69 @@ export const RefundCardMobile = () => {
     </div>
   );
 };
+export const ProjectCardTile = () => {
+  return (
+    <div class="cards-projects__card cards-projects__card-tile">
+      <div class="cards-projects__card-tile__left">
+        <div class="card-content__item">
+          <span class="card-content__title">title</span>Test project
+        </div>
+        <div class="card-content__item">
+          <div class="card-content__status">
+            <span class="card-content__title">status</span>
+          </div>
+          <div class="card-content__state stat-success"> Success </div>
+        </div>
+        <div class="card-content__item ">
+          <span class="card-content__title ">in sanbdbox</span>{" "}
+          <span class="sanbdbox-no"> No</span>
+        </div>
+        <div class="card-content__item">
+          <span class="card-content__title">url</span>
+          www.project.com
+        </div>
+        <div class="cards-projects__create">Create invoice</div>
+      </div>
+      <div class="cards-projects__card-tile__right">
+        <div class="card-content__view card-content__view-bg _icon-eye"></div>
+        <div class="card-content__edit edit"></div>
+        <div class="card-content__delete delete"></div>
+      </div>
+    </div>
+  );
+};
+export const ProjectCardList = () => {
+  return (
+    <div class="cards-projects-list__card">
+      <div class="cards-projects-list__left">
+        <div class="cards-projects-list__column">
+          <div class="card-content__item">
+            <span class="card-content__title">title</span>Test project
+          </div>
+          <div class="card-content__item">
+            <div class="card-content__status">
+              <span class="card-content__title">status</span>
+            </div>
+            <div class="card-content__state stat-success"> Success </div>
+          </div>
+          <div class="card-content__item ">
+            <span class="card-content__title ">in sanbdbox</span>{" "}
+            <span class="sanbdbox-no"> No</span>
+          </div>
+          <div class="card-content__item">
+            <span class="card-content__title">url</span>
+            www.project.com
+          </div>
+        </div>
+        <div class="cards-projects-list__column">
+          <div class="cards-projects__create">Create invoice</div>
+        </div>
+      </div>
+      <div class="cards-projects-list__right">
+        <div class="card-content__view card-content__view-bg _icon-eye"></div>
+        <div class="card-content__edit edit"></div>
+        <div class="card-content__delete delete"></div>
+      </div>
+    </div>
+  );
+};

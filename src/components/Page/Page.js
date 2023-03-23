@@ -2,15 +2,17 @@ import Header from "../Header/Header";
 import InvoicesPage from "./InvoicesPage";
 import TransactionPage from "./TransactionPage";
 import RefundsPage from "./RefundsPage";
+import Projects from "./projects";
 
 const Page = () => {
   return (
     <div className="wrapper">
       <Header />
       <main className="page">
-        <RefundsPage />
+        <Projects />
+        {/* <RefundsPage />
         <InvoicesPage />
-        <TransactionPage />
+        <TransactionPage /> */}
       </main>
       <footer className="footer">
         <div className="footer__container">
