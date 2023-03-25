@@ -851,66 +851,140 @@ export const RefundCardMobile = () => {
 };
 export const ProjectCardTile = () => {
   return (
-    <div class="cards-projects__card cards-projects__card-tile">
-      <div class="cards-projects__card-tile__left">
-        <div class="card-content__item">
-          <span class="card-content__title">title</span>Test project
+    <div className="cards-projects__card cards-projects__card-tile">
+      <div className="cards-projects__card-tile__left">
+        <div className="card-content__item">
+          <span className="card-content__title">title</span>Test project
         </div>
-        <div class="card-content__item">
-          <div class="card-content__status">
-            <span class="card-content__title">status</span>
+        <div className="card-content__item">
+          <div className="card-content__status">
+            <span className="card-content__title">status</span>
           </div>
-          <div class="card-content__state stat-success"> Success </div>
+          <div className="card-content__state stat-success"> Success </div>
         </div>
-        <div class="card-content__item ">
-          <span class="card-content__title ">in sanbdbox</span>{" "}
-          <span class="sanbdbox-no"> No</span>
+        <div className="card-content__item ">
+          <span className="card-content__title ">in sanbdbox</span>{" "}
+          <span className="sanbdbox-no"> No</span>
         </div>
-        <div class="card-content__item">
-          <span class="card-content__title">url</span>
+        <div className="card-content__item">
+          <span className="card-content__title">url</span>
           www.project.com
         </div>
-        <div class="cards-projects__create">Create invoice</div>
+        <div className="cards-projects__create">Create invoice</div>
       </div>
-      <div class="cards-projects__card-tile__right">
-        <div class="card-content__view card-content__view-bg _icon-eye"></div>
-        <div class="card-content__edit edit"></div>
-        <div class="card-content__delete delete"></div>
+      <div className="cards-projects__card-tile__right">
+        <div className="card-content__view card-content__view-bg _icon-eye"></div>
+        <div className="card-content__edit edit"></div>
+        <div className="card-content__delete delete"></div>
       </div>
     </div>
   );
 };
 export const ProjectCardList = () => {
   return (
-    <div class="cards-projects-list__card">
-      <div class="cards-projects-list__left">
-        <div class="cards-projects-list__column">
-          <div class="card-content__item">
-            <span class="card-content__title">title</span>Test project
+    <div className="cards-projects-list__card">
+      <div className="cards-projects-list__left">
+        <div className="cards-projects-list__column">
+          <div className="card-content__item">
+            <span className="card-content__title">title</span>Test project
           </div>
-          <div class="card-content__item">
-            <div class="card-content__status">
-              <span class="card-content__title">status</span>
+          <div className="card-content__item">
+            <div className="card-content__status">
+              <span className="card-content__title">status</span>
             </div>
-            <div class="card-content__state stat-success"> Success </div>
+            <div className="card-content__state stat-success"> Success </div>
           </div>
-          <div class="card-content__item ">
-            <span class="card-content__title ">in sanbdbox</span>{" "}
-            <span class="sanbdbox-no"> No</span>
+          <div className="card-content__item ">
+            <span className="card-content__title ">in sanbdbox</span>{" "}
+            <span className="sanbdbox-no"> No</span>
           </div>
-          <div class="card-content__item">
-            <span class="card-content__title">url</span>
+          <div className="card-content__item">
+            <span className="card-content__title">url</span>
             www.project.com
           </div>
         </div>
-        <div class="cards-projects-list__column">
-          <div class="cards-projects__create">Create invoice</div>
+        <div className="cards-projects-list__column">
+          <div className="cards-projects__create">Create invoice</div>
         </div>
       </div>
-      <div class="cards-projects-list__right">
-        <div class="card-content__view card-content__view-bg _icon-eye"></div>
-        <div class="card-content__edit edit"></div>
-        <div class="card-content__delete delete"></div>
+      <div className="cards-projects-list__right">
+        <div className="card-content__view card-content__view-bg _icon-eye"></div>
+        <div className="card-content__edit edit"></div>
+        <div className="card-content__delete delete"></div>
+      </div>
+    </div>
+  );
+};
+export const SingleProjectCard = () => {
+  return (
+    <div className="invoices__body project-card">
+      <div className="project-card__content">
+        <div className="project-card__information information-card">
+          <div className="information-card__content">
+            <ul className="information-card__list">
+              <li className="information-card__item invoices-inform">
+                <h2 className="information-card__title invoices-inform__title">
+                  {" "}
+                  status{" "}
+                </h2>
+                <div className="information-card__value stat-success">
+                  {" "}
+                  Success{" "}
+                </div>
+              </li>
+              <li className="information-card__item invoices-inform">
+                <h2 className="information-card__title invoices-inform__title">
+                  {" "}
+                  in sanbdbox{" "}
+                </h2>
+                <div className="information-card__value">
+                  {" "}
+                  <span className="sanbdbox-no"> No</span>{" "}
+                </div>
+              </li>
+              <li className="information-card__item invoices-inform">
+                <h2 className="information-card__title invoices-inform__title">
+                  {" "}
+                  title{" "}
+                </h2>
+                <div className="information-card__value invoices-inform__value">
+                  <div className="information-card__copy"></div>
+                  <span>Test Project</span>
+                </div>
+              </li>
+              <li className="information-card__item invoices-inform">
+                <h2 className="information-card__title invoices-inform__title">
+                  {" "}
+                  url{" "}
+                </h2>
+                <div className="information-card__value invoices-inform__value">
+                  <div className="information-card__link"></div>{" "}
+                  https://beezyycashier.com/
+                </div>
+              </li>
+              <li className="information-card__item invoices-inform">
+                <h2 className="information-card__title invoices-inform__title">
+                  {" "}
+                  description{" "}
+                </h2>
+                <div className="information-card__value invoices-inform__value">
+                  {" "}
+                  Test project{" "}
+                </div>
+              </li>
+              <li className="information-card__item invoices-inform">
+                <h2 className="information-card__title invoices-inform__title">
+                  {" "}
+                  amount{" "}
+                </h2>
+                <div className="information-card__value invoices-inform__value">
+                  {" "}
+                  10 HKD{" "}
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
   );
