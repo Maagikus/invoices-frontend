@@ -2460,9 +2460,9 @@ input {
     top: calc(50% - 0.0625rem);
   }
 
-  .icon-menu.menu-open {
+  /* .icon-menu.menu-open {
     top: -0.3125rem;
-  }
+  } */
 
   .icon-menu.menu-open span {
     width: 0;
@@ -3308,6 +3308,8 @@ input {
 
 .checkbox {
   position: relative;
+  display: flex;
+  align-items: center;
 }
 
 .checkbox.checked .checkbox__label {
@@ -3328,7 +3330,7 @@ input {
   opacity: 0;
 }
 
-.checkbox__label {
+/* .checkbox__label {
   -webkit-transition: all 0.3s ease 0s;
   -o-transition: all 0.3s ease 0s;
   transition: all 0.3s ease 0s;
@@ -3342,7 +3344,7 @@ input {
   position: relative;
   gap: 4.35px;
   padding: 4px 0.25rem;
-}
+} */
 
 .checkbox__label span {
   font-weight: 500;
@@ -4420,7 +4422,7 @@ input {
   justify-content: space-between;
 }
 
-.invoices__create {
+/* .invoices__create {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -4458,7 +4460,7 @@ input {
   -webkit-transform: rotate(-180deg) translate(-0.0625rem, 0px);
   -ms-transform: rotate(-180deg) translate(-0.0625rem, 0px);
   transform: rotate(-180deg) translate(-0.0625rem, 0px);
-}
+} */
 
 .invoices__view {
   display: -webkit-box;
@@ -5889,7 +5891,15 @@ input {
   color: #fbbd00;
   padding-left: 0.5rem;
 }
-
+input.form-payment__input {
+  font-size: 0.9375;
+  line-height: 1.2;
+  height: 1.25rem;
+}
+input.form-payment__input::placeholder {
+  font-size: 0.9375rem;
+  line-height: 1.2;
+}
 .form-payment__checkbox {
   background: #fcfaf6;
   border: 0.0625rem solid #fbbd00;
@@ -5920,6 +5930,8 @@ input {
 
 .form-payment__input-grey {
   padding-left: 1.875rem;
+  font-size: 0.8125rem;
+  height: 1.25rem;
 }
 
 .form-payment__input-grey::-webkit-input-placeholder {
@@ -5928,6 +5940,7 @@ input {
   font-size: 0.8125rem;
   line-height: 1.1538461538;
   color: #cccccc;
+  padding: 0px 0px 10px 0px;
 }
 
 .form-payment__input-grey::-moz-placeholder {
@@ -5936,6 +5949,7 @@ input {
   font-size: 0.8125rem;
   line-height: 1.1538461538;
   color: #cccccc;
+  padding: 0px 0px 10px 0px;
 }
 
 .form-payment__input-grey:-ms-input-placeholder {
@@ -5944,6 +5958,7 @@ input {
   font-size: 0.8125rem;
   line-height: 1.1538461538;
   color: #cccccc;
+  padding: 0px 0px 10px 0px;
 }
 
 .form-payment__input-grey::-ms-input-placeholder {
@@ -5952,13 +5967,16 @@ input {
   font-size: 0.8125rem;
   line-height: 1.1538461538;
   color: #cccccc;
+  padding: 0px 0px 10px 0px;
 }
 
 .form-payment__input-grey::placeholder {
   position: relative;
   font-weight: 300;
   font-size: 0.8125rem;
+  /* height: 15px;
   line-height: 1.1538461538;
+  line-height: 15px; */
   color: #cccccc;
 }
 
@@ -6317,6 +6335,11 @@ input {
     flex: 1 1 50%;
   }
 }
+@media (max-width: 47.99875em) {
+  .item-cards__title {
+    justify-content: center;
+  }
+}
 
 @media (min-width: 56.75em) {
   .menu__logout {
@@ -6370,27 +6393,27 @@ input {
     top: calc(50% - 0.0625rem);
   }
 
-  .icon-menu.menu-open {
+  /* .icon-menu.menu-open {
     top: -5px;
-  }
+  } */
 
-  .icon-menu.menu-open span {
+  /* .icon-menu.menu-open span {
     width: 0;
-  }
+  } */
 
-  .icon-menu.menu-open::before {
+  /* .icon-menu.menu-open::before {
     top: calc(50% - 0.0625rem);
     -webkit-transform: rotate(-45deg);
     -ms-transform: rotate(-45deg);
     transform: rotate(-45deg);
-  }
+  } */
 
-  .icon-menu.menu-open::after {
+  /* .icon-menu.menu-open::after {
     bottom: calc(50% - 0.0625rem);
     -webkit-transform: rotate(45deg);
     -ms-transform: rotate(45deg);
     transform: rotate(45deg);
-  }
+  } */
 
   .main__menu {
     top: 0px;
@@ -6421,7 +6444,7 @@ input {
   }
 }
 
-@media (max-width: 109em) and (max-width: 109em) {
+/* @media (max-width: 109em) and (max-width: 109em) {
   @supports (
     left: clamp(3.125rem, 19.5236354776rem + -19.4931773879vw, 15.625rem)
   ) {
@@ -6437,9 +6460,9 @@ input {
       left: calc(15.625rem + -12.5 * (100vw - 20rem) / 64.125);
     }
   }
-}
+} */
 
-@media (max-width: 109em) and (max-width: 105.25em) {
+/* @media (max-width: 109em) and (max-width: 105.25em) {
   @supports (
     left: clamp(6.25rem, 18.5489766082rem + -14.6198830409vw, 15.625rem)
   ) {
@@ -6455,9 +6478,9 @@ input {
       left: calc(15.625rem + -9.375 * (100vw - 20rem) / 64.125);
     }
   }
-}
+} */
 
-@media (max-width: 109em) and (max-width: 98.75em) {
+/* @media (max-width: 109em) and (max-width: 98.75em) {
   @supports (
     left: clamp(9.375rem, 17.5743177388rem + -9.746588694vw, 15.625rem)
   ) {
@@ -6497,7 +6520,7 @@ input {
   .icon-menu.menu-open {
     left: 250px;
   }
-}
+} */
 
 @media (max-width: 37.3125em) {
   .single-card__content {
