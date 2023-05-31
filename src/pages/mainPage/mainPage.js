@@ -1,0 +1,1399 @@
+import { useState } from "react";
+
+// import Select from "react-select";
+import { Link, animateScroll as scroll } from "react-scroll";
+import { useResize } from "../../hooks/useResize.hook";
+import "./mainPage.css";
+const MainPage = () => {
+  const { isScreenSm, isScreenMd } = useResize();
+  const [isHovered, setIsHovered] = useState(null);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [defaulteLanguage, setDefaulteLanguage] = useState("EN");
+  const [isLanguagesListOpen, setIsLanguagesListOpen] = useState(false);
+
+  const laguages = ["EN", "UA", "FR"];
+  const selectLanguage = (e) => {
+    setDefaulteLanguage(e.target.textContent);
+    setIsLanguagesListOpen(false);
+  };
+  //   const addHoverClass = (e) => {
+
+  //     console.log(e.target.);
+  //     //  if (isScreenMd || isScreenSm) {
+  //     //    e.target.classList.add("hover");
+  //     //    setIsHovered(!isHovered);
+  //     //  }
+  //   };
+  return (
+    <div className="wrapper">
+      <header className="header">
+        <div className="header__container">
+          <a href="#" className="header__logo _icon-logo">
+            <span>BeezyyCashier</span>
+          </a>
+          <div className="menu__login menu__login-hidden">
+            <span className="prev-decor"></span>
+            <a href="#">Log in</a>
+            <span className="next-decor"></span>
+          </div>
+          <div
+            className={
+              isMenuOpen ? "header__menu menu  menu-open" : "header__menu menu"
+            }
+          >
+            <div className="menu__wrapper">
+              <nav className="menu__body">
+                <ul className="menu__list list-left">
+                  <li className="menu__item">
+                    <a href="#" className="menu__link">
+                      About us
+                    </a>
+                  </li>
+                  <li className="menu__item">
+                    <a href="#" className="menu__link">
+                      Services
+                    </a>
+                  </li>
+                  <li className="menu__item">
+                    <a href="#" className="menu__link">
+                      Carreers
+                    </a>
+                  </li>
+                </ul>
+                <div className="menu__login">
+                  <span className="prev-decor"></span>
+                  <a href="#">Log in</a>
+                  <span className="next-decor"></span>
+                </div>
+                <ul className="menu__list list-right">
+                  <li className="menu__item">
+                    <a href="#" className="menu__link">
+                      Blog
+                    </a>
+                  </li>
+                  <li className="menu__item">
+                    <a href="#" className="menu__link">
+                      Contact
+                    </a>
+                  </li>
+                </ul>
+                <div className="header__apply button header__apply-mobile">
+                  Apply
+                </div>
+                <div className="header__social social">
+                  <ul className="social__list">
+                    <li className="social__item">
+                      <a href="#" className="social__link _icon-f1"></a>
+                    </li>
+                    <li className="social__item">
+                      <a href="#" className="social__link _icon-f2"></a>
+                    </li>
+                    <li className="social__item">
+                      <a href="#" className="social__link _icon-linkedin"></a>
+                    </li>
+                    <li className="social__item">
+                      <a href="#" className="social__link _icon-f4"></a>
+                    </li>
+                    <li className="social__item">
+                      <a href="#" className="social__link _icon-f5"></a>
+                    </li>
+                    <li className="social__item">
+                      <a href="#" className="social__link _icon-f6"></a>
+                    </li>
+                  </ul>
+                </div>
+              </nav>
+              <div
+                onClick={() => setIsLanguagesListOpen(!isLanguagesListOpen)}
+                className={
+                  isLanguagesListOpen
+                    ? "header__lang lang-select opened"
+                    : "header__lang lang-select "
+                }
+              >
+                {" "}
+                <span>{defaulteLanguage}</span>
+                {/* <Select options={options} /> */}
+                <ul className="lang-select__body">
+                  {laguages.map((item, index) => {
+                    return (
+                      <li
+                        onClick={(e) => selectLanguage(e)}
+                        key={index}
+                        className="lang-select__item"
+                      >
+                        {item}
+                      </li>
+                    );
+                  })}
+                </ul>
+              </div>
+              <div className="header__apply button">Apply</div>
+              <button
+                onClick={() => setIsMenuOpen(!isMenuOpen)}
+                type="button"
+                className="menu__icon icon-menu"
+              >
+                <span></span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </header>
+      <main className="page">
+        <section id="introduction" className="introduction">
+          <div className="introduction__decor introduction__decor-top">
+            <img src={require("../../img/desctop/07.png")} alt="decor" />
+          </div>
+          <div className="introduction__decor introduction__decor-bottom">
+            <img src={require("../../img/desctop/03.png")} alt="decor" />
+          </div>
+          <div className="introduction__container">
+            <div className="introduction__wrapper">
+              <div className="introduction__conten content-introductiont">
+                <div className="content-introductiont__header">
+                  <div className="content-introductiont__title">
+                    BEEZYY - ORGANIZE <span>YOUR PAYMENTS EASY</span>{" "}
+                  </div>
+                  <div className="content-introductiont__subtitle">
+                    {" "}
+                    A NEW APPROACH IN PAYMENT ORGANIZATION{" "}
+                    <span>COMPLEX THINGS CAN BE SIMPLE</span>
+                  </div>
+                </div>
+                <div className="content-introductiont__footer footer-introduction">
+                  <div className="footer-introduction__wrapp">
+                    <div className="content-introductiont__image-ibg">
+                      <img
+                        src={require("../../img/desctop/girl-coins.png")}
+                        alt="Girl with coins"
+                      />
+                    </div>
+                  </div>
+                  <div className="content-introductiont__demo button">
+                    I want Demo
+                  </div>
+                </div>
+              </div>
+              <div className="introduction__decorations decorations-introduction">
+                <div className="decorations-introduction__image-ibg">
+                  <img
+                    src={require("../../img/desctop/main-screen.png")}
+                    alt="mainScreen"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="introduction__controls">
+            <ul className="introduction__list">
+              <Link
+                activeClass="active"
+                className="introduction__item"
+                to="introduction"
+                spy={true}
+                smooth={true}
+                offset={-70}
+                duration={500}
+              ></Link>
+              <Link
+                className="introduction__item"
+                activeClass="active"
+                to="advantages"
+                spy={true}
+                smooth={true}
+                offset={-70}
+                duration={500}
+              ></Link>
+              <Link
+                className="introduction__item"
+                activeClass="active"
+                to="payment"
+                spy={true}
+                smooth={true}
+                offset={-70}
+                duration={500}
+              ></Link>
+              <Link
+                className="introduction__item"
+                activeClass="active"
+                to="providers"
+                spy={true}
+                smooth={true}
+                offset={-70}
+                duration={500}
+              ></Link>
+            </ul>
+          </div>
+        </section>
+        <section id="advantages" className="advantages">
+          <div className="advantages__container ">
+            <div className="advantages__header">
+              <div className="advantages__decor decor-top"></div>
+              <ul className="advantages__list">
+                <li className="advantages__item item-advantages">
+                  <div className="item-advantages__mark _icon-check"></div>
+                  <span>No fee</span> for installation
+                </li>
+                <li className="advantages__item item-advantages">
+                  <div className="item-advantages__mark _icon-check"></div>
+                  <span>No fee</span> for additional connection of SRM systems
+                </li>
+                <li className="advantages__item item-advantages">
+                  <div className="item-advantages__mark _icon-check"></div>
+                  <span>No fee</span> or customizing the payment system
+                </li>
+                <li className="advantages__item item-advantages">
+                  <div className="item-advantages__mark _icon-check"></div>
+                  <p>
+                    <span>No fee</span> for the integration of payment
+                    providers. (Integration speed is up to 10 payments per
+                    month. When all the necessary keys are supplied by the
+                    provider)
+                  </p>
+                </li>
+              </ul>
+            </div>
+            <div className="advantages__body">
+              <div className="advantages__content content-advantages">
+                <div className="content-advantages__content">
+                  <div className="advantages__decor decor-middle"></div>
+                  <div className="content-advantages__title">
+                    There is a commission{" "}
+                    <span> for the number of successful transactions </span> per
+                    month. To find out the cost, contact the form
+                  </div>
+                  <div className="content-advantages__apply button">Apply</div>
+                </div>
+                <div className="content-advantages__decorations">
+                  <div className="content-advantages__image-ibg">
+                    <img
+                      src={require("../../img/desctop/04.png")}
+                      alt="Decoration"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section id="payment" className="payment">
+          <div className="payment__decor"></div>
+          <div className="payment__container">
+            <div className="payment__header header-payment">
+              <div className="header-payment__title">
+                {" "}
+                CUSTOMIZE YOUR <span>PAYMENT FORM</span> RIGHT NOW{" "}
+              </div>
+              <ul className="header-payment__list">
+                <li className="header-payment__item active">
+                  <a href="#" className="header-payment__link">
+                    Your form
+                  </a>
+                </li>
+                <li className="header-payment__item">
+                  <a href="#" className="header-payment__link">
+                    Ready-made forms
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div className="payment__body">
+              <div className="payment__options options">
+                <div className="options__customize _icon-hand"> Customize </div>
+                <form action="#" className="options__form">
+                  <div className="options__decor _icon-hand"></div>
+                  <div className="options__close _icon-cross-main"></div>
+                  <div className="options__body">
+                    <div className="options__item languages">
+                      <div className="options__title active">Languages</div>
+                      <ul className="languages__body">
+                        <div className="checkbox languages__checkbox checked">
+                          <input
+                            id="c_3"
+                            data-error="Ошибка"
+                            className="checkbox__input"
+                            type="radio"
+                            name="form[]"
+                            checked=""
+                          />
+                          <label htmlFor="c_3" className="checkbox__label">
+                            <span className="checkbox__text">EN</span>
+                          </label>
+                        </div>
+                        <div className="checkbox languages__checkbox checked">
+                          <input
+                            id="c_4"
+                            data-error="Ошибка"
+                            className="checkbox__input"
+                            type="radio"
+                            name="form[]"
+                            checked=""
+                          />
+                          <label htmlFor="c_4" className="checkbox__label">
+                            <span className="checkbox__text">FR</span>
+                          </label>
+                        </div>
+                      </ul>
+                    </div>
+                    <div className="options__item logo">
+                      <div className="options__title">Logo</div>
+                      <div className="logo__wrapp">
+                        <input
+                          id="logo_file"
+                          className="logo__file"
+                          type="file"
+                        />
+                        <label htmlFor="logo_file" className="logo__button">
+                          Browse ...
+                        </label>
+                        <div className="logo__preview">
+                          {/* <img src={require("../../img" alt="" /> */}
+                        </div>
+                      </div>
+                    </div>
+                    <div className="options__item">
+                      <div className="options__title">Switch to dark theme</div>
+                      <div className="checkbox options__checkbox checked">
+                        <input
+                          id="c_1"
+                          data-error="Ошибка"
+                          className="checkbox__input"
+                          type="checkbox"
+                          name="form[]"
+                        />
+                        <label htmlFor="c_1" className="checkbox__label">
+                          <span className="checkbox__text">No</span>
+                        </label>
+                      </div>
+                    </div>
+                    <div className="options__item">
+                      <div className="options__title">
+                        Outline of the input area
+                      </div>
+                      <div className="checkbox options__checkbox checked">
+                        <input
+                          id="c_2"
+                          data-error="Ошибка"
+                          className="checkbox__input"
+                          type="checkbox"
+                          name="form[]"
+                          checked=""
+                        />
+                        <label htmlFor="c_2" className="checkbox__label">
+                          <span className="checkbox__text">Yes</span>
+                        </label>
+                      </div>
+                    </div>
+                    <div className="options__item">
+                      <div className="options__title">Unlock button color</div>
+                      <input
+                        autoComplete="off"
+                        type="text"
+                        name="form[]"
+                        data-error="Ошибка"
+                        placeholder=""
+                        className="options__input input"
+                      />
+                    </div>
+                    <div className="options__item">
+                      <div className="options__title">Lock button color</div>
+                      <input
+                        autoComplete="off"
+                        type="text"
+                        name="form[]"
+                        data-error="Ошибка"
+                        placeholder=""
+                        className="options__input input"
+                      />
+                    </div>
+                    <div className="options__item">
+                      <div className="options__title">Order text color</div>
+                      <input
+                        autoComplete="off"
+                        type="text"
+                        name="form[]"
+                        data-error="Ошибка"
+                        placeholder=""
+                        className="options__input input"
+                      />
+                    </div>
+                    <div className="options__item">
+                      <div className="options__title">Text color</div>
+                      <input
+                        autoComplete="off"
+                        type="text"
+                        name="form[]"
+                        data-error="Ошибка"
+                        placeholder=""
+                        className="options__input input"
+                      />
+                    </div>
+                    <div className="options__item">
+                      <div className="options__title">Pay button color</div>
+                      <input
+                        autoComplete="off"
+                        type="text"
+                        name="form[]"
+                        data-error="Ошибка"
+                        placeholder=""
+                        className="options__input input"
+                      />
+                    </div>
+                  </div>
+                  <button type="submit" className="options__save">
+                    Save
+                  </button>
+                </form>
+              </div>
+              <div className="payment__form  form-payment">
+                <div className="form-payment__card card-payment">
+                  <div className="card-payment__header header-card">
+                    <div className="header-card__top">
+                      <div className="header-card__lang">EN</div>
+                      <div className="header-card__select header-card__select-mobile">
+                        Select country
+                      </div>
+                      <div className="checkbox header-card__checkbox checked">
+                        <input
+                          id="c_5"
+                          data-error="Ошибка"
+                          className="checkbox__input"
+                          type="checkbox"
+                          name="form[]"
+                          checked=""
+                        />
+                        <label htmlFor="c_5" className="checkbox__label">
+                          <span className="checkbox__text">light</span>
+                        </label>
+                      </div>
+                    </div>
+                    <ul className="header-card__navigation header-card__navigation-mobile navigation-header">
+                      <li className="navigation-header__item active">
+                        <a href="#" className="navigation-header__link">
+                          Card
+                        </a>
+                      </li>
+                      <li className="navigation-header__item">
+                        <a href="#" className="navigation-header__link">
+                          Other payment methods
+                        </a>
+                      </li>
+                    </ul>
+                    <div className="header-card__middle header-card__middle-mobile">
+                      <div className="header-card__logo _icon-logo">
+                        {" "}
+                        <span>BeezyyCashier</span>{" "}
+                      </div>
+                      <div className="header-card__bottom">
+                        {" "}
+                        Order <span>1234567890</span>{" "}
+                      </div>
+                      <div className="header-card__select">Select country</div>
+                    </div>
+                    <div className="header-card__bottom">
+                      {" "}
+                      Order <span>1234567890</span>{" "}
+                    </div>
+                  </div>
+                  <div className="card-payment__wrapper">
+                    <div className="card-payment__body body-card">
+                      <div className="body-card__amount">
+                        Amount: <span>10 USD</span>
+                      </div>
+                      <form
+                        action="#"
+                        className="body-card__information information-card"
+                      >
+                        <div className="information-card__wrapper">
+                          <div className="information-card__item">
+                            <div className="information-card__title">
+                              Card number
+                            </div>
+                            <div className="information-card__number">
+                              <input
+                                autoComplete="off"
+                                type="text"
+                                name="form[]"
+                                data-error="Ошибка"
+                                placeholder=" "
+                                maxLength="4"
+                                className="information-card__input information-card__input-number input"
+                              />
+                              <input
+                                autoComplete="off"
+                                type="text"
+                                name="form[]"
+                                data-error="Ошибка"
+                                placeholder=" "
+                                maxLength="4"
+                                className="information-card__input information-card__input-number input"
+                              />
+                              <input
+                                autoComplete="off"
+                                type="text"
+                                name="form[]"
+                                data-error="Ошибка"
+                                placeholder=" "
+                                maxLength="4"
+                                className="information-card__input information-card__input-number input"
+                              />
+                              <input
+                                autoComplete="off"
+                                type="text"
+                                name="form[]"
+                                data-error="Ошибка"
+                                placeholder=" "
+                                maxLength="4"
+                                className="information-card__input information-card__input-number input"
+                              />
+                            </div>
+                          </div>
+                          <div className="information-card__items">
+                            <div className="information-card__item">
+                              <div className="information-card__title">
+                                Expiration date
+                              </div>
+                              <div className="information-card__date">
+                                <input
+                                  autoComplete="off"
+                                  type="text"
+                                  name="form[]"
+                                  data-error="Ошибка"
+                                  maxLength="2"
+                                  placeholder="MM"
+                                  className="information-card__input information-card__input-date input"
+                                />
+                                <span>/</span>
+                                <input
+                                  autoComplete="off"
+                                  type="text"
+                                  name="form[]"
+                                  data-error="Ошибка"
+                                  maxLength="2"
+                                  placeholder="DD"
+                                  className="information-card__input information-card__input-date input"
+                                />
+                              </div>
+                            </div>
+                            <div className="information-card__item">
+                              <div className="information-card__title">
+                                CVV/CVC code
+                              </div>
+                              <input
+                                autoComplete="off"
+                                type="text"
+                                name="form[]"
+                                data-error="Ошибка"
+                                placeholder=" "
+                                maxLength="3"
+                                className="information-card__input information-card__input-cvv input"
+                              />
+                            </div>
+                          </div>
+                          <div className="information-card__item">
+                            <div className="information-card__title">
+                              Card holder
+                            </div>
+                            <input
+                              autoComplete="off"
+                              type="text"
+                              name="form[]"
+                              data-error="Ошибка"
+                              placeholder=""
+                              className="information-card__input information-card__input-holder input"
+                            />
+                          </div>
+                        </div>
+                        <button
+                          type="submit"
+                          className="information-card__button _icon-lock"
+                        >
+                          {" "}
+                          <span>Pay</span>{" "}
+                        </button>
+                      </form>
+                    </div>
+                    <div className="card-payment__footer footer-payment">
+                      <ul className="footer-payment__list">
+                        <li className="footer-payment__item">
+                          <img
+                            src={require("../../img/desctop/visa.png")}
+                            alt=""
+                          />
+                        </li>
+                        <li className="footer-payment__item">
+                          <img
+                            src={require("../../img/desctop/mc.png")}
+                            alt=""
+                          />
+                        </li>
+                        <li className="footer-payment__item">
+                          <img
+                            src={require("../../img/desctop/dss.png")}
+                            alt=""
+                          />
+                        </li>
+                      </ul>
+                    </div>
+                    {/* /* <!-- добавлять динамически -->  */}
+                  </div>
+                </div>
+                <div className="form-payment__methods methods-payment">
+                  <div className="methods-payment__title">
+                    Other payment methods
+                  </div>
+                  <ul className="methods-payment__list">
+                    <li className="methods-payment__item">
+                      <h2 className="methods-payment__name">APPLE PAY</h2>
+                      <div className="methods-payment__buttons">
+                        <button
+                          type="submit"
+                          className="methods-payment__button _icon-apple"
+                        >
+                          <span>Apple Pay</span>
+                        </button>
+                        <button
+                          type="submit"
+                          className="methods-payment__button _icon-apple"
+                        >
+                          <span>Apple Pay 2</span>
+                        </button>
+                      </div>
+                    </li>
+                    <li className="methods-payment__item">
+                      <h2 className="methods-payment__name">CRYPTO</h2>
+                      <div className="methods-payment__buttons">
+                        <button
+                          type="submit"
+                          className="methods-payment__button _icon-btc"
+                        >
+                          <span>Crypto (100+ Coins)</span>
+                        </button>
+                        <button
+                          type="submit"
+                          className="methods-payment__button _icon-btc"
+                        >
+                          <span>Crypto 2 (100+ Coins)</span>
+                        </button>
+                      </div>
+                    </li>
+                    <li className="methods-payment__item">
+                      <h2 className="methods-payment__name">OTHER</h2>
+                      <div className="methods-payment__buttons">
+                        <button
+                          type="submit"
+                          className="methods-payment__button"
+                        >
+                          <span>Google Pay</span>
+                        </button>
+                        <button
+                          type="submit"
+                          className="methods-payment__button"
+                        >
+                          <span>Easy Pay</span>
+                        </button>
+                      </div>
+                    </li>
+                    <li className="methods-payment__item">
+                      <h2 className="methods-payment__name">BANK TRANSFER</h2>
+                      <div className="methods-payment__buttons">
+                        <button
+                          type="submit"
+                          className="methods-payment__button"
+                        >
+                          OTHER
+                        </button>
+                        <button
+                          type="submit"
+                          className="methods-payment__button"
+                        >
+                          OTHER
+                        </button>
+                        <button
+                          type="submit"
+                          className="methods-payment__button"
+                        >
+                          OTHER
+                        </button>
+                        <button
+                          type="submit"
+                          className="methods-payment__button"
+                        >
+                          OTHER
+                        </button>
+                        <button
+                          type="submit"
+                          className="methods-payment__button"
+                        >
+                          OTHER
+                        </button>
+                        <button
+                          type="submit"
+                          className="methods-payment__button"
+                        >
+                          OTHER
+                        </button>
+                        <button
+                          type="submit"
+                          className="methods-payment__button"
+                        >
+                          OTHER
+                        </button>
+                        <button
+                          type="submit"
+                          className="methods-payment__button"
+                        >
+                          OTHER
+                        </button>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section id="providers" className="providers">
+          <div className="providers__container">
+            <div className="providers__header">
+              <h2 className="providers__title">
+                {" "}
+                AVAILABLE <span>PROVIDERS</span>
+              </h2>
+            </div>
+            <div className="providers__body body-providers">
+              <ul className="body-providers__list">
+                <li className="body-providers__item">
+                  <div className="body-providers__image-ibg">
+                    <img
+                      src={require("../../img/desctop/prov1.png")}
+                      alt="Connectum"
+                    />
+                  </div>
+                </li>
+                <li className="body-providers__item">
+                  <div className="body-providers__image-ibg">
+                    <img
+                      src={require("../../img/desctop/prov2.png")}
+                      alt="Interkassa"
+                    />
+                  </div>
+                </li>
+                <li className="body-providers__item">
+                  <div className="body-providers__image-ibg">
+                    <img
+                      src={require("../../img/desctop/prov3.png")}
+                      alt="xanpay"
+                    />
+                  </div>
+                </li>
+                <li className="body-providers__item">
+                  <div className="body-providers__image-ibg">
+                    <img
+                      src={require("../../img/desctop/prov4.png")}
+                      alt="Decta"
+                    />
+                  </div>
+                </li>
+                <li className="body-providers__item">
+                  <div className="body-providers__image-ibg">
+                    <img
+                      src={require("../../img/desctop/prov5.png")}
+                      alt="Fibonatix"
+                    />
+                  </div>
+                </li>
+                <li className="body-providers__item">
+                  <div className="body-providers__image-ibg">
+                    <img
+                      src={require("../../img/desctop/prov6.png")}
+                      alt="MoonPay"
+                    />
+                  </div>
+                </li>
+                <li className="body-providers__item">
+                  <div className="body-providers__image-ibg">
+                    <img
+                      src={require("../../img/desctop/prov7.png")}
+                      alt="NexPay"
+                    />
+                  </div>
+                </li>
+                <li className="body-providers__item">
+                  <div className="body-providers__image-ibg">
+                    <img
+                      src={require("../../img/desctop/prov8.png")}
+                      alt="cryptopay"
+                    />
+                  </div>
+                </li>
+                <li className="body-providers__item">
+                  <div className="body-providers__image-ibg">
+                    <img
+                      src={require("../../img/desctop/prov9.png")}
+                      alt="icepay"
+                    />
+                  </div>
+                </li>
+              </ul>
+              <div className="body-providers__more more-button _icon-down_arrow">
+                SEE MORE
+              </div>
+            </div>
+          </div>
+        </section>
+        <section className="features">
+          <div className="features__container">
+            <h2 className="features__title">
+              {" "}
+              <span>OUR FEATURES</span> FOR PAYMENTS{" "}
+            </h2>
+            <div className="features__body body-features">
+              <div className="body-features__content">
+                <div
+                  onClick={() => {}}
+                  className={"body-features__card card-features"}
+                >
+                  <div className="card-features__item">
+                    <svg
+                      viewBox="0 0 231 206"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M172.723 0.206543H57.58L0.00878906 102.915L57.58 205.625H172.723L230.295 102.915L172.723 0.206543Z"
+                        fill="white"
+                      />
+                      <path
+                        d="M174.882 4.05816L173.443 1.49045L172.571 1.9794L172.137 1.20654H171.208V0.206543H168.178V1.20654H165.148V0.206543H162.118V1.20654H159.088V0.206543H156.058V1.20654H153.028V0.206543H149.998V1.20654H146.968V0.206543H143.937V1.20654H140.907V0.206543H137.877V1.20654H134.847V0.206543H131.817V1.20654H128.787V0.206543H125.757V1.20654H122.727V0.206543H119.697V1.20654H116.667V0.206543H113.637V1.20654H110.607V0.206543H107.576V1.20654H104.546V0.206543H101.516V1.20654H98.4862V0.206543H95.4561V1.20654H92.426V0.206543H89.3959V1.20654H86.3658V0.206543H83.3357V1.20654H80.3056V0.206543H77.2755V1.20654H74.2454V0.206543H71.2153V1.20654H68.1853V0.206543H65.1552V1.20654H62.1251V0.206543H59.095V1.20654H58.1659L57.7327 1.97936L56.8604 1.4904L55.4211 4.05813L56.2934 4.54708L54.8541 7.1148L53.9818 6.62585L52.5425 9.19357L53.4148 9.68252L51.9755 12.2502L51.1032 11.7613L49.664 14.329L50.5363 14.818L49.097 17.3857L48.2247 16.8967L46.7854 19.4645L47.6577 19.9534L46.2184 22.5211L45.3461 22.0322L43.9068 24.5999L44.7791 25.0889L43.3399 27.6566L42.4676 27.1676L41.0283 29.7353L41.9006 30.2243L40.4613 32.792L39.589 32.3031L38.1497 34.8708L39.022 35.3597L37.5827 37.9275L36.7104 37.4385L35.2712 40.0062L36.1435 40.4952L34.7042 43.0629L33.8319 42.5739L32.3926 45.1417L33.2649 45.6306L31.8256 48.1983L30.9533 47.7094L29.514 50.2771L30.3864 50.7661L28.9471 53.3338L28.0748 52.8448L26.6355 55.4125L27.5078 55.9015L26.0685 58.4692L25.1962 57.9803L23.7569 60.548L24.6292 61.0369L23.19 63.6047L22.3176 63.1157L20.8784 65.6834L21.7507 66.1724L20.3114 68.7401L19.4391 68.2511L17.9998 70.8189L18.8721 71.3078L17.4328 73.8755L16.5605 73.3866L15.1212 75.9543L15.9936 76.4433L14.5543 79.011L13.682 78.522L12.2427 81.0897L13.115 81.5787L11.6757 84.1464L10.8034 83.6575L9.36413 86.2252L10.2364 86.7141L8.79716 89.2819L7.92485 88.7929L6.48557 91.3606L7.35788 91.8496L5.9186 94.4173L5.04629 93.9283L3.60701 96.4961L4.47932 96.985L3.04004 99.5527L2.16773 99.0638L0.728452 101.632L1.60076 102.12L1.15517 102.915L1.60074 103.71L0.728429 104.199L2.16771 106.767L3.04002 106.278L4.4793 108.846L3.60699 109.335L5.04627 111.903L5.91858 111.414L7.35786 113.981L6.48555 114.47L7.92483 117.038L8.79714 116.549L10.2364 119.117L9.36411 119.606L10.8034 122.173L11.6757 121.685L13.115 124.252L12.2427 124.741L13.6819 127.309L14.5543 126.82L15.9935 129.388L15.1212 129.877L16.5605 132.444L17.4328 131.956L18.8721 134.523L17.9998 135.012L19.4391 137.58L20.3114 137.091L21.7507 139.659L20.8784 140.148L22.3176 142.715L23.1899 142.227L24.6292 144.794L23.7569 145.283L25.1962 147.851L26.0685 147.362L27.5078 149.93L26.6355 150.419L28.0748 152.986L28.9471 152.497L30.3863 155.065L29.514 155.554L30.9533 158.122L31.8256 157.633L33.2649 160.201L32.3926 160.69L33.8319 163.257L34.7042 162.768L36.1435 165.336L35.2712 165.825L36.7104 168.393L37.5828 167.904L39.022 170.472L38.1497 170.961L39.589 173.528L40.4613 173.039L41.9006 175.607L41.0283 176.096L42.4676 178.664L43.3399 178.175L44.7792 180.743L43.9068 181.232L45.3461 183.799L46.2184 183.31L47.6577 185.878L46.7854 186.367L48.2247 188.935L49.097 188.446L50.5363 191.014L49.664 191.503L51.1033 194.07L51.9756 193.581L53.4148 196.149L52.5425 196.638L53.9818 199.206L54.8541 198.717L56.2934 201.285L55.4211 201.774L56.8604 204.341L57.7327 203.852L58.1659 204.625H59.095V205.625H62.1251V204.625H65.1552V205.625H68.1853V204.625H71.2154V205.625H74.2455V204.625H77.2756V205.625H80.3056V204.625H83.3357V205.625H86.3658V204.625H89.3959V205.625H92.426V204.625H95.4561V205.625H98.4862V204.625H101.516V205.625H104.546V204.625H107.576V205.625H110.607V204.625H113.637V205.625H116.667V204.625H119.697V205.625H122.727V204.625H125.757V205.625H128.787V204.625H131.817V205.625H134.847V204.625H137.877V205.625H140.907V204.625H143.938V205.625H146.968V204.625H149.998V205.625H153.028V204.625H156.058V205.625H159.088V204.625H162.118V205.625H165.148V204.625H168.178V205.625H171.208V204.625H172.137L172.571 203.852L173.443 204.341L174.882 201.774L174.01 201.285L175.449 198.717L176.322 199.206L177.761 196.638L176.888 196.149L178.328 193.581L179.2 194.07L180.639 191.503L179.767 191.014L181.206 188.446L182.079 188.935L183.518 186.367L182.646 185.878L184.085 183.31L184.957 183.799L186.396 181.232L185.524 180.743L186.963 178.175L187.836 178.664L189.275 176.096L188.403 175.607L189.842 173.039L190.714 173.528L192.154 170.961L191.281 170.472L192.721 167.904L193.593 168.393L195.032 165.825L194.16 165.336L195.599 162.768L196.471 163.257L197.911 160.69L197.038 160.201L198.478 157.633L199.35 158.122L200.789 155.554L199.917 155.065L201.356 152.497L202.229 152.986L203.668 150.419L202.796 149.93L204.235 147.362L205.107 147.851L206.546 145.283L205.674 144.794L207.113 142.226L207.986 142.715L209.425 140.148L208.553 139.659L209.992 137.091L210.864 137.58L212.304 135.012L211.431 134.523L212.87 131.956L213.743 132.444L215.182 129.877L214.31 129.388L215.749 126.82L216.621 127.309L218.061 124.741L217.188 124.252L218.628 121.685L219.5 122.173L220.939 119.606L220.067 119.117L221.506 116.549L222.378 117.038L223.818 114.47L222.945 113.981L224.385 111.414L225.257 111.902L226.696 109.335L225.824 108.846L227.263 106.278L228.136 106.767L229.575 104.199L228.703 103.71L229.148 102.915L228.703 102.12L229.575 101.632L228.136 99.0638L227.263 99.5528L225.824 96.9851L226.696 96.4961L225.257 93.9284L224.385 94.4173L222.945 91.8496L223.818 91.3607L222.378 88.7929L221.506 89.2819L220.067 86.7142L220.939 86.2252L219.5 83.6575L218.628 84.1464L217.188 81.5787L218.061 81.0898L216.621 78.522L215.749 79.011L214.31 76.4433L215.182 75.9543L213.743 73.3866L212.87 73.8756L211.431 71.3078L212.304 70.8189L210.864 68.2512L209.992 68.7401L208.553 66.1724L209.425 65.6834L207.986 63.1157L207.113 63.6047L205.674 61.037L206.546 60.548L205.107 57.9803L204.235 58.4692L202.796 55.9015L203.668 55.4126L202.229 52.8448L201.356 53.3338L199.917 50.7661L200.789 50.2771L199.35 47.7094L198.478 48.1984L197.038 45.6306L197.911 45.1417L196.471 42.574L195.599 43.0629L194.16 40.4952L195.032 40.0062L193.593 37.4385L192.721 37.9275L191.281 35.3598L192.154 34.8708L190.714 32.3031L189.842 32.792L188.403 30.2243L189.275 29.7354L187.836 27.1676L186.963 27.6566L185.524 25.0889L186.396 24.5999L184.957 22.0322L184.085 22.5212L182.646 19.9534L183.518 19.4645L182.079 16.8968L181.206 17.3857L179.767 14.818L180.639 14.329L179.2 11.7613L178.328 12.2503L176.888 9.68256L177.761 9.1936L176.322 6.62588L175.449 7.11484L174.01 4.54712L174.882 4.05816Z"
+                        stroke="#FBBD00"
+                        strokeOpacity="0.4"
+                        strokeWidth="2"
+                        strokeDasharray="3 3"
+                      />
+                      <path
+                        d="M9.16347 102.599L62.3094 10.541H168.602L221.748 102.599L168.602 194.658H62.3094L9.16347 102.599Z"
+                        fill="white"
+                        stroke="#FBBD00"
+                        strokeWidth="2"
+                      />
+                    </svg>
+                    <div className="card-features__title">
+                      {" "}
+                      <span>ANALYTICS</span>{" "}
+                    </div>
+                    <div className="card-features__backside">
+                      <p>
+                        Provides robust analytics that allow users to track and
+                        analyze their data in real-time. Users can gain insights
+                        into various metrics, such as user behavior, engagement,
+                        and retention.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  onClick={() => {}}
+                  className={"body-features__card card-features"}
+                >
+                  <div className="card-features__item">
+                    <svg
+                      width="231"
+                      height="206"
+                      viewBox="0 0 231 206"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M172.723 0.206543H57.58L0.00878906 102.915L57.58 205.625H172.723L230.295 102.915L172.723 0.206543Z"
+                        fill="white"
+                      />
+                      <path
+                        d="M174.882 4.05816L173.443 1.49045L172.571 1.9794L172.137 1.20654H171.208V0.206543H168.178V1.20654H165.148V0.206543H162.118V1.20654H159.088V0.206543H156.058V1.20654H153.028V0.206543H149.998V1.20654H146.968V0.206543H143.937V1.20654H140.907V0.206543H137.877V1.20654H134.847V0.206543H131.817V1.20654H128.787V0.206543H125.757V1.20654H122.727V0.206543H119.697V1.20654H116.667V0.206543H113.637V1.20654H110.607V0.206543H107.576V1.20654H104.546V0.206543H101.516V1.20654H98.4862V0.206543H95.4561V1.20654H92.426V0.206543H89.3959V1.20654H86.3658V0.206543H83.3357V1.20654H80.3056V0.206543H77.2755V1.20654H74.2454V0.206543H71.2153V1.20654H68.1853V0.206543H65.1552V1.20654H62.1251V0.206543H59.095V1.20654H58.1659L57.7327 1.97936L56.8604 1.4904L55.4211 4.05813L56.2934 4.54708L54.8541 7.1148L53.9818 6.62585L52.5425 9.19357L53.4148 9.68252L51.9755 12.2502L51.1032 11.7613L49.664 14.329L50.5363 14.818L49.097 17.3857L48.2247 16.8967L46.7854 19.4645L47.6577 19.9534L46.2184 22.5211L45.3461 22.0322L43.9068 24.5999L44.7791 25.0889L43.3399 27.6566L42.4676 27.1676L41.0283 29.7353L41.9006 30.2243L40.4613 32.792L39.589 32.3031L38.1497 34.8708L39.022 35.3597L37.5827 37.9275L36.7104 37.4385L35.2712 40.0062L36.1435 40.4952L34.7042 43.0629L33.8319 42.5739L32.3926 45.1417L33.2649 45.6306L31.8256 48.1983L30.9533 47.7094L29.514 50.2771L30.3864 50.7661L28.9471 53.3338L28.0748 52.8448L26.6355 55.4125L27.5078 55.9015L26.0685 58.4692L25.1962 57.9803L23.7569 60.548L24.6292 61.0369L23.19 63.6047L22.3176 63.1157L20.8784 65.6834L21.7507 66.1724L20.3114 68.7401L19.4391 68.2511L17.9998 70.8189L18.8721 71.3078L17.4328 73.8755L16.5605 73.3866L15.1212 75.9543L15.9936 76.4433L14.5543 79.011L13.682 78.522L12.2427 81.0897L13.115 81.5787L11.6757 84.1464L10.8034 83.6575L9.36413 86.2252L10.2364 86.7141L8.79716 89.2819L7.92485 88.7929L6.48557 91.3606L7.35788 91.8496L5.9186 94.4173L5.04629 93.9283L3.60701 96.4961L4.47932 96.985L3.04004 99.5527L2.16773 99.0638L0.728452 101.632L1.60076 102.12L1.15517 102.915L1.60074 103.71L0.728429 104.199L2.16771 106.767L3.04002 106.278L4.4793 108.846L3.60699 109.335L5.04627 111.903L5.91858 111.414L7.35786 113.981L6.48555 114.47L7.92483 117.038L8.79714 116.549L10.2364 119.117L9.36411 119.606L10.8034 122.173L11.6757 121.685L13.115 124.252L12.2427 124.741L13.6819 127.309L14.5543 126.82L15.9935 129.388L15.1212 129.877L16.5605 132.444L17.4328 131.956L18.8721 134.523L17.9998 135.012L19.4391 137.58L20.3114 137.091L21.7507 139.659L20.8784 140.148L22.3176 142.715L23.1899 142.227L24.6292 144.794L23.7569 145.283L25.1962 147.851L26.0685 147.362L27.5078 149.93L26.6355 150.419L28.0748 152.986L28.9471 152.497L30.3863 155.065L29.514 155.554L30.9533 158.122L31.8256 157.633L33.2649 160.201L32.3926 160.69L33.8319 163.257L34.7042 162.768L36.1435 165.336L35.2712 165.825L36.7104 168.393L37.5828 167.904L39.022 170.472L38.1497 170.961L39.589 173.528L40.4613 173.039L41.9006 175.607L41.0283 176.096L42.4676 178.664L43.3399 178.175L44.7792 180.743L43.9068 181.232L45.3461 183.799L46.2184 183.31L47.6577 185.878L46.7854 186.367L48.2247 188.935L49.097 188.446L50.5363 191.014L49.664 191.503L51.1033 194.07L51.9756 193.581L53.4148 196.149L52.5425 196.638L53.9818 199.206L54.8541 198.717L56.2934 201.285L55.4211 201.774L56.8604 204.341L57.7327 203.852L58.1659 204.625H59.095V205.625H62.1251V204.625H65.1552V205.625H68.1853V204.625H71.2154V205.625H74.2455V204.625H77.2756V205.625H80.3056V204.625H83.3357V205.625H86.3658V204.625H89.3959V205.625H92.426V204.625H95.4561V205.625H98.4862V204.625H101.516V205.625H104.546V204.625H107.576V205.625H110.607V204.625H113.637V205.625H116.667V204.625H119.697V205.625H122.727V204.625H125.757V205.625H128.787V204.625H131.817V205.625H134.847V204.625H137.877V205.625H140.907V204.625H143.938V205.625H146.968V204.625H149.998V205.625H153.028V204.625H156.058V205.625H159.088V204.625H162.118V205.625H165.148V204.625H168.178V205.625H171.208V204.625H172.137L172.571 203.852L173.443 204.341L174.882 201.774L174.01 201.285L175.449 198.717L176.322 199.206L177.761 196.638L176.888 196.149L178.328 193.581L179.2 194.07L180.639 191.503L179.767 191.014L181.206 188.446L182.079 188.935L183.518 186.367L182.646 185.878L184.085 183.31L184.957 183.799L186.396 181.232L185.524 180.743L186.963 178.175L187.836 178.664L189.275 176.096L188.403 175.607L189.842 173.039L190.714 173.528L192.154 170.961L191.281 170.472L192.721 167.904L193.593 168.393L195.032 165.825L194.16 165.336L195.599 162.768L196.471 163.257L197.911 160.69L197.038 160.201L198.478 157.633L199.35 158.122L200.789 155.554L199.917 155.065L201.356 152.497L202.229 152.986L203.668 150.419L202.796 149.93L204.235 147.362L205.107 147.851L206.546 145.283L205.674 144.794L207.113 142.226L207.986 142.715L209.425 140.148L208.553 139.659L209.992 137.091L210.864 137.58L212.304 135.012L211.431 134.523L212.87 131.956L213.743 132.444L215.182 129.877L214.31 129.388L215.749 126.82L216.621 127.309L218.061 124.741L217.188 124.252L218.628 121.685L219.5 122.173L220.939 119.606L220.067 119.117L221.506 116.549L222.378 117.038L223.818 114.47L222.945 113.981L224.385 111.414L225.257 111.902L226.696 109.335L225.824 108.846L227.263 106.278L228.136 106.767L229.575 104.199L228.703 103.71L229.148 102.915L228.703 102.12L229.575 101.632L228.136 99.0638L227.263 99.5528L225.824 96.9851L226.696 96.4961L225.257 93.9284L224.385 94.4173L222.945 91.8496L223.818 91.3607L222.378 88.7929L221.506 89.2819L220.067 86.7142L220.939 86.2252L219.5 83.6575L218.628 84.1464L217.188 81.5787L218.061 81.0898L216.621 78.522L215.749 79.011L214.31 76.4433L215.182 75.9543L213.743 73.3866L212.87 73.8756L211.431 71.3078L212.304 70.8189L210.864 68.2512L209.992 68.7401L208.553 66.1724L209.425 65.6834L207.986 63.1157L207.113 63.6047L205.674 61.037L206.546 60.548L205.107 57.9803L204.235 58.4692L202.796 55.9015L203.668 55.4126L202.229 52.8448L201.356 53.3338L199.917 50.7661L200.789 50.2771L199.35 47.7094L198.478 48.1984L197.038 45.6306L197.911 45.1417L196.471 42.574L195.599 43.0629L194.16 40.4952L195.032 40.0062L193.593 37.4385L192.721 37.9275L191.281 35.3598L192.154 34.8708L190.714 32.3031L189.842 32.792L188.403 30.2243L189.275 29.7354L187.836 27.1676L186.963 27.6566L185.524 25.0889L186.396 24.5999L184.957 22.0322L184.085 22.5212L182.646 19.9534L183.518 19.4645L182.079 16.8968L181.206 17.3857L179.767 14.818L180.639 14.329L179.2 11.7613L178.328 12.2503L176.888 9.68256L177.761 9.1936L176.322 6.62588L175.449 7.11484L174.01 4.54712L174.882 4.05816Z"
+                        stroke="#FBBD00"
+                        strokeOpacity="0.4"
+                        strokeWidth="2"
+                        strokeDasharray="3 3"
+                      />
+                      <path
+                        d="M9.16347 102.599L62.3094 10.541H168.602L221.748 102.599L168.602 194.658H62.3094L9.16347 102.599Z"
+                        fill="white"
+                        stroke="#FBBD00"
+                        strokeWidth="2"
+                      />
+                    </svg>
+                    <div className="card-features__title">
+                      {" "}
+                      <span>ROUTING</span>{" "}
+                    </div>
+                    <div className="card-features__backside">
+                      <p>
+                        Allows users to define complex routing rules for their
+                        data. Users can configure the rules based on criteria
+                        such as location, user type, or any custom parameter.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  onClick={() => {}}
+                  className={"body-features__card card-features"}
+                >
+                  <div className="card-features__item">
+                    <svg
+                      width="231"
+                      height="206"
+                      viewBox="0 0 231 206"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M172.723 0.206543H57.58L0.00878906 102.915L57.58 205.625H172.723L230.295 102.915L172.723 0.206543Z"
+                        fill="white"
+                      />
+                      <path
+                        d="M174.882 4.05816L173.443 1.49045L172.571 1.9794L172.137 1.20654H171.208V0.206543H168.178V1.20654H165.148V0.206543H162.118V1.20654H159.088V0.206543H156.058V1.20654H153.028V0.206543H149.998V1.20654H146.968V0.206543H143.937V1.20654H140.907V0.206543H137.877V1.20654H134.847V0.206543H131.817V1.20654H128.787V0.206543H125.757V1.20654H122.727V0.206543H119.697V1.20654H116.667V0.206543H113.637V1.20654H110.607V0.206543H107.576V1.20654H104.546V0.206543H101.516V1.20654H98.4862V0.206543H95.4561V1.20654H92.426V0.206543H89.3959V1.20654H86.3658V0.206543H83.3357V1.20654H80.3056V0.206543H77.2755V1.20654H74.2454V0.206543H71.2153V1.20654H68.1853V0.206543H65.1552V1.20654H62.1251V0.206543H59.095V1.20654H58.1659L57.7327 1.97936L56.8604 1.4904L55.4211 4.05813L56.2934 4.54708L54.8541 7.1148L53.9818 6.62585L52.5425 9.19357L53.4148 9.68252L51.9755 12.2502L51.1032 11.7613L49.664 14.329L50.5363 14.818L49.097 17.3857L48.2247 16.8967L46.7854 19.4645L47.6577 19.9534L46.2184 22.5211L45.3461 22.0322L43.9068 24.5999L44.7791 25.0889L43.3399 27.6566L42.4676 27.1676L41.0283 29.7353L41.9006 30.2243L40.4613 32.792L39.589 32.3031L38.1497 34.8708L39.022 35.3597L37.5827 37.9275L36.7104 37.4385L35.2712 40.0062L36.1435 40.4952L34.7042 43.0629L33.8319 42.5739L32.3926 45.1417L33.2649 45.6306L31.8256 48.1983L30.9533 47.7094L29.514 50.2771L30.3864 50.7661L28.9471 53.3338L28.0748 52.8448L26.6355 55.4125L27.5078 55.9015L26.0685 58.4692L25.1962 57.9803L23.7569 60.548L24.6292 61.0369L23.19 63.6047L22.3176 63.1157L20.8784 65.6834L21.7507 66.1724L20.3114 68.7401L19.4391 68.2511L17.9998 70.8189L18.8721 71.3078L17.4328 73.8755L16.5605 73.3866L15.1212 75.9543L15.9936 76.4433L14.5543 79.011L13.682 78.522L12.2427 81.0897L13.115 81.5787L11.6757 84.1464L10.8034 83.6575L9.36413 86.2252L10.2364 86.7141L8.79716 89.2819L7.92485 88.7929L6.48557 91.3606L7.35788 91.8496L5.9186 94.4173L5.04629 93.9283L3.60701 96.4961L4.47932 96.985L3.04004 99.5527L2.16773 99.0638L0.728452 101.632L1.60076 102.12L1.15517 102.915L1.60074 103.71L0.728429 104.199L2.16771 106.767L3.04002 106.278L4.4793 108.846L3.60699 109.335L5.04627 111.903L5.91858 111.414L7.35786 113.981L6.48555 114.47L7.92483 117.038L8.79714 116.549L10.2364 119.117L9.36411 119.606L10.8034 122.173L11.6757 121.685L13.115 124.252L12.2427 124.741L13.6819 127.309L14.5543 126.82L15.9935 129.388L15.1212 129.877L16.5605 132.444L17.4328 131.956L18.8721 134.523L17.9998 135.012L19.4391 137.58L20.3114 137.091L21.7507 139.659L20.8784 140.148L22.3176 142.715L23.1899 142.227L24.6292 144.794L23.7569 145.283L25.1962 147.851L26.0685 147.362L27.5078 149.93L26.6355 150.419L28.0748 152.986L28.9471 152.497L30.3863 155.065L29.514 155.554L30.9533 158.122L31.8256 157.633L33.2649 160.201L32.3926 160.69L33.8319 163.257L34.7042 162.768L36.1435 165.336L35.2712 165.825L36.7104 168.393L37.5828 167.904L39.022 170.472L38.1497 170.961L39.589 173.528L40.4613 173.039L41.9006 175.607L41.0283 176.096L42.4676 178.664L43.3399 178.175L44.7792 180.743L43.9068 181.232L45.3461 183.799L46.2184 183.31L47.6577 185.878L46.7854 186.367L48.2247 188.935L49.097 188.446L50.5363 191.014L49.664 191.503L51.1033 194.07L51.9756 193.581L53.4148 196.149L52.5425 196.638L53.9818 199.206L54.8541 198.717L56.2934 201.285L55.4211 201.774L56.8604 204.341L57.7327 203.852L58.1659 204.625H59.095V205.625H62.1251V204.625H65.1552V205.625H68.1853V204.625H71.2154V205.625H74.2455V204.625H77.2756V205.625H80.3056V204.625H83.3357V205.625H86.3658V204.625H89.3959V205.625H92.426V204.625H95.4561V205.625H98.4862V204.625H101.516V205.625H104.546V204.625H107.576V205.625H110.607V204.625H113.637V205.625H116.667V204.625H119.697V205.625H122.727V204.625H125.757V205.625H128.787V204.625H131.817V205.625H134.847V204.625H137.877V205.625H140.907V204.625H143.938V205.625H146.968V204.625H149.998V205.625H153.028V204.625H156.058V205.625H159.088V204.625H162.118V205.625H165.148V204.625H168.178V205.625H171.208V204.625H172.137L172.571 203.852L173.443 204.341L174.882 201.774L174.01 201.285L175.449 198.717L176.322 199.206L177.761 196.638L176.888 196.149L178.328 193.581L179.2 194.07L180.639 191.503L179.767 191.014L181.206 188.446L182.079 188.935L183.518 186.367L182.646 185.878L184.085 183.31L184.957 183.799L186.396 181.232L185.524 180.743L186.963 178.175L187.836 178.664L189.275 176.096L188.403 175.607L189.842 173.039L190.714 173.528L192.154 170.961L191.281 170.472L192.721 167.904L193.593 168.393L195.032 165.825L194.16 165.336L195.599 162.768L196.471 163.257L197.911 160.69L197.038 160.201L198.478 157.633L199.35 158.122L200.789 155.554L199.917 155.065L201.356 152.497L202.229 152.986L203.668 150.419L202.796 149.93L204.235 147.362L205.107 147.851L206.546 145.283L205.674 144.794L207.113 142.226L207.986 142.715L209.425 140.148L208.553 139.659L209.992 137.091L210.864 137.58L212.304 135.012L211.431 134.523L212.87 131.956L213.743 132.444L215.182 129.877L214.31 129.388L215.749 126.82L216.621 127.309L218.061 124.741L217.188 124.252L218.628 121.685L219.5 122.173L220.939 119.606L220.067 119.117L221.506 116.549L222.378 117.038L223.818 114.47L222.945 113.981L224.385 111.414L225.257 111.902L226.696 109.335L225.824 108.846L227.263 106.278L228.136 106.767L229.575 104.199L228.703 103.71L229.148 102.915L228.703 102.12L229.575 101.632L228.136 99.0638L227.263 99.5528L225.824 96.9851L226.696 96.4961L225.257 93.9284L224.385 94.4173L222.945 91.8496L223.818 91.3607L222.378 88.7929L221.506 89.2819L220.067 86.7142L220.939 86.2252L219.5 83.6575L218.628 84.1464L217.188 81.5787L218.061 81.0898L216.621 78.522L215.749 79.011L214.31 76.4433L215.182 75.9543L213.743 73.3866L212.87 73.8756L211.431 71.3078L212.304 70.8189L210.864 68.2512L209.992 68.7401L208.553 66.1724L209.425 65.6834L207.986 63.1157L207.113 63.6047L205.674 61.037L206.546 60.548L205.107 57.9803L204.235 58.4692L202.796 55.9015L203.668 55.4126L202.229 52.8448L201.356 53.3338L199.917 50.7661L200.789 50.2771L199.35 47.7094L198.478 48.1984L197.038 45.6306L197.911 45.1417L196.471 42.574L195.599 43.0629L194.16 40.4952L195.032 40.0062L193.593 37.4385L192.721 37.9275L191.281 35.3598L192.154 34.8708L190.714 32.3031L189.842 32.792L188.403 30.2243L189.275 29.7354L187.836 27.1676L186.963 27.6566L185.524 25.0889L186.396 24.5999L184.957 22.0322L184.085 22.5212L182.646 19.9534L183.518 19.4645L182.079 16.8968L181.206 17.3857L179.767 14.818L180.639 14.329L179.2 11.7613L178.328 12.2503L176.888 9.68256L177.761 9.1936L176.322 6.62588L175.449 7.11484L174.01 4.54712L174.882 4.05816Z"
+                        stroke="#FBBD00"
+                        strokeOpacity="0.4"
+                        strokeWidth="2"
+                        strokeDasharray="3 3"
+                      />
+                      <path
+                        d="M9.16347 102.599L62.3094 10.541H168.602L221.748 102.599L168.602 194.658H62.3094L9.16347 102.599Z"
+                        fill="white"
+                        stroke="#FBBD00"
+                        strokeWidth="2"
+                      />
+                    </svg>
+                    <div className="card-features__title">
+                      {" "}
+                      <span>CONVERSION</span>{" "}
+                    </div>
+                    <div className="card-features__backside">
+                      <p>
+                        Enables users to convert data from one format to
+                        another. Users can configure the conversion rules and
+                        execute the conversion process in real-time.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  onClick={() => {}}
+                  className={"body-features__card card-features"}
+                >
+                  <div className="card-features__item">
+                    <svg
+                      width="231"
+                      height="206"
+                      viewBox="0 0 231 206"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M172.723 0.206543H57.58L0.00878906 102.915L57.58 205.625H172.723L230.295 102.915L172.723 0.206543Z"
+                        fill="white"
+                      />
+                      <path
+                        d="M174.882 4.05816L173.443 1.49045L172.571 1.9794L172.137 1.20654H171.208V0.206543H168.178V1.20654H165.148V0.206543H162.118V1.20654H159.088V0.206543H156.058V1.20654H153.028V0.206543H149.998V1.20654H146.968V0.206543H143.937V1.20654H140.907V0.206543H137.877V1.20654H134.847V0.206543H131.817V1.20654H128.787V0.206543H125.757V1.20654H122.727V0.206543H119.697V1.20654H116.667V0.206543H113.637V1.20654H110.607V0.206543H107.576V1.20654H104.546V0.206543H101.516V1.20654H98.4862V0.206543H95.4561V1.20654H92.426V0.206543H89.3959V1.20654H86.3658V0.206543H83.3357V1.20654H80.3056V0.206543H77.2755V1.20654H74.2454V0.206543H71.2153V1.20654H68.1853V0.206543H65.1552V1.20654H62.1251V0.206543H59.095V1.20654H58.1659L57.7327 1.97936L56.8604 1.4904L55.4211 4.05813L56.2934 4.54708L54.8541 7.1148L53.9818 6.62585L52.5425 9.19357L53.4148 9.68252L51.9755 12.2502L51.1032 11.7613L49.664 14.329L50.5363 14.818L49.097 17.3857L48.2247 16.8967L46.7854 19.4645L47.6577 19.9534L46.2184 22.5211L45.3461 22.0322L43.9068 24.5999L44.7791 25.0889L43.3399 27.6566L42.4676 27.1676L41.0283 29.7353L41.9006 30.2243L40.4613 32.792L39.589 32.3031L38.1497 34.8708L39.022 35.3597L37.5827 37.9275L36.7104 37.4385L35.2712 40.0062L36.1435 40.4952L34.7042 43.0629L33.8319 42.5739L32.3926 45.1417L33.2649 45.6306L31.8256 48.1983L30.9533 47.7094L29.514 50.2771L30.3864 50.7661L28.9471 53.3338L28.0748 52.8448L26.6355 55.4125L27.5078 55.9015L26.0685 58.4692L25.1962 57.9803L23.7569 60.548L24.6292 61.0369L23.19 63.6047L22.3176 63.1157L20.8784 65.6834L21.7507 66.1724L20.3114 68.7401L19.4391 68.2511L17.9998 70.8189L18.8721 71.3078L17.4328 73.8755L16.5605 73.3866L15.1212 75.9543L15.9936 76.4433L14.5543 79.011L13.682 78.522L12.2427 81.0897L13.115 81.5787L11.6757 84.1464L10.8034 83.6575L9.36413 86.2252L10.2364 86.7141L8.79716 89.2819L7.92485 88.7929L6.48557 91.3606L7.35788 91.8496L5.9186 94.4173L5.04629 93.9283L3.60701 96.4961L4.47932 96.985L3.04004 99.5527L2.16773 99.0638L0.728452 101.632L1.60076 102.12L1.15517 102.915L1.60074 103.71L0.728429 104.199L2.16771 106.767L3.04002 106.278L4.4793 108.846L3.60699 109.335L5.04627 111.903L5.91858 111.414L7.35786 113.981L6.48555 114.47L7.92483 117.038L8.79714 116.549L10.2364 119.117L9.36411 119.606L10.8034 122.173L11.6757 121.685L13.115 124.252L12.2427 124.741L13.6819 127.309L14.5543 126.82L15.9935 129.388L15.1212 129.877L16.5605 132.444L17.4328 131.956L18.8721 134.523L17.9998 135.012L19.4391 137.58L20.3114 137.091L21.7507 139.659L20.8784 140.148L22.3176 142.715L23.1899 142.227L24.6292 144.794L23.7569 145.283L25.1962 147.851L26.0685 147.362L27.5078 149.93L26.6355 150.419L28.0748 152.986L28.9471 152.497L30.3863 155.065L29.514 155.554L30.9533 158.122L31.8256 157.633L33.2649 160.201L32.3926 160.69L33.8319 163.257L34.7042 162.768L36.1435 165.336L35.2712 165.825L36.7104 168.393L37.5828 167.904L39.022 170.472L38.1497 170.961L39.589 173.528L40.4613 173.039L41.9006 175.607L41.0283 176.096L42.4676 178.664L43.3399 178.175L44.7792 180.743L43.9068 181.232L45.3461 183.799L46.2184 183.31L47.6577 185.878L46.7854 186.367L48.2247 188.935L49.097 188.446L50.5363 191.014L49.664 191.503L51.1033 194.07L51.9756 193.581L53.4148 196.149L52.5425 196.638L53.9818 199.206L54.8541 198.717L56.2934 201.285L55.4211 201.774L56.8604 204.341L57.7327 203.852L58.1659 204.625H59.095V205.625H62.1251V204.625H65.1552V205.625H68.1853V204.625H71.2154V205.625H74.2455V204.625H77.2756V205.625H80.3056V204.625H83.3357V205.625H86.3658V204.625H89.3959V205.625H92.426V204.625H95.4561V205.625H98.4862V204.625H101.516V205.625H104.546V204.625H107.576V205.625H110.607V204.625H113.637V205.625H116.667V204.625H119.697V205.625H122.727V204.625H125.757V205.625H128.787V204.625H131.817V205.625H134.847V204.625H137.877V205.625H140.907V204.625H143.938V205.625H146.968V204.625H149.998V205.625H153.028V204.625H156.058V205.625H159.088V204.625H162.118V205.625H165.148V204.625H168.178V205.625H171.208V204.625H172.137L172.571 203.852L173.443 204.341L174.882 201.774L174.01 201.285L175.449 198.717L176.322 199.206L177.761 196.638L176.888 196.149L178.328 193.581L179.2 194.07L180.639 191.503L179.767 191.014L181.206 188.446L182.079 188.935L183.518 186.367L182.646 185.878L184.085 183.31L184.957 183.799L186.396 181.232L185.524 180.743L186.963 178.175L187.836 178.664L189.275 176.096L188.403 175.607L189.842 173.039L190.714 173.528L192.154 170.961L191.281 170.472L192.721 167.904L193.593 168.393L195.032 165.825L194.16 165.336L195.599 162.768L196.471 163.257L197.911 160.69L197.038 160.201L198.478 157.633L199.35 158.122L200.789 155.554L199.917 155.065L201.356 152.497L202.229 152.986L203.668 150.419L202.796 149.93L204.235 147.362L205.107 147.851L206.546 145.283L205.674 144.794L207.113 142.226L207.986 142.715L209.425 140.148L208.553 139.659L209.992 137.091L210.864 137.58L212.304 135.012L211.431 134.523L212.87 131.956L213.743 132.444L215.182 129.877L214.31 129.388L215.749 126.82L216.621 127.309L218.061 124.741L217.188 124.252L218.628 121.685L219.5 122.173L220.939 119.606L220.067 119.117L221.506 116.549L222.378 117.038L223.818 114.47L222.945 113.981L224.385 111.414L225.257 111.902L226.696 109.335L225.824 108.846L227.263 106.278L228.136 106.767L229.575 104.199L228.703 103.71L229.148 102.915L228.703 102.12L229.575 101.632L228.136 99.0638L227.263 99.5528L225.824 96.9851L226.696 96.4961L225.257 93.9284L224.385 94.4173L222.945 91.8496L223.818 91.3607L222.378 88.7929L221.506 89.2819L220.067 86.7142L220.939 86.2252L219.5 83.6575L218.628 84.1464L217.188 81.5787L218.061 81.0898L216.621 78.522L215.749 79.011L214.31 76.4433L215.182 75.9543L213.743 73.3866L212.87 73.8756L211.431 71.3078L212.304 70.8189L210.864 68.2512L209.992 68.7401L208.553 66.1724L209.425 65.6834L207.986 63.1157L207.113 63.6047L205.674 61.037L206.546 60.548L205.107 57.9803L204.235 58.4692L202.796 55.9015L203.668 55.4126L202.229 52.8448L201.356 53.3338L199.917 50.7661L200.789 50.2771L199.35 47.7094L198.478 48.1984L197.038 45.6306L197.911 45.1417L196.471 42.574L195.599 43.0629L194.16 40.4952L195.032 40.0062L193.593 37.4385L192.721 37.9275L191.281 35.3598L192.154 34.8708L190.714 32.3031L189.842 32.792L188.403 30.2243L189.275 29.7354L187.836 27.1676L186.963 27.6566L185.524 25.0889L186.396 24.5999L184.957 22.0322L184.085 22.5212L182.646 19.9534L183.518 19.4645L182.079 16.8968L181.206 17.3857L179.767 14.818L180.639 14.329L179.2 11.7613L178.328 12.2503L176.888 9.68256L177.761 9.1936L176.322 6.62588L175.449 7.11484L174.01 4.54712L174.882 4.05816Z"
+                        stroke="#FBBD00"
+                        strokeOpacity="0.4"
+                        strokeWidth="2"
+                        strokeDasharray="3 3"
+                      />
+                      <path
+                        d="M9.16347 102.599L62.3094 10.541H168.602L221.748 102.599L168.602 194.658H62.3094L9.16347 102.599Z"
+                        fill="white"
+                        stroke="#FBBD00"
+                        strokeWidth="2"
+                      />
+                    </svg>
+                    <div className="card-features__title">
+                      {" "}
+                      <span>DONATES MODULE</span>{" "}
+                    </div>
+                    <div className="card-features__backside">
+                      <p>
+                        Includes a donation module that enables users to accept
+                        donations from their customers. Users can define
+                        donation amounts and configure the donation process.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div className="body-features__picture">
+                  <div className="body-features__image-ibg">
+                    <img src={require("../../img/desctop/06.png")} alt="" />
+                  </div>
+                </div>
+                <div
+                  onClick={() => {}}
+                  className={"body-features__card card-features"}
+                >
+                  <div className="card-features__item">
+                    <svg
+                      width="231"
+                      height="206"
+                      viewBox="0 0 231 206"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M172.723 0.206543H57.58L0.00878906 102.915L57.58 205.625H172.723L230.295 102.915L172.723 0.206543Z"
+                        fill="white"
+                      />
+                      <path
+                        d="M174.882 4.05816L173.443 1.49045L172.571 1.9794L172.137 1.20654H171.208V0.206543H168.178V1.20654H165.148V0.206543H162.118V1.20654H159.088V0.206543H156.058V1.20654H153.028V0.206543H149.998V1.20654H146.968V0.206543H143.937V1.20654H140.907V0.206543H137.877V1.20654H134.847V0.206543H131.817V1.20654H128.787V0.206543H125.757V1.20654H122.727V0.206543H119.697V1.20654H116.667V0.206543H113.637V1.20654H110.607V0.206543H107.576V1.20654H104.546V0.206543H101.516V1.20654H98.4862V0.206543H95.4561V1.20654H92.426V0.206543H89.3959V1.20654H86.3658V0.206543H83.3357V1.20654H80.3056V0.206543H77.2755V1.20654H74.2454V0.206543H71.2153V1.20654H68.1853V0.206543H65.1552V1.20654H62.1251V0.206543H59.095V1.20654H58.1659L57.7327 1.97936L56.8604 1.4904L55.4211 4.05813L56.2934 4.54708L54.8541 7.1148L53.9818 6.62585L52.5425 9.19357L53.4148 9.68252L51.9755 12.2502L51.1032 11.7613L49.664 14.329L50.5363 14.818L49.097 17.3857L48.2247 16.8967L46.7854 19.4645L47.6577 19.9534L46.2184 22.5211L45.3461 22.0322L43.9068 24.5999L44.7791 25.0889L43.3399 27.6566L42.4676 27.1676L41.0283 29.7353L41.9006 30.2243L40.4613 32.792L39.589 32.3031L38.1497 34.8708L39.022 35.3597L37.5827 37.9275L36.7104 37.4385L35.2712 40.0062L36.1435 40.4952L34.7042 43.0629L33.8319 42.5739L32.3926 45.1417L33.2649 45.6306L31.8256 48.1983L30.9533 47.7094L29.514 50.2771L30.3864 50.7661L28.9471 53.3338L28.0748 52.8448L26.6355 55.4125L27.5078 55.9015L26.0685 58.4692L25.1962 57.9803L23.7569 60.548L24.6292 61.0369L23.19 63.6047L22.3176 63.1157L20.8784 65.6834L21.7507 66.1724L20.3114 68.7401L19.4391 68.2511L17.9998 70.8189L18.8721 71.3078L17.4328 73.8755L16.5605 73.3866L15.1212 75.9543L15.9936 76.4433L14.5543 79.011L13.682 78.522L12.2427 81.0897L13.115 81.5787L11.6757 84.1464L10.8034 83.6575L9.36413 86.2252L10.2364 86.7141L8.79716 89.2819L7.92485 88.7929L6.48557 91.3606L7.35788 91.8496L5.9186 94.4173L5.04629 93.9283L3.60701 96.4961L4.47932 96.985L3.04004 99.5527L2.16773 99.0638L0.728452 101.632L1.60076 102.12L1.15517 102.915L1.60074 103.71L0.728429 104.199L2.16771 106.767L3.04002 106.278L4.4793 108.846L3.60699 109.335L5.04627 111.903L5.91858 111.414L7.35786 113.981L6.48555 114.47L7.92483 117.038L8.79714 116.549L10.2364 119.117L9.36411 119.606L10.8034 122.173L11.6757 121.685L13.115 124.252L12.2427 124.741L13.6819 127.309L14.5543 126.82L15.9935 129.388L15.1212 129.877L16.5605 132.444L17.4328 131.956L18.8721 134.523L17.9998 135.012L19.4391 137.58L20.3114 137.091L21.7507 139.659L20.8784 140.148L22.3176 142.715L23.1899 142.227L24.6292 144.794L23.7569 145.283L25.1962 147.851L26.0685 147.362L27.5078 149.93L26.6355 150.419L28.0748 152.986L28.9471 152.497L30.3863 155.065L29.514 155.554L30.9533 158.122L31.8256 157.633L33.2649 160.201L32.3926 160.69L33.8319 163.257L34.7042 162.768L36.1435 165.336L35.2712 165.825L36.7104 168.393L37.5828 167.904L39.022 170.472L38.1497 170.961L39.589 173.528L40.4613 173.039L41.9006 175.607L41.0283 176.096L42.4676 178.664L43.3399 178.175L44.7792 180.743L43.9068 181.232L45.3461 183.799L46.2184 183.31L47.6577 185.878L46.7854 186.367L48.2247 188.935L49.097 188.446L50.5363 191.014L49.664 191.503L51.1033 194.07L51.9756 193.581L53.4148 196.149L52.5425 196.638L53.9818 199.206L54.8541 198.717L56.2934 201.285L55.4211 201.774L56.8604 204.341L57.7327 203.852L58.1659 204.625H59.095V205.625H62.1251V204.625H65.1552V205.625H68.1853V204.625H71.2154V205.625H74.2455V204.625H77.2756V205.625H80.3056V204.625H83.3357V205.625H86.3658V204.625H89.3959V205.625H92.426V204.625H95.4561V205.625H98.4862V204.625H101.516V205.625H104.546V204.625H107.576V205.625H110.607V204.625H113.637V205.625H116.667V204.625H119.697V205.625H122.727V204.625H125.757V205.625H128.787V204.625H131.817V205.625H134.847V204.625H137.877V205.625H140.907V204.625H143.938V205.625H146.968V204.625H149.998V205.625H153.028V204.625H156.058V205.625H159.088V204.625H162.118V205.625H165.148V204.625H168.178V205.625H171.208V204.625H172.137L172.571 203.852L173.443 204.341L174.882 201.774L174.01 201.285L175.449 198.717L176.322 199.206L177.761 196.638L176.888 196.149L178.328 193.581L179.2 194.07L180.639 191.503L179.767 191.014L181.206 188.446L182.079 188.935L183.518 186.367L182.646 185.878L184.085 183.31L184.957 183.799L186.396 181.232L185.524 180.743L186.963 178.175L187.836 178.664L189.275 176.096L188.403 175.607L189.842 173.039L190.714 173.528L192.154 170.961L191.281 170.472L192.721 167.904L193.593 168.393L195.032 165.825L194.16 165.336L195.599 162.768L196.471 163.257L197.911 160.69L197.038 160.201L198.478 157.633L199.35 158.122L200.789 155.554L199.917 155.065L201.356 152.497L202.229 152.986L203.668 150.419L202.796 149.93L204.235 147.362L205.107 147.851L206.546 145.283L205.674 144.794L207.113 142.226L207.986 142.715L209.425 140.148L208.553 139.659L209.992 137.091L210.864 137.58L212.304 135.012L211.431 134.523L212.87 131.956L213.743 132.444L215.182 129.877L214.31 129.388L215.749 126.82L216.621 127.309L218.061 124.741L217.188 124.252L218.628 121.685L219.5 122.173L220.939 119.606L220.067 119.117L221.506 116.549L222.378 117.038L223.818 114.47L222.945 113.981L224.385 111.414L225.257 111.902L226.696 109.335L225.824 108.846L227.263 106.278L228.136 106.767L229.575 104.199L228.703 103.71L229.148 102.915L228.703 102.12L229.575 101.632L228.136 99.0638L227.263 99.5528L225.824 96.9851L226.696 96.4961L225.257 93.9284L224.385 94.4173L222.945 91.8496L223.818 91.3607L222.378 88.7929L221.506 89.2819L220.067 86.7142L220.939 86.2252L219.5 83.6575L218.628 84.1464L217.188 81.5787L218.061 81.0898L216.621 78.522L215.749 79.011L214.31 76.4433L215.182 75.9543L213.743 73.3866L212.87 73.8756L211.431 71.3078L212.304 70.8189L210.864 68.2512L209.992 68.7401L208.553 66.1724L209.425 65.6834L207.986 63.1157L207.113 63.6047L205.674 61.037L206.546 60.548L205.107 57.9803L204.235 58.4692L202.796 55.9015L203.668 55.4126L202.229 52.8448L201.356 53.3338L199.917 50.7661L200.789 50.2771L199.35 47.7094L198.478 48.1984L197.038 45.6306L197.911 45.1417L196.471 42.574L195.599 43.0629L194.16 40.4952L195.032 40.0062L193.593 37.4385L192.721 37.9275L191.281 35.3598L192.154 34.8708L190.714 32.3031L189.842 32.792L188.403 30.2243L189.275 29.7354L187.836 27.1676L186.963 27.6566L185.524 25.0889L186.396 24.5999L184.957 22.0322L184.085 22.5212L182.646 19.9534L183.518 19.4645L182.079 16.8968L181.206 17.3857L179.767 14.818L180.639 14.329L179.2 11.7613L178.328 12.2503L176.888 9.68256L177.761 9.1936L176.322 6.62588L175.449 7.11484L174.01 4.54712L174.882 4.05816Z"
+                        stroke="#FBBD00"
+                        strokeOpacity="0.4"
+                        strokeWidth="2"
+                        strokeDasharray="3 3"
+                      />
+                      <path
+                        d="M9.16347 102.599L62.3094 10.541H168.602L221.748 102.599L168.602 194.658H62.3094L9.16347 102.599Z"
+                        fill="white"
+                        stroke="#FBBD00"
+                        strokeWidth="2"
+                      />
+                    </svg>
+                    <div className="card-features__title">
+                      {" "}
+                      <span>SUBSCRIPTIONS</span>{" "}
+                    </div>
+                    <div className="card-features__backside">
+                      <p>
+                        Provides a subscription management module that allows
+                        users to manage their subscription plans. Users can
+                        define pricing plans, billing cycles, and other related
+                        parameters.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  onClick={() => {}}
+                  className={"body-features__card card-features"}
+                >
+                  <div className="card-features__item">
+                    <svg
+                      width="231"
+                      height="206"
+                      viewBox="0 0 231 206"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M172.723 0.206543H57.58L0.00878906 102.915L57.58 205.625H172.723L230.295 102.915L172.723 0.206543Z"
+                        fill="white"
+                      />
+                      <path
+                        d="M174.882 4.05816L173.443 1.49045L172.571 1.9794L172.137 1.20654H171.208V0.206543H168.178V1.20654H165.148V0.206543H162.118V1.20654H159.088V0.206543H156.058V1.20654H153.028V0.206543H149.998V1.20654H146.968V0.206543H143.937V1.20654H140.907V0.206543H137.877V1.20654H134.847V0.206543H131.817V1.20654H128.787V0.206543H125.757V1.20654H122.727V0.206543H119.697V1.20654H116.667V0.206543H113.637V1.20654H110.607V0.206543H107.576V1.20654H104.546V0.206543H101.516V1.20654H98.4862V0.206543H95.4561V1.20654H92.426V0.206543H89.3959V1.20654H86.3658V0.206543H83.3357V1.20654H80.3056V0.206543H77.2755V1.20654H74.2454V0.206543H71.2153V1.20654H68.1853V0.206543H65.1552V1.20654H62.1251V0.206543H59.095V1.20654H58.1659L57.7327 1.97936L56.8604 1.4904L55.4211 4.05813L56.2934 4.54708L54.8541 7.1148L53.9818 6.62585L52.5425 9.19357L53.4148 9.68252L51.9755 12.2502L51.1032 11.7613L49.664 14.329L50.5363 14.818L49.097 17.3857L48.2247 16.8967L46.7854 19.4645L47.6577 19.9534L46.2184 22.5211L45.3461 22.0322L43.9068 24.5999L44.7791 25.0889L43.3399 27.6566L42.4676 27.1676L41.0283 29.7353L41.9006 30.2243L40.4613 32.792L39.589 32.3031L38.1497 34.8708L39.022 35.3597L37.5827 37.9275L36.7104 37.4385L35.2712 40.0062L36.1435 40.4952L34.7042 43.0629L33.8319 42.5739L32.3926 45.1417L33.2649 45.6306L31.8256 48.1983L30.9533 47.7094L29.514 50.2771L30.3864 50.7661L28.9471 53.3338L28.0748 52.8448L26.6355 55.4125L27.5078 55.9015L26.0685 58.4692L25.1962 57.9803L23.7569 60.548L24.6292 61.0369L23.19 63.6047L22.3176 63.1157L20.8784 65.6834L21.7507 66.1724L20.3114 68.7401L19.4391 68.2511L17.9998 70.8189L18.8721 71.3078L17.4328 73.8755L16.5605 73.3866L15.1212 75.9543L15.9936 76.4433L14.5543 79.011L13.682 78.522L12.2427 81.0897L13.115 81.5787L11.6757 84.1464L10.8034 83.6575L9.36413 86.2252L10.2364 86.7141L8.79716 89.2819L7.92485 88.7929L6.48557 91.3606L7.35788 91.8496L5.9186 94.4173L5.04629 93.9283L3.60701 96.4961L4.47932 96.985L3.04004 99.5527L2.16773 99.0638L0.728452 101.632L1.60076 102.12L1.15517 102.915L1.60074 103.71L0.728429 104.199L2.16771 106.767L3.04002 106.278L4.4793 108.846L3.60699 109.335L5.04627 111.903L5.91858 111.414L7.35786 113.981L6.48555 114.47L7.92483 117.038L8.79714 116.549L10.2364 119.117L9.36411 119.606L10.8034 122.173L11.6757 121.685L13.115 124.252L12.2427 124.741L13.6819 127.309L14.5543 126.82L15.9935 129.388L15.1212 129.877L16.5605 132.444L17.4328 131.956L18.8721 134.523L17.9998 135.012L19.4391 137.58L20.3114 137.091L21.7507 139.659L20.8784 140.148L22.3176 142.715L23.1899 142.227L24.6292 144.794L23.7569 145.283L25.1962 147.851L26.0685 147.362L27.5078 149.93L26.6355 150.419L28.0748 152.986L28.9471 152.497L30.3863 155.065L29.514 155.554L30.9533 158.122L31.8256 157.633L33.2649 160.201L32.3926 160.69L33.8319 163.257L34.7042 162.768L36.1435 165.336L35.2712 165.825L36.7104 168.393L37.5828 167.904L39.022 170.472L38.1497 170.961L39.589 173.528L40.4613 173.039L41.9006 175.607L41.0283 176.096L42.4676 178.664L43.3399 178.175L44.7792 180.743L43.9068 181.232L45.3461 183.799L46.2184 183.31L47.6577 185.878L46.7854 186.367L48.2247 188.935L49.097 188.446L50.5363 191.014L49.664 191.503L51.1033 194.07L51.9756 193.581L53.4148 196.149L52.5425 196.638L53.9818 199.206L54.8541 198.717L56.2934 201.285L55.4211 201.774L56.8604 204.341L57.7327 203.852L58.1659 204.625H59.095V205.625H62.1251V204.625H65.1552V205.625H68.1853V204.625H71.2154V205.625H74.2455V204.625H77.2756V205.625H80.3056V204.625H83.3357V205.625H86.3658V204.625H89.3959V205.625H92.426V204.625H95.4561V205.625H98.4862V204.625H101.516V205.625H104.546V204.625H107.576V205.625H110.607V204.625H113.637V205.625H116.667V204.625H119.697V205.625H122.727V204.625H125.757V205.625H128.787V204.625H131.817V205.625H134.847V204.625H137.877V205.625H140.907V204.625H143.938V205.625H146.968V204.625H149.998V205.625H153.028V204.625H156.058V205.625H159.088V204.625H162.118V205.625H165.148V204.625H168.178V205.625H171.208V204.625H172.137L172.571 203.852L173.443 204.341L174.882 201.774L174.01 201.285L175.449 198.717L176.322 199.206L177.761 196.638L176.888 196.149L178.328 193.581L179.2 194.07L180.639 191.503L179.767 191.014L181.206 188.446L182.079 188.935L183.518 186.367L182.646 185.878L184.085 183.31L184.957 183.799L186.396 181.232L185.524 180.743L186.963 178.175L187.836 178.664L189.275 176.096L188.403 175.607L189.842 173.039L190.714 173.528L192.154 170.961L191.281 170.472L192.721 167.904L193.593 168.393L195.032 165.825L194.16 165.336L195.599 162.768L196.471 163.257L197.911 160.69L197.038 160.201L198.478 157.633L199.35 158.122L200.789 155.554L199.917 155.065L201.356 152.497L202.229 152.986L203.668 150.419L202.796 149.93L204.235 147.362L205.107 147.851L206.546 145.283L205.674 144.794L207.113 142.226L207.986 142.715L209.425 140.148L208.553 139.659L209.992 137.091L210.864 137.58L212.304 135.012L211.431 134.523L212.87 131.956L213.743 132.444L215.182 129.877L214.31 129.388L215.749 126.82L216.621 127.309L218.061 124.741L217.188 124.252L218.628 121.685L219.5 122.173L220.939 119.606L220.067 119.117L221.506 116.549L222.378 117.038L223.818 114.47L222.945 113.981L224.385 111.414L225.257 111.902L226.696 109.335L225.824 108.846L227.263 106.278L228.136 106.767L229.575 104.199L228.703 103.71L229.148 102.915L228.703 102.12L229.575 101.632L228.136 99.0638L227.263 99.5528L225.824 96.9851L226.696 96.4961L225.257 93.9284L224.385 94.4173L222.945 91.8496L223.818 91.3607L222.378 88.7929L221.506 89.2819L220.067 86.7142L220.939 86.2252L219.5 83.6575L218.628 84.1464L217.188 81.5787L218.061 81.0898L216.621 78.522L215.749 79.011L214.31 76.4433L215.182 75.9543L213.743 73.3866L212.87 73.8756L211.431 71.3078L212.304 70.8189L210.864 68.2512L209.992 68.7401L208.553 66.1724L209.425 65.6834L207.986 63.1157L207.113 63.6047L205.674 61.037L206.546 60.548L205.107 57.9803L204.235 58.4692L202.796 55.9015L203.668 55.4126L202.229 52.8448L201.356 53.3338L199.917 50.7661L200.789 50.2771L199.35 47.7094L198.478 48.1984L197.038 45.6306L197.911 45.1417L196.471 42.574L195.599 43.0629L194.16 40.4952L195.032 40.0062L193.593 37.4385L192.721 37.9275L191.281 35.3598L192.154 34.8708L190.714 32.3031L189.842 32.792L188.403 30.2243L189.275 29.7354L187.836 27.1676L186.963 27.6566L185.524 25.0889L186.396 24.5999L184.957 22.0322L184.085 22.5212L182.646 19.9534L183.518 19.4645L182.079 16.8968L181.206 17.3857L179.767 14.818L180.639 14.329L179.2 11.7613L178.328 12.2503L176.888 9.68256L177.761 9.1936L176.322 6.62588L175.449 7.11484L174.01 4.54712L174.882 4.05816Z"
+                        stroke="#FBBD00"
+                        strokeOpacity="0.4"
+                        strokeWidth="2"
+                        strokeDasharray="3 3"
+                      />
+                      <path
+                        d="M9.16347 102.599L62.3094 10.541H168.602L221.748 102.599L168.602 194.658H62.3094L9.16347 102.599Z"
+                        fill="white"
+                        stroke="#FBBD00"
+                        strokeWidth="2"
+                      />
+                    </svg>
+                    <div className="card-features__title">
+                      {" "}
+                      <span>CASCADING</span>{" "}
+                    </div>
+                    <div className="card-features__backside">
+                      <p>
+                        Enables users to create a hierarchy of data processing
+                        steps. This helps to streamline data processing and
+                        ensure data accuracy.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  onClick={() => {}}
+                  className={"body-features__card card-features"}
+                >
+                  <div className="card-features__item">
+                    <svg
+                      width="231"
+                      height="206"
+                      viewBox="0 0 231 206"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M172.723 0.206543H57.58L0.00878906 102.915L57.58 205.625H172.723L230.295 102.915L172.723 0.206543Z"
+                        fill="white"
+                      />
+                      <path
+                        d="M174.882 4.05816L173.443 1.49045L172.571 1.9794L172.137 1.20654H171.208V0.206543H168.178V1.20654H165.148V0.206543H162.118V1.20654H159.088V0.206543H156.058V1.20654H153.028V0.206543H149.998V1.20654H146.968V0.206543H143.937V1.20654H140.907V0.206543H137.877V1.20654H134.847V0.206543H131.817V1.20654H128.787V0.206543H125.757V1.20654H122.727V0.206543H119.697V1.20654H116.667V0.206543H113.637V1.20654H110.607V0.206543H107.576V1.20654H104.546V0.206543H101.516V1.20654H98.4862V0.206543H95.4561V1.20654H92.426V0.206543H89.3959V1.20654H86.3658V0.206543H83.3357V1.20654H80.3056V0.206543H77.2755V1.20654H74.2454V0.206543H71.2153V1.20654H68.1853V0.206543H65.1552V1.20654H62.1251V0.206543H59.095V1.20654H58.1659L57.7327 1.97936L56.8604 1.4904L55.4211 4.05813L56.2934 4.54708L54.8541 7.1148L53.9818 6.62585L52.5425 9.19357L53.4148 9.68252L51.9755 12.2502L51.1032 11.7613L49.664 14.329L50.5363 14.818L49.097 17.3857L48.2247 16.8967L46.7854 19.4645L47.6577 19.9534L46.2184 22.5211L45.3461 22.0322L43.9068 24.5999L44.7791 25.0889L43.3399 27.6566L42.4676 27.1676L41.0283 29.7353L41.9006 30.2243L40.4613 32.792L39.589 32.3031L38.1497 34.8708L39.022 35.3597L37.5827 37.9275L36.7104 37.4385L35.2712 40.0062L36.1435 40.4952L34.7042 43.0629L33.8319 42.5739L32.3926 45.1417L33.2649 45.6306L31.8256 48.1983L30.9533 47.7094L29.514 50.2771L30.3864 50.7661L28.9471 53.3338L28.0748 52.8448L26.6355 55.4125L27.5078 55.9015L26.0685 58.4692L25.1962 57.9803L23.7569 60.548L24.6292 61.0369L23.19 63.6047L22.3176 63.1157L20.8784 65.6834L21.7507 66.1724L20.3114 68.7401L19.4391 68.2511L17.9998 70.8189L18.8721 71.3078L17.4328 73.8755L16.5605 73.3866L15.1212 75.9543L15.9936 76.4433L14.5543 79.011L13.682 78.522L12.2427 81.0897L13.115 81.5787L11.6757 84.1464L10.8034 83.6575L9.36413 86.2252L10.2364 86.7141L8.79716 89.2819L7.92485 88.7929L6.48557 91.3606L7.35788 91.8496L5.9186 94.4173L5.04629 93.9283L3.60701 96.4961L4.47932 96.985L3.04004 99.5527L2.16773 99.0638L0.728452 101.632L1.60076 102.12L1.15517 102.915L1.60074 103.71L0.728429 104.199L2.16771 106.767L3.04002 106.278L4.4793 108.846L3.60699 109.335L5.04627 111.903L5.91858 111.414L7.35786 113.981L6.48555 114.47L7.92483 117.038L8.79714 116.549L10.2364 119.117L9.36411 119.606L10.8034 122.173L11.6757 121.685L13.115 124.252L12.2427 124.741L13.6819 127.309L14.5543 126.82L15.9935 129.388L15.1212 129.877L16.5605 132.444L17.4328 131.956L18.8721 134.523L17.9998 135.012L19.4391 137.58L20.3114 137.091L21.7507 139.659L20.8784 140.148L22.3176 142.715L23.1899 142.227L24.6292 144.794L23.7569 145.283L25.1962 147.851L26.0685 147.362L27.5078 149.93L26.6355 150.419L28.0748 152.986L28.9471 152.497L30.3863 155.065L29.514 155.554L30.9533 158.122L31.8256 157.633L33.2649 160.201L32.3926 160.69L33.8319 163.257L34.7042 162.768L36.1435 165.336L35.2712 165.825L36.7104 168.393L37.5828 167.904L39.022 170.472L38.1497 170.961L39.589 173.528L40.4613 173.039L41.9006 175.607L41.0283 176.096L42.4676 178.664L43.3399 178.175L44.7792 180.743L43.9068 181.232L45.3461 183.799L46.2184 183.31L47.6577 185.878L46.7854 186.367L48.2247 188.935L49.097 188.446L50.5363 191.014L49.664 191.503L51.1033 194.07L51.9756 193.581L53.4148 196.149L52.5425 196.638L53.9818 199.206L54.8541 198.717L56.2934 201.285L55.4211 201.774L56.8604 204.341L57.7327 203.852L58.1659 204.625H59.095V205.625H62.1251V204.625H65.1552V205.625H68.1853V204.625H71.2154V205.625H74.2455V204.625H77.2756V205.625H80.3056V204.625H83.3357V205.625H86.3658V204.625H89.3959V205.625H92.426V204.625H95.4561V205.625H98.4862V204.625H101.516V205.625H104.546V204.625H107.576V205.625H110.607V204.625H113.637V205.625H116.667V204.625H119.697V205.625H122.727V204.625H125.757V205.625H128.787V204.625H131.817V205.625H134.847V204.625H137.877V205.625H140.907V204.625H143.938V205.625H146.968V204.625H149.998V205.625H153.028V204.625H156.058V205.625H159.088V204.625H162.118V205.625H165.148V204.625H168.178V205.625H171.208V204.625H172.137L172.571 203.852L173.443 204.341L174.882 201.774L174.01 201.285L175.449 198.717L176.322 199.206L177.761 196.638L176.888 196.149L178.328 193.581L179.2 194.07L180.639 191.503L179.767 191.014L181.206 188.446L182.079 188.935L183.518 186.367L182.646 185.878L184.085 183.31L184.957 183.799L186.396 181.232L185.524 180.743L186.963 178.175L187.836 178.664L189.275 176.096L188.403 175.607L189.842 173.039L190.714 173.528L192.154 170.961L191.281 170.472L192.721 167.904L193.593 168.393L195.032 165.825L194.16 165.336L195.599 162.768L196.471 163.257L197.911 160.69L197.038 160.201L198.478 157.633L199.35 158.122L200.789 155.554L199.917 155.065L201.356 152.497L202.229 152.986L203.668 150.419L202.796 149.93L204.235 147.362L205.107 147.851L206.546 145.283L205.674 144.794L207.113 142.226L207.986 142.715L209.425 140.148L208.553 139.659L209.992 137.091L210.864 137.58L212.304 135.012L211.431 134.523L212.87 131.956L213.743 132.444L215.182 129.877L214.31 129.388L215.749 126.82L216.621 127.309L218.061 124.741L217.188 124.252L218.628 121.685L219.5 122.173L220.939 119.606L220.067 119.117L221.506 116.549L222.378 117.038L223.818 114.47L222.945 113.981L224.385 111.414L225.257 111.902L226.696 109.335L225.824 108.846L227.263 106.278L228.136 106.767L229.575 104.199L228.703 103.71L229.148 102.915L228.703 102.12L229.575 101.632L228.136 99.0638L227.263 99.5528L225.824 96.9851L226.696 96.4961L225.257 93.9284L224.385 94.4173L222.945 91.8496L223.818 91.3607L222.378 88.7929L221.506 89.2819L220.067 86.7142L220.939 86.2252L219.5 83.6575L218.628 84.1464L217.188 81.5787L218.061 81.0898L216.621 78.522L215.749 79.011L214.31 76.4433L215.182 75.9543L213.743 73.3866L212.87 73.8756L211.431 71.3078L212.304 70.8189L210.864 68.2512L209.992 68.7401L208.553 66.1724L209.425 65.6834L207.986 63.1157L207.113 63.6047L205.674 61.037L206.546 60.548L205.107 57.9803L204.235 58.4692L202.796 55.9015L203.668 55.4126L202.229 52.8448L201.356 53.3338L199.917 50.7661L200.789 50.2771L199.35 47.7094L198.478 48.1984L197.038 45.6306L197.911 45.1417L196.471 42.574L195.599 43.0629L194.16 40.4952L195.032 40.0062L193.593 37.4385L192.721 37.9275L191.281 35.3598L192.154 34.8708L190.714 32.3031L189.842 32.792L188.403 30.2243L189.275 29.7354L187.836 27.1676L186.963 27.6566L185.524 25.0889L186.396 24.5999L184.957 22.0322L184.085 22.5212L182.646 19.9534L183.518 19.4645L182.079 16.8968L181.206 17.3857L179.767 14.818L180.639 14.329L179.2 11.7613L178.328 12.2503L176.888 9.68256L177.761 9.1936L176.322 6.62588L175.449 7.11484L174.01 4.54712L174.882 4.05816Z"
+                        stroke="#FBBD00"
+                        strokeOpacity="0.4"
+                        strokeWidth="2"
+                        strokeDasharray="3 3"
+                      />
+                      <path
+                        d="M9.16347 102.599L62.3094 10.541H168.602L221.748 102.599L168.602 194.658H62.3094L9.16347 102.599Z"
+                        fill="white"
+                        stroke="#FBBD00"
+                        strokeWidth="2"
+                      />
+                    </svg>
+                    <div className="card-features__title">
+                      {" "}
+                      <span>DASHBOARD WITH TRANSACTIONS AND EXPORT</span>{" "}
+                    </div>
+                    <div className="card-features__backside">
+                      <p>
+                        Offers a transaction dashboard that displays real-time
+                        transaction data. Users can also export transaction data
+                        in various formats for further analysis.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section className="supported">
+          <div className="supported__decor"></div>
+          <div className="supported__container">
+            <div className="supported__title">
+              SUPPORTED <span>INDUSTRIES</span>{" "}
+            </div>
+            <div className="supported__body">
+              <ul className="supported__industries">
+                <li className="supported__industry">RETAIL</li>
+                <li className="supported__industry">MARKETING</li>
+                <li className="supported__industry">E-COMMERCE</li>
+                <li className="supported__industry">COINS</li>
+                <li className="supported__industry">HOSTING</li>
+                <li className="supported__industry">GAMBLING</li>
+                <li className="supported__industry">WEBSITE DEVELOPMENT</li>
+                <li className="supported__industry">WHITE LABEL</li>
+                <li className="supported__industry">CASINO</li>
+                <li className="supported__industry">CREDIT REPAIR</li>
+                <li className="supported__industry">VPN</li>
+                <li className="supported__industry">BITCOIN</li>
+                <li className="supported__industry">CASUAL GAMING</li>
+                <li className="supported__industry">SEO</li>
+                <li className="supported__industry">FANTASY SPORTS</li>
+                <li className="supported__industry">
+                  MULTIPLE MERCHANTS ACCOUNTS
+                </li>
+                <li className="supported__industry">ICO MERCHANT</li>
+                <li className="supported__industry">DATING</li>
+                <li className="supported__industry">ONLINE GAMING</li>
+                <li className="supported__industry">COLLECTIBLE</li>
+                <li className="supported__industry">TRAVEL AGENCY</li>
+                <li className="supported__industry">ONLINE TUTORIALS</li>
+                <li className="supported__industry">APPLICATION DEVELOPMENT</li>
+                <li className="supported__industry">TECH SUPPORT</li>
+                <li className="supported__industry">FOREX</li>
+                <li className="supported__industry">NUMEROLOGY</li>
+                <li className="supported__industry">ESSAY WRITING</li>
+                <li className="supported__industry">ASTROLOGY</li>
+                <li className="supported__industry">SUBSCRIPTION BOX</li>
+                <li className="supported__industry">CRYPTOCURRENCY</li>
+                <li className="supported__industry">CRYPTO EXCHANGE</li>
+                <li className="supported__industry">ICO MERCHANT</li>
+                <li className="supported__industry">CBD OIL</li>
+                <li className="supported__industry">TIMESHARE</li>
+                <li className="supported__industry">COLLECTION AGENCY</li>
+                <li className="supported__industry">SKILL GAMING</li>
+              </ul>
+              <div className="supported__more more-button _icon-down_arrow">
+                SEE MORE
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+      <footer className="footer">
+        <div className="footer__wrapper">
+          <div className="footer__top top-footer">
+            <div className="top-footer__main">
+              <div className="top-footer__header">
+                <div className="top-footer__logo _icon-logo">BeezyyCashier</div>
+                <div className="top-footer__img">
+                  <img
+                    src={require("../../img/mobile/dss-footer-mabile.png")}
+                    alt="PCI DSS"
+                  />
+                </div>
+              </div>
+              <div className="top-footer__social social">
+                <ul className="social__list">
+                  <li className="social__item">
+                    <a href="#" className="social__link _icon-f1"></a>
+                  </li>
+                  <li className="social__item">
+                    <a href="#" className="social__link _icon-f2"></a>
+                  </li>
+                  <li className="social__item">
+                    <a href="#" className="social__link _icon-linkedin"></a>
+                  </li>
+                  <li className="social__item">
+                    <a href="#" className="social__link _icon-f4"></a>
+                  </li>
+                  <li className="social__item">
+                    <a href="#" className="social__link _icon-f5"></a>
+                  </li>
+                  <li className="social__item">
+                    <a href="#" className="social__link _icon-f6"></a>
+                  </li>
+                </ul>
+              </div>
+              <div className="top-footer__img">
+                <img
+                  src={require("../../img/desctop/dss2.png")}
+                  alt="PCI DSS"
+                />
+              </div>
+              <div className="top-footer__rights">
+                {" "}
+                2022 <span>BEEZYY CASHIER SYSTEM LTD</span>, ALL RIGHTS RESERVED{" "}
+              </div>
+              <div className="top-footer__address">
+                85 Great Portland Street, London, England, W1W 7LT Registration
+                number 13076709
+              </div>
+            </div>
+            <ul className="top-footer__information information-list">
+              <li className="information-list__item">
+                <h2 className="information-list__title">About us</h2>
+                <ul className="information-list__sublist sublist-information">
+                  <li className="sublist-information__item">
+                    <a href="#" className="sublist-information__link">
+                      Why Beezyy Cashier?
+                    </a>
+                  </li>
+                </ul>
+              </li>
+              <li className="information-list__item">
+                <h2 className="information-list__title">Our services</h2>
+                <ul className="information-list__sublist sublist-information">
+                  <li className="sublist-information__item">
+                    <a href="#" className="sublist-information__link">
+                      Our plans
+                    </a>
+                  </li>
+                </ul>
+              </li>
+              <li className="information-list__item">
+                <h2 className="information-list__title">Our oroduct</h2>
+                <ul className="information-list__sublist sublist-information">
+                  <li className="sublist-information__item">
+                    <a href="#" className="sublist-information__link">
+                      One integration
+                    </a>
+                  </li>
+                  <li className="sublist-information__item">
+                    <a href="#" className="sublist-information__link">
+                      Increase Revenue
+                    </a>
+                  </li>
+                  <li className="sublist-information__item">
+                    <a href="#" className="sublist-information__link">
+                      Modular and Dynamic
+                    </a>
+                  </li>
+                  <li className="sublist-information__item">
+                    <a href="#" className="sublist-information__link">
+                      Financial Management
+                    </a>
+                  </li>
+                  <li className="sublist-information__item">
+                    <a href="#" className="sublist-information__link">
+                      Virtual Terminal
+                    </a>
+                  </li>
+                </ul>
+              </li>
+              <li className="information-list__item">
+                <h2 className="information-list__title">Beezyy</h2>
+                <ul className="information-list__sublist sublist-information">
+                  <li className="sublist-information__item">
+                    <a href="#" className="sublist-information__link">
+                      Contact
+                    </a>
+                  </li>
+                  <li className="sublist-information__item">
+                    <a href="#" className="sublist-information__link">
+                      FAQ
+                    </a>
+                  </li>
+                  <li className="sublist-information__item">
+                    <a href="#" className="sublist-information__link">
+                      Careers
+                    </a>
+                  </li>
+                  <li className="sublist-information__item">
+                    <a href="#" className="sublist-information__link">
+                      Blog
+                    </a>
+                  </li>
+                </ul>
+              </li>
+              <li className="information-list__item">
+                <h2 className="information-list__title">
+                  Terms and conditions
+                </h2>
+                <ul className="information-list__sublist sublist-information">
+                  <li className="sublist-information__item">
+                    <a href="#" className="sublist-information__link">
+                      Privacy policy
+                    </a>
+                  </li>
+                  <li className="sublist-information__item">
+                    <a href="#" className="sublist-information__link">
+                      Terms of use
+                    </a>
+                  </li>
+                  <li className="sublist-information__item">
+                    <a href="#" className="sublist-information__link">
+                      Cookie policy
+                    </a>
+                  </li>
+                  <li className="sublist-information__item">
+                    <a href="#" className="sublist-information__link">
+                      AML/CTF AND
+                    </a>
+                  </li>
+                  <li className="sublist-information__item">
+                    <a href="#" className="sublist-information__link">
+                      KYC POLICY
+                    </a>
+                  </li>
+                  <li className="sublist-information__item">
+                    <a href="#" className="sublist-information__link">
+                      Refund policy
+                    </a>
+                  </li>
+                  <li className="sublist-information__item">
+                    <a href="#" className="sublist-information__link">
+                      Formal offer
+                    </a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+          <div className="footer__bottom">
+            <p>
+              SERVICES ARE INTEGRATION AND DATA TRANSFER ONLY. AND DO NOT
+              INCLUBE TRANSACTION PROCESSING
+            </p>
+          </div>
+        </div>
+      </footer>
+    </div>
+  );
+};
+export default MainPage;
