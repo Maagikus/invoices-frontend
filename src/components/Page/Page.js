@@ -4,7 +4,7 @@
 // import RefundsPage from "./RefundsPage";
 // import ProjectsPage from "./ProjectsPage";
 import MainPage from "../../pages/mainPage/mainPage";
-
+import { CookiesProvider } from "react-cookie";
 const Page = () => {
   return (
     //  <div className="wrapper">
@@ -27,7 +27,9 @@ const Page = () => {
     //      </div>
     //    </footer>
     //  </div>
-    <MainPage />
+    <CookiesProvider>
+      <MainPage />
+    </CookiesProvider>
   );
 };
 export default Page;

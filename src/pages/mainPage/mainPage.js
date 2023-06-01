@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import Select, { components } from "react-select";
 import Providers from "../../components/Providers/Providers";
+import vectorLogo from "../../img/icons/Vector-logo.svg";
 // import Select from "react-select";
 import { Link, animateScroll as scroll } from "react-scroll";
 import PaymentForm from "../../components/Forms/PaymentForm";
@@ -10,12 +11,15 @@ import "./mainPage.css";
 import { SlideDown } from "react-slidedown";
 import "react-slidedown/lib/slidedown.css";
 import Industries from "../../components/industries/Industries";
+import { useCookies } from "react-cookie";
 const MainPage = () => {
+  const [cookies, setCookie] = useCookies(["name"]);
   const [cvv, setCVV] = useState("");
   const [expiryDate, setExpiryDate] = useState("");
   const [cardHolder, setCardHolder] = useState("");
   const [cardNumber, setCardNumber] = useState(["", "", "", ""]);
-
+  const [selectedImage, setSelectedImage] = useState("");
+  console.log(!!selectedImage);
   //========================================================================================================================================================
 
   const options = [
@@ -38,8 +42,41 @@ const MainPage = () => {
       </components.DropdownIndicator>
     );
   };
+  useEffect(() => {
+    if (JSON.stringify(cookies) !== "{}") {
+      const {
+        language,
+        theme,
+        inputOutline,
+        unlockBtnColor,
+        lockBtnColor,
+        textColor,
+        payBtnColor,
+        orderTextColor,
+        selectedImage,
+      } = cookies.name;
 
-  const { isScreenSmalMobile } = useResize();
+      setLanguages(language);
+      setTheme(theme);
+      setOutline(inputOutline);
+      setUnlockButtonColor(unlockBtnColor);
+      setLockButtonColor(lockBtnColor);
+      setTextColor(textColor);
+      setPayButtonColor(payBtnColor);
+      setOrderTextColor(orderTextColor);
+      setIsDark(theme);
+      setSelectedImage(selectedImage);
+    }
+    //  setLanguages("EN");
+    //  setTheme(false);
+    //  setOutline(false);
+    //  setUnlockButtonColor("#333333");
+    //  setLockButtonColor("#333333");
+    //  setTextColor("#333333");
+    //  setPayButtonColor("transparent");
+  }, [cookies]);
+
+  const { isScreenSmalMobile, isScreenMmd } = useResize();
   //   const [isHovered, setIsHovered] = useState(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [defaulteLanguage, setDefaulteLanguage] = useState("EN");
@@ -49,7 +86,6 @@ const MainPage = () => {
   const [languages, setLanguages] = useState("EN");
   const [theme, setTheme] = useState(false);
   const [isDark, setIsDark] = useState(false);
-
   const [outline, setOutline] = useState(false);
   const [unlockButtonColor, setUnlockButtonColor] = useState("green");
   const [lockButtonColor, setLockButtonColor] = useState("#FF0000");
@@ -57,7 +93,16 @@ const MainPage = () => {
   const [orderTextColor, setOrderTextColor] = useState("#fbbd00");
   const [textColor, setTextColor] = useState("#000000");
   const [customizeFormOpened, setCustomizeFormOpened] = useState(false);
-
+  const [activeItem, setActiveItem] = useState("item1");
+  const [activeForm, setActiveForm] = useState("item1");
+  const handleClickMenu = (item, e) => {
+    e.preventDefault();
+    setActiveItem(item);
+  };
+  const handleClickActiveForm = (item, e) => {
+    e.preventDefault();
+    setActiveForm(item);
+  };
   const changeCheckbox = (e) => {
     setIsChecked((prev) => !prev);
   };
@@ -68,24 +113,28 @@ const MainPage = () => {
   let customizingStyles = {
     language: languages,
     theme: theme,
-    "input-outline": outline,
-    "unlock-btn-color": unlockButtonColor,
-    "lock-btn-color": lockButtonColor,
-    "text-color": textColor,
-    "pay-btn-color": payButtonColor,
+    inputOutline: outline,
+    unlockBtnColor: unlockButtonColor,
+    lockBtnColor: lockButtonColor,
+    textColor: textColor,
+    payBtnColor: payButtonColor,
+    orderTextColor: orderTextColor,
+    selectedImage: selectedImage,
   };
   const onSubmit = (e) => {
     e.preventDefault();
     customizingStyles = {
       language: languages,
       theme: theme,
-      "input-outline": outline,
-      "unlock-btn-color": unlockButtonColor,
-      "lock-btn-color": lockButtonColor,
-      "text-color": textColor,
-      "pay-btn-color": payButtonColor,
+      inputOutline: outline,
+      unlockBtnColor: unlockButtonColor,
+      lockBtnColor: lockButtonColor,
+      textColor: textColor,
+      payBtnColor: payButtonColor,
+      orderTextColor: orderTextColor,
+      selectedImage: selectedImage,
     };
-    console.log(customizingStyles);
+    setCookie("name", customizingStyles);
   };
   return (
     <div className="wrapper">
@@ -349,12 +398,22 @@ const MainPage = () => {
                 CUSTOMIZE YOUR <span>PAYMENT FORM</span> RIGHT NOW{" "}
               </div>
               <ul className="header-payment__list">
-                <li className="header-payment__item active">
+                <li
+                  onClick={(e) => handleClickMenu("item1", e)}
+                  className={`header-payment__item ${
+                    activeItem === "item1" ? "active" : ""
+                  }`}
+                >
                   <a href="#" className="header-payment__link">
                     Your form
                   </a>
                 </li>
-                <li className="header-payment__item">
+                <li
+                  onClick={(e) => handleClickMenu("item2", e)}
+                  className={`header-payment__item ${
+                    activeItem === "item2" ? "active" : ""
+                  }`}
+                >
                   <a href="#" className="header-payment__link">
                     Ready-made forms
                   </a>
@@ -362,440 +421,655 @@ const MainPage = () => {
               </ul>
             </div>
             <div className="payment__body">
-              <div className="payment__options options">
-                <div
-                  style={{
-                    display: customizeFormOpened ? "block" : "none",
-                    //   transition: "opacity 0.3s ease 0s",
-                  }}
-                  onClick={() => setCustomizeFormOpened(!customizeFormOpened)}
-                  className="options__customize _icon-hand"
-                >
+              {activeItem === "item1" ? (
+                <div className="payment__wrapper">
                   {" "}
-                  Customize{" "}
-                </div>
-                {isScreenSmalMobile ? (
-                  <SlideDown
-                    className={"my-dropdown-slidedown"}
-                    closed={customizeFormOpened}
-                  >
-                    <CustomizationForm
-                      customizeFormOpened={customizeFormOpened}
-                      setCustomizeFormOpened={setCustomizeFormOpened}
-                      languages={languages}
-                      theme={theme}
-                      outline={outline}
-                      closed={closed}
-                      unlockButtonColor={unlockButtonColor}
-                      lockButtonColor={lockButtonColor}
-                      payButtonColor={payButtonColor}
-                      orderTextColor={orderTextColor}
-                      textColor={textColor}
-                      setTheme={setTheme}
-                      setOutline={setOutline}
-                      setUnlockButtonColor={setUnlockButtonColor}
-                      setLockButtonColor={setLockButtonColor}
-                      setPayButtonColor={setPayButtonColor}
-                      setOrderTextColor={setOrderTextColor}
-                      setTextColor={setTextColor}
-                      setLanguages={setLanguages}
-                      onSubmit={onSubmit}
-                      setClosed={setClosed}
-                      changeCheckbox={changeCheckbox}
-                      setIsDark={setIsDark}
-                    />
-                  </SlideDown>
-                ) : (
-                  <CustomizationForm
-                    customizeFormOpened={customizeFormOpened}
-                    setCustomizeFormOpened={setCustomizeFormOpened}
-                    languages={languages}
-                    theme={theme}
-                    outline={outline}
-                    closed={closed}
-                    unlockButtonColor={unlockButtonColor}
-                    lockButtonColor={lockButtonColor}
-                    payButtonColor={payButtonColor}
-                    orderTextColor={orderTextColor}
-                    textColor={textColor}
-                    setTheme={setTheme}
-                    setOutline={setOutline}
-                    setUnlockButtonColor={setUnlockButtonColor}
-                    setLockButtonColor={setLockButtonColor}
-                    setPayButtonColor={setPayButtonColor}
-                    setOrderTextColor={setOrderTextColor}
-                    setTextColor={setTextColor}
-                    setLanguages={setLanguages}
-                    onSubmit={onSubmit}
-                    setClosed={setClosed}
-                    changeCheckbox={changeCheckbox}
-                    setIsDark={setIsDark}
-                  />
-                )}
-              </div>
-              <div
-                data-mode-dark={isDark}
-                className="payment__form  form-payment"
-              >
-                <div className="form-payment__card card-payment">
-                  <div className="card-payment__header header-card">
-                    <div className="header-card__top">
-                      <div className="header-card__lang">EN</div>
-                      <div className="header-card__select header-card__select-mobile">
-                        <Select
-                          components={{ DropdownIndicator }}
-                          //   defaultInputValue="Select country"
-                          className="react-select-container"
-                          classNamePrefix="react-select"
-                          options={options}
-                          styles={{
-                            control: (baseStyles, state) => ({
-                              ...baseStyles,
-                              border: "1px solid #FBBD00",
-                              borderRadius: "10px",
-                              minHeight: "23px",
-                              gap: "83px",
-                            }),
-                            placeholder: (baseStyles, state) => ({
-                              ...baseStyles,
-                              fontWeight: "500",
-                              fontSize: "12px",
-                              color: "#FBBD00",
-                            }),
-
-                            input: (baseStyles, state) => ({
-                              ...baseStyles,
-                              fontWeight: "500",
-                              fontSize: "12px",
-                              color: "#FBBD00",
-                            }),
-
-                            singleValue: (baseStyles, state) => ({
-                              ...baseStyles,
-                              fontWeight: "500",
-                              fontSize: "12px",
-                              color: "#FBBD00",
-                            }),
-                            option: (baseStyles, state) => ({
-                              ...baseStyles,
-                              fontWeight: "500",
-                              fontSize: "12px",
-                              color: state.isDisabled
-                                ? "#FBBD00"
-                                : state.isSelected
-                                ? "#fff"
-                                : state.isFocused
-                                ? "#fff"
-                                : "#FBBD00",
-                              minHeight: "23px",
-                              transition: "all 0.3s ease 0s",
-                              backgroundColor: state.isDisabled
-                                ? undefined
-                                : state.isSelected
-                                ? "#FBBD00"
-                                : state.isFocused
-                                ? "#FBBD00"
-                                : undefined,
-                              ":active": {
-                                backgroundColor: state.isSelected
-                                  ? "#FBBD00"
-                                  : "#fff",
-                              },
-                              ":hover": {
-                                backgroundColor: "#FBBD00",
-                                color: "#fff",
-                              },
-                            }),
-                          }}
-                        />
-                      </div>
-                      <div className="checkbox header-card__checkbox checked">
-                        <input
-                          id="c_6"
-                          data-error="Ошибка"
-                          className="checkbox__input"
-                          type="checkbox"
-                          name="form[]"
-                          onChange={(e) => {
-                            changeCheckbox(e);
-                            setIsDark(!isDark);
-                          }}
-                          defaultChecked={isDark}
-                          value={isDark}
-                        />
-                        <label htmlFor="c_6" className="checkbox__label">
-                          <span className="checkbox__text">
-                            {isDark ? "Dark" : "Light"}
-                          </span>
-                        </label>
-                      </div>
-                    </div>
-                    <ul className="header-card__navigation header-card__navigation-mobile navigation-header">
-                      <li className="navigation-header__item active">
-                        <a href="#" className="navigation-header__link">
-                          Card
-                        </a>
-                      </li>
-                      <li className="navigation-header__item">
-                        <a href="#" className="navigation-header__link">
-                          Other payment methods
-                        </a>
-                      </li>
-                    </ul>
-                    <div className="header-card__middle header-card__middle-mobile">
-                      <div className="header-card__logo _icon-logo">
-                        {" "}
-                        <span>BeezyyCashier</span>{" "}
-                      </div>
-                      <div
-                        style={{ color: orderTextColor }}
-                        className="header-card__bottom"
-                      >
-                        {" "}
-                        Order <span>1234567890</span>{" "}
-                      </div>
-                      <div className="header-card__select">
-                        <Select
-                          components={{ DropdownIndicator }}
-                          //   defaultInputValue="Select country"
-                          className="react-select-container"
-                          classNamePrefix="react-select"
-                          options={options}
-                          styles={{
-                            control: (baseStyles, state) => ({
-                              ...baseStyles,
-                              border: "1px solid #FBBD00",
-                              borderRadius: "10px",
-                              minHeight: "23px",
-                              gap: "83px",
-                              flexWrap: "nowrap",
-                            }),
-                            placeholder: (baseStyles, state) => ({
-                              ...baseStyles,
-                              fontWeight: "500",
-                              fontSize: "12px",
-                              color: "#FBBD00",
-                            }),
-
-                            input: (baseStyles, state) => ({
-                              ...baseStyles,
-                              fontWeight: "500",
-                              fontSize: "12px",
-                              color: "#FBBD00",
-                            }),
-
-                            singleValue: (baseStyles, state) => ({
-                              ...baseStyles,
-                              fontWeight: "500",
-                              fontSize: "12px",
-                              color: "#FBBD00",
-                            }),
-                            option: (baseStyles, state) => ({
-                              ...baseStyles,
-                              fontWeight: "500",
-                              fontSize: "12px",
-                              color: state.isDisabled
-                                ? "#FBBD00"
-                                : state.isSelected
-                                ? "#fff"
-                                : state.isFocused
-                                ? "#fff"
-                                : "#FBBD00",
-                              minHeight: "23px",
-                              transition: "all 0.3s ease 0s",
-                              backgroundColor: state.isDisabled
-                                ? undefined
-                                : state.isSelected
-                                ? "#FBBD00"
-                                : state.isFocused
-                                ? "#FBBD00"
-                                : undefined,
-                              ":active": {
-                                backgroundColor: state.isSelected
-                                  ? "#FBBD00"
-                                  : "#fff",
-                              },
-                              ":hover": {
-                                backgroundColor: "#FBBD00",
-                                color: "#fff",
-                              },
-                            }),
-                          }}
-                        />
-                      </div>
-                    </div>
+                  <div className="payment__options options">
                     <div
-                      style={{ color: orderTextColor }}
-                      className="header-card__bottom"
+                      style={{
+                        display: customizeFormOpened ? "block" : "none",
+                        //   transition: "opacity 0.3s ease 0s",
+                      }}
+                      onClick={() =>
+                        setCustomizeFormOpened(!customizeFormOpened)
+                      }
+                      className="options__customize _icon-hand"
                     >
                       {" "}
-                      Order <span>1234567890</span>{" "}
+                      Customize{" "}
                     </div>
-                  </div>
-                  <div className="card-payment__wrapper">
-                    <div className="card-payment__body body-card">
-                      <div
-                        style={{ color: textColor }}
-                        className="body-card__amount"
+                    {isScreenSmalMobile ? (
+                      <SlideDown
+                        className={"my-dropdown-slidedown"}
+                        closed={customizeFormOpened}
                       >
-                        Amount: <span>10 USD</span>
-                      </div>
-                      <PaymentForm
-                        cvv={cvv}
-                        expiryDate={expiryDate}
-                        cardHolder={cardHolder}
-                        cardNumber={cardNumber}
-                        setCVV={setCVV}
-                        setExpiryDate={setExpiryDate}
-                        setCardHolder={setCardHolder}
-                        setCardNumber={setCardNumber}
-                        unlockButtonColor={unlockButtonColor}
+                        <CustomizationForm
+                          customizeFormOpened={customizeFormOpened}
+                          setCustomizeFormOpened={setCustomizeFormOpened}
+                          languages={languages}
+                          theme={theme}
+                          outline={outline}
+                          closed={closed}
+                          unlockButtonColor={unlockButtonColor}
+                          lockButtonColor={lockButtonColor}
+                          payButtonColor={payButtonColor}
+                          orderTextColor={orderTextColor}
+                          textColor={textColor}
+                          setTheme={setTheme}
+                          setOutline={setOutline}
+                          setUnlockButtonColor={setUnlockButtonColor}
+                          setLockButtonColor={setLockButtonColor}
+                          setPayButtonColor={setPayButtonColor}
+                          setOrderTextColor={setOrderTextColor}
+                          setTextColor={setTextColor}
+                          setLanguages={setLanguages}
+                          onSubmit={onSubmit}
+                          setClosed={setClosed}
+                          changeCheckbox={changeCheckbox}
+                          setIsDark={setIsDark}
+                          setSelectedImage={setSelectedImage}
+                          selectedImage={selectedImage}
+                        />
+                      </SlideDown>
+                    ) : (
+                      <CustomizationForm
+                        selectedImage={selectedImage}
+                        setSelectedImage={setSelectedImage}
+                        customizeFormOpened={customizeFormOpened}
+                        setCustomizeFormOpened={setCustomizeFormOpened}
+                        languages={languages}
+                        theme={theme}
                         outline={outline}
+                        closed={closed}
+                        unlockButtonColor={unlockButtonColor}
                         lockButtonColor={lockButtonColor}
                         payButtonColor={payButtonColor}
                         orderTextColor={orderTextColor}
                         textColor={textColor}
-                        isDark={isDark}
+                        setTheme={setTheme}
+                        setOutline={setOutline}
+                        setUnlockButtonColor={setUnlockButtonColor}
+                        setLockButtonColor={setLockButtonColor}
+                        setPayButtonColor={setPayButtonColor}
+                        setOrderTextColor={setOrderTextColor}
                         setTextColor={setTextColor}
+                        setLanguages={setLanguages}
+                        onSubmit={onSubmit}
+                        setClosed={setClosed}
+                        changeCheckbox={changeCheckbox}
+                        setIsDark={setIsDark}
                       />
+                    )}
+                  </div>
+                  <div
+                    data-mode-dark={isDark}
+                    className="payment__form  form-payment"
+                  >
+                    {}
+                    <div className="form-payment__card card-payment">
+                      <div className="card-payment__header header-card">
+                        <div className="header-card__top">
+                          <div className="header-card__lang">{languages}</div>
+                          <div className="header-card__select header-card__select-mobile">
+                            <Select
+                              components={{ DropdownIndicator }}
+                              //   defaultInputValue="Select country"
+                              className="react-select-container"
+                              classNamePrefix="react-select"
+                              options={options}
+                              styles={{
+                                control: (baseStyles, state) => ({
+                                  ...baseStyles,
+                                  border: "1px solid #FBBD00",
+                                  borderRadius: "10px",
+                                  minHeight: "23px",
+                                  gap: "83px",
+                                }),
+                                placeholder: (baseStyles, state) => ({
+                                  ...baseStyles,
+                                  fontWeight: "500",
+                                  fontSize: "12px",
+                                  color: "#FBBD00",
+                                }),
+
+                                input: (baseStyles, state) => ({
+                                  ...baseStyles,
+                                  fontWeight: "500",
+                                  fontSize: "12px",
+                                  color: "#FBBD00",
+                                }),
+
+                                singleValue: (baseStyles, state) => ({
+                                  ...baseStyles,
+                                  fontWeight: "500",
+                                  fontSize: "12px",
+                                  color: "#FBBD00",
+                                }),
+                                option: (baseStyles, state) => ({
+                                  ...baseStyles,
+                                  fontWeight: "500",
+                                  fontSize: "12px",
+                                  color: state.isDisabled
+                                    ? "#FBBD00"
+                                    : state.isSelected
+                                    ? "#fff"
+                                    : state.isFocused
+                                    ? "#fff"
+                                    : "#FBBD00",
+                                  minHeight: "23px",
+                                  transition: "all 0.3s ease 0s",
+                                  backgroundColor: state.isDisabled
+                                    ? undefined
+                                    : state.isSelected
+                                    ? "#FBBD00"
+                                    : state.isFocused
+                                    ? "#FBBD00"
+                                    : undefined,
+                                  ":active": {
+                                    backgroundColor: state.isSelected
+                                      ? "#FBBD00"
+                                      : "#fff",
+                                  },
+                                  ":hover": {
+                                    backgroundColor: "#FBBD00",
+                                    color: "#fff",
+                                  },
+                                }),
+                              }}
+                            />
+                          </div>
+                          <div className="checkbox header-card__checkbox ">
+                            <input
+                              id="c_6"
+                              data-error="Ошибка"
+                              className={`checkbox__input ${
+                                isDark ? "checked" : ""
+                              }`}
+                              type="checkbox"
+                              name="form[]"
+                              onChange={(e) => {
+                                changeCheckbox(e);
+                                setIsDark(!isDark);
+                                if (!isDark) {
+                                  setTextColor("#ffffff");
+                                } else {
+                                  setTextColor("#000000");
+                                }
+                              }}
+                              defaultChecked={isDark}
+                              value={isDark}
+                            />
+                            <label htmlFor="c_6" className="checkbox__label">
+                              <span className="checkbox__text">
+                                {isDark ? "Dark" : "Light"}
+                              </span>
+                            </label>
+                          </div>
+                        </div>
+                        <ul className="header-card__navigation header-card__navigation-mobile navigation-header">
+                          <li
+                            onClick={(e) => handleClickActiveForm("item1", e)}
+                            className={`navigation-header__item ${
+                              activeForm === "item1" ? "active" : ""
+                            }`}
+                          >
+                            <a href="#" className="navigation-header__link">
+                              Card
+                            </a>
+                          </li>
+                          <li
+                            onClick={(e) => handleClickActiveForm("item2", e)}
+                            className={`navigation-header__item ${
+                              activeForm === "item2" ? "active" : ""
+                            }`}
+                          >
+                            <a href="#" className="navigation-header__link">
+                              Other payment methods
+                            </a>
+                          </li>
+                        </ul>
+                        <div className="header-card__middle header-card__middle-mobile">
+                          <div className="header-card__logo ">
+                            <img
+                              style={{
+                                width: "39px",
+                                height: "19px",
+                              }}
+                              src={!!selectedImage ? selectedImage : vectorLogo}
+                              alt=""
+                            />
+                            <span>BeezyyCashier</span>{" "}
+                          </div>
+                          <div
+                            style={{ color: orderTextColor }}
+                            className="header-card__bottom"
+                          >
+                            {" "}
+                            Order <span>1234567890</span>{" "}
+                          </div>
+                          <div className="header-card__select">
+                            <Select
+                              components={{ DropdownIndicator }}
+                              //   defaultInputValue="Select country"
+                              className="react-select-container"
+                              classNamePrefix="react-select"
+                              options={options}
+                              styles={{
+                                control: (baseStyles, state) => ({
+                                  ...baseStyles,
+                                  border: "1px solid #FBBD00",
+                                  borderRadius: "10px",
+                                  minHeight: "23px",
+                                  gap: "83px",
+                                  flexWrap: "nowrap",
+                                }),
+                                placeholder: (baseStyles, state) => ({
+                                  ...baseStyles,
+                                  fontWeight: "500",
+                                  fontSize: "12px",
+                                  color: "#FBBD00",
+                                }),
+
+                                input: (baseStyles, state) => ({
+                                  ...baseStyles,
+                                  fontWeight: "500",
+                                  fontSize: "12px",
+                                  color: "#FBBD00",
+                                }),
+
+                                singleValue: (baseStyles, state) => ({
+                                  ...baseStyles,
+                                  fontWeight: "500",
+                                  fontSize: "12px",
+                                  color: "#FBBD00",
+                                }),
+                                option: (baseStyles, state) => ({
+                                  ...baseStyles,
+                                  fontWeight: "500",
+                                  fontSize: "12px",
+                                  color: state.isDisabled
+                                    ? "#FBBD00"
+                                    : state.isSelected
+                                    ? "#fff"
+                                    : state.isFocused
+                                    ? "#fff"
+                                    : "#FBBD00",
+                                  minHeight: "23px",
+                                  transition: "all 0.3s ease 0s",
+                                  backgroundColor: state.isDisabled
+                                    ? undefined
+                                    : state.isSelected
+                                    ? "#FBBD00"
+                                    : state.isFocused
+                                    ? "#FBBD00"
+                                    : undefined,
+                                  ":active": {
+                                    backgroundColor: state.isSelected
+                                      ? "#FBBD00"
+                                      : "#fff",
+                                  },
+                                  ":hover": {
+                                    backgroundColor: "#FBBD00",
+                                    color: "#fff",
+                                  },
+                                }),
+                              }}
+                            />
+                          </div>
+                        </div>
+                        <div
+                          style={{ color: orderTextColor }}
+                          className="header-card__bottom"
+                        >
+                          {" "}
+                          Order <span>1234567890</span>{" "}
+                        </div>
+                      </div>
+                      <div className="card-payment__wrapper">
+                        {isScreenMmd ? (
+                          activeForm === "item1" ? (
+                            <>
+                              {" "}
+                              <div className="card-payment__body body-card">
+                                <div
+                                  style={{ color: textColor }}
+                                  className="body-card__amount"
+                                >
+                                  Amount: <span>10 USD</span>
+                                </div>
+                                <PaymentForm
+                                  cvv={cvv}
+                                  expiryDate={expiryDate}
+                                  cardHolder={cardHolder}
+                                  cardNumber={cardNumber}
+                                  setCVV={setCVV}
+                                  setExpiryDate={setExpiryDate}
+                                  setCardHolder={setCardHolder}
+                                  setCardNumber={setCardNumber}
+                                  unlockButtonColor={unlockButtonColor}
+                                  outline={outline}
+                                  lockButtonColor={lockButtonColor}
+                                  payButtonColor={payButtonColor}
+                                  orderTextColor={orderTextColor}
+                                  textColor={textColor}
+                                  isDark={isDark}
+                                  setTextColor={setTextColor}
+                                />
+                              </div>
+                              <div className="card-payment__footer footer-payment">
+                                <ul className="footer-payment__list">
+                                  <li className="footer-payment__item">
+                                    <img
+                                      src={require("../../img/desctop/visa.png")}
+                                      alt=""
+                                    />
+                                  </li>
+                                  <li className="footer-payment__item">
+                                    <img
+                                      src={require("../../img/desctop/mc.png")}
+                                      alt=""
+                                    />
+                                  </li>
+                                  <li className="footer-payment__item">
+                                    <img
+                                      src={require("../../img/desctop/dss.png")}
+                                      alt=""
+                                    />
+                                  </li>
+                                </ul>
+                              </div>
+                            </>
+                          ) : (
+                            <div class="form-payment__methods methods-payment form-payment__methods-mobile">
+                              <ul class="methods-payment__list">
+                                <li class="methods-payment__item">
+                                  <h2 class="methods-payment__name">
+                                    APPLE PAY
+                                  </h2>
+                                  <div class="methods-payment__buttons">
+                                    <button
+                                      type="submit"
+                                      class="methods-payment__button _icon-apple"
+                                    >
+                                      <span>Apple Pay</span>
+                                    </button>
+                                    <button
+                                      type="submit"
+                                      class="methods-payment__button _icon-apple"
+                                    >
+                                      <span>Apple Pay 2</span>
+                                    </button>
+                                  </div>
+                                </li>
+                                <li class="methods-payment__item">
+                                  <h2 class="methods-payment__name">CRYPTO</h2>
+                                  <div class="methods-payment__buttons">
+                                    <button
+                                      type="submit"
+                                      class="methods-payment__button _icon-btc"
+                                    >
+                                      <span>Crypto </span>
+                                    </button>
+                                    <button
+                                      type="submit"
+                                      class="methods-payment__button _icon-btc"
+                                    >
+                                      <span>Crypto 2 </span>
+                                    </button>
+                                  </div>
+                                </li>
+                                <li class="methods-payment__item">
+                                  <h2 class="methods-payment__name">OTHER</h2>
+                                  <div class="methods-payment__buttons">
+                                    <button
+                                      type="submit"
+                                      class="methods-payment__button"
+                                    >
+                                      <span>Google Pay</span>
+                                    </button>
+                                    <button
+                                      type="submit"
+                                      class="methods-payment__button"
+                                    >
+                                      <span>Easy Pay</span>
+                                    </button>
+                                  </div>
+                                </li>
+                                <li class="methods-payment__item">
+                                  <h2 class="methods-payment__name">
+                                    BANK TRANSFER
+                                  </h2>
+                                  <div class="methods-payment__buttons">
+                                    <button
+                                      type="submit"
+                                      class="methods-payment__button"
+                                    >
+                                      OTHER
+                                    </button>
+                                    <button
+                                      type="submit"
+                                      class="methods-payment__button"
+                                    >
+                                      OTHER
+                                    </button>
+                                    <button
+                                      type="submit"
+                                      class="methods-payment__button"
+                                    >
+                                      OTHER
+                                    </button>
+                                    <button
+                                      type="submit"
+                                      class="methods-payment__button"
+                                    >
+                                      OTHER
+                                    </button>
+                                    <button
+                                      type="submit"
+                                      class="methods-payment__button"
+                                    >
+                                      OTHER
+                                    </button>
+                                    <button
+                                      type="submit"
+                                      class="methods-payment__button"
+                                    >
+                                      OTHER
+                                    </button>
+                                    <button
+                                      type="submit"
+                                      class="methods-payment__button"
+                                    >
+                                      OTHER
+                                    </button>
+                                    <button
+                                      type="submit"
+                                      class="methods-payment__button"
+                                    >
+                                      OTHER
+                                    </button>
+                                  </div>
+                                </li>
+                              </ul>
+                            </div>
+                          )
+                        ) : (
+                          <>
+                            {" "}
+                            <div className="card-payment__body body-card">
+                              <div
+                                style={{ color: textColor }}
+                                className="body-card__amount"
+                              >
+                                Amount: <span>10 USD</span>
+                              </div>
+                              <PaymentForm
+                                cvv={cvv}
+                                expiryDate={expiryDate}
+                                cardHolder={cardHolder}
+                                cardNumber={cardNumber}
+                                setCVV={setCVV}
+                                setExpiryDate={setExpiryDate}
+                                setCardHolder={setCardHolder}
+                                setCardNumber={setCardNumber}
+                                unlockButtonColor={unlockButtonColor}
+                                outline={outline}
+                                lockButtonColor={lockButtonColor}
+                                payButtonColor={payButtonColor}
+                                orderTextColor={orderTextColor}
+                                textColor={textColor}
+                                isDark={isDark}
+                                setTextColor={setTextColor}
+                              />
+                            </div>
+                            <div className="card-payment__footer footer-payment">
+                              <ul className="footer-payment__list">
+                                <li className="footer-payment__item">
+                                  <img
+                                    src={require("../../img/desctop/visa.png")}
+                                    alt=""
+                                  />
+                                </li>
+                                <li className="footer-payment__item">
+                                  <img
+                                    src={require("../../img/desctop/mc.png")}
+                                    alt=""
+                                  />
+                                </li>
+                                <li className="footer-payment__item">
+                                  <img
+                                    src={require("../../img/desctop/dss.png")}
+                                    alt=""
+                                  />
+                                </li>
+                              </ul>
+                            </div>
+                          </>
+                        )}
+
+                        {/* динамически */}
+                      </div>
                     </div>
-                    <div className="card-payment__footer footer-payment">
-                      <ul className="footer-payment__list">
-                        <li className="footer-payment__item">
-                          <img
-                            src={require("../../img/desctop/visa.png")}
-                            alt=""
-                          />
+                    <div className="form-payment__methods methods-payment">
+                      <div className="methods-payment__title">
+                        Other payment methods
+                      </div>
+                      <ul className="methods-payment__list">
+                        <li className="methods-payment__item">
+                          <h2 className="methods-payment__name">APPLE PAY</h2>
+                          <div className="methods-payment__buttons">
+                            <button
+                              type="submit"
+                              className="methods-payment__button _icon-apple"
+                            >
+                              <span>Apple Pay</span>
+                            </button>
+                            <button
+                              type="submit"
+                              className="methods-payment__button _icon-apple"
+                            >
+                              <span>Apple Pay 2</span>
+                            </button>
+                          </div>
                         </li>
-                        <li className="footer-payment__item">
-                          <img
-                            src={require("../../img/desctop/mc.png")}
-                            alt=""
-                          />
+                        <li className="methods-payment__item">
+                          <h2 className="methods-payment__name">CRYPTO</h2>
+                          <div className="methods-payment__buttons">
+                            <button
+                              type="submit"
+                              className="methods-payment__button _icon-btc"
+                            >
+                              <span>Crypto (100+ Coins)</span>
+                            </button>
+                            <button
+                              type="submit"
+                              className="methods-payment__button _icon-btc"
+                            >
+                              <span>Crypto 2 (100+ Coins)</span>
+                            </button>
+                          </div>
                         </li>
-                        <li className="footer-payment__item">
-                          <img
-                            src={require("../../img/desctop/dss.png")}
-                            alt=""
-                          />
+                        <li className="methods-payment__item">
+                          <h2 className="methods-payment__name">OTHER</h2>
+                          <div className="methods-payment__buttons">
+                            <button
+                              type="submit"
+                              className="methods-payment__button"
+                            >
+                              <span>Google Pay</span>
+                            </button>
+                            <button
+                              type="submit"
+                              className="methods-payment__button"
+                            >
+                              <span>Easy Pay</span>
+                            </button>
+                          </div>
+                        </li>
+                        <li className="methods-payment__item">
+                          <h2 className="methods-payment__name">
+                            BANK TRANSFER
+                          </h2>
+                          <div className="methods-payment__buttons">
+                            <button
+                              type="submit"
+                              className="methods-payment__button"
+                            >
+                              OTHER
+                            </button>
+                            <button
+                              type="submit"
+                              className="methods-payment__button"
+                            >
+                              OTHER
+                            </button>
+                            <button
+                              type="submit"
+                              className="methods-payment__button"
+                            >
+                              OTHER
+                            </button>
+                            <button
+                              type="submit"
+                              className="methods-payment__button"
+                            >
+                              OTHER
+                            </button>
+                            <button
+                              type="submit"
+                              className="methods-payment__button"
+                            >
+                              OTHER
+                            </button>
+                            <button
+                              type="submit"
+                              className="methods-payment__button"
+                            >
+                              OTHER
+                            </button>
+                            <button
+                              type="submit"
+                              className="methods-payment__button"
+                            >
+                              OTHER
+                            </button>
+                            <button
+                              type="submit"
+                              className="methods-payment__button"
+                            >
+                              OTHER
+                            </button>
+                          </div>
                         </li>
                       </ul>
                     </div>
-                    {/* /* <!-- добавлять динамически -->  */}
                   </div>
                 </div>
-                <div className="form-payment__methods methods-payment">
-                  <div className="methods-payment__title">
-                    Other payment methods
-                  </div>
-                  <ul className="methods-payment__list">
-                    <li className="methods-payment__item">
-                      <h2 className="methods-payment__name">APPLE PAY</h2>
-                      <div className="methods-payment__buttons">
-                        <button
-                          type="submit"
-                          className="methods-payment__button _icon-apple"
-                        >
-                          <span>Apple Pay</span>
-                        </button>
-                        <button
-                          type="submit"
-                          className="methods-payment__button _icon-apple"
-                        >
-                          <span>Apple Pay 2</span>
-                        </button>
-                      </div>
-                    </li>
-                    <li className="methods-payment__item">
-                      <h2 className="methods-payment__name">CRYPTO</h2>
-                      <div className="methods-payment__buttons">
-                        <button
-                          type="submit"
-                          className="methods-payment__button _icon-btc"
-                        >
-                          <span>Crypto (100+ Coins)</span>
-                        </button>
-                        <button
-                          type="submit"
-                          className="methods-payment__button _icon-btc"
-                        >
-                          <span>Crypto 2 (100+ Coins)</span>
-                        </button>
-                      </div>
-                    </li>
-                    <li className="methods-payment__item">
-                      <h2 className="methods-payment__name">OTHER</h2>
-                      <div className="methods-payment__buttons">
-                        <button
-                          type="submit"
-                          className="methods-payment__button"
-                        >
-                          <span>Google Pay</span>
-                        </button>
-                        <button
-                          type="submit"
-                          className="methods-payment__button"
-                        >
-                          <span>Easy Pay</span>
-                        </button>
-                      </div>
-                    </li>
-                    <li className="methods-payment__item">
-                      <h2 className="methods-payment__name">BANK TRANSFER</h2>
-                      <div className="methods-payment__buttons">
-                        <button
-                          type="submit"
-                          className="methods-payment__button"
-                        >
-                          OTHER
-                        </button>
-                        <button
-                          type="submit"
-                          className="methods-payment__button"
-                        >
-                          OTHER
-                        </button>
-                        <button
-                          type="submit"
-                          className="methods-payment__button"
-                        >
-                          OTHER
-                        </button>
-                        <button
-                          type="submit"
-                          className="methods-payment__button"
-                        >
-                          OTHER
-                        </button>
-                        <button
-                          type="submit"
-                          className="methods-payment__button"
-                        >
-                          OTHER
-                        </button>
-                        <button
-                          type="submit"
-                          className="methods-payment__button"
-                        >
-                          OTHER
-                        </button>
-                        <button
-                          type="submit"
-                          className="methods-payment__button"
-                        >
-                          OTHER
-                        </button>
-                        <button
-                          type="submit"
-                          className="methods-payment__button"
-                        >
-                          OTHER
-                        </button>
-                      </div>
-                    </li>
-                  </ul>
-                </div>
-              </div>
+              ) : (
+                <p style={{ textAlign: "center", width: "100%" }}>
+                  READY MADE FORM
+                </p>
+              )}
             </div>
           </div>
         </section>

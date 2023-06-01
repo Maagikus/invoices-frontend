@@ -143,8 +143,7 @@ const PaymentForm = ({
           <div
             style={{
               borderColor: isCardNumberValid() ? "#fbbd00" : "red",
-              outline: outline ? "auto" : "none",
-              outlineColor: "#fbbd00",
+              outline: outline ? " 1px solid #fbbd00 " : "none",
             }}
             className="information-card__number"
           >
@@ -180,8 +179,7 @@ const PaymentForm = ({
               style={{
                 borderColor:
                   isExpDateValid() || expiryDate === "" ? "#fbbd00" : "red",
-                outline: outline ? "auto" : "none",
-                outlineColor: "#fbbd00",
+                outline: outline ? " 1px solid #fbbd00 " : "none",
               }}
               className="information-card__date"
             >
@@ -217,8 +215,7 @@ const PaymentForm = ({
               onChange={(e) => handleChangeСvv(e)}
               style={{
                 borderColor: isCvvValid() || cvv === "" ? "#fbbd00" : "red",
-                outline: outline ? "auto" : "none",
-                outlineColor: "#fbbd00",
+                outline: outline ? " 1px solid #fbbd00 " : "none",
               }}
             />
           </div>
@@ -239,8 +236,7 @@ const PaymentForm = ({
             style={{
               borderColor:
                 isCardHolderValid() || cardHolder === "" ? "#fbbd00" : "red",
-              outline: outline ? "auto" : "none",
-              outlineColor: "#fbbd00",
+              outline: outline ? " 1px solid #fbbd00 " : "none",
             }}
           />
         </div>

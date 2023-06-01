@@ -11,7 +11,7 @@
   font-style: normal;
 }
 
-.payment__body::before,
+.payment__wrapper::before,
 [class*="_icon-"]:before {
   font-family: "icomoon";
   font-style: normal;
@@ -272,9 +272,9 @@ textarea.input {
   opacity: 0;
 }
 
-.checkbox__input:checked + .checkbox__label:before {
+/* .checkbox__input:checked + .checkbox__label:before {
   background: #000;
-}
+} */
 
 .checkbox__label {
   cursor: pointer;
@@ -2984,8 +2984,13 @@ svg {
     gap: calc(3.25rem + 0 * (100vw - 20rem) / 78.5625);
   }
 }
+@media (max-width: 1036px) {
+  .payment__wrapper::before {
+    display: none;
+  }
+}
 
-.payment__body {
+.payment__wrapper {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -2997,7 +3002,7 @@ svg {
   position: relative;
 }
 
-.payment__body::before {
+.payment__wrapper::before {
   content: "\e90d";
   color: #fbbd00;
   font-size: 3.25rem;
@@ -3009,7 +3014,7 @@ svg {
 }
 
 @supports (left: clamp(9.375rem, 2.6606006364rem + 33.5719968178vw, 35.75rem)) {
-  .payment__body::before {
+  .payment__wrapper::before {
     left: clamp(9.375rem, 2.6606006364rem + 33.5719968178vw, 35.75rem);
   }
 }
@@ -3017,7 +3022,7 @@ svg {
 @supports not (
   left: clamp(9.375rem, 2.6606006364rem + 33.5719968178vw, 35.75rem)
 ) {
-  .payment__body::before {
+  .payment__wrapper::before {
     left: calc(9.375rem + 26.375 * (100vw - 20rem) / 78.5625);
   }
 }
@@ -3234,7 +3239,22 @@ svg {
   align-self: center;
 }
 
-.options__checkbox .checkbox__input:checked + .checkbox__label {
+/* .options__checkbox .checkbox__input:checked + .checkbox__label {
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: reverse;
+  -ms-flex-direction: row-reverse;
+  flex-direction: row-reverse;
+  background-color: #fbbd00;
+} */
+
+.options__checkbox .checkbox__input.checked + .checkbox__label .checkbox__text {
+  color: #fff;
+}
+
+.options__checkbox .checkbox__input.checked + .checkbox__label:before {
+  background: #fff;
+}
+.options__checkbox .checkbox__input.checked + .checkbox__label {
   -webkit-box-orient: horizontal;
   -webkit-box-direction: reverse;
   -ms-flex-direction: row-reverse;
@@ -3242,13 +3262,13 @@ svg {
   background-color: #fbbd00;
 }
 
-.options__checkbox .checkbox__input:checked + .checkbox__label .checkbox__text {
+/* .options__checkbox .checkbox__input:checked + .checkbox__label .checkbox__text {
   color: #fff;
 }
 
 .options__checkbox .checkbox__input:checked + .checkbox__label:before {
   background: #fff;
-}
+} */
 
 .options__input {
   background: #ffffff;
@@ -3365,7 +3385,7 @@ svg {
   background-color: #fff;
 }
 
-.languages__checkbox .checkbox__input:checked + .checkbox__label:before {
+.languages__checkbox .checkbox__input.checked + .checkbox__label:before {
   background: #fbbd00;
 }
 
@@ -3483,7 +3503,7 @@ svg {
   gap: 1.4375rem;
 }
 
-.card-payment__body {
+.card-payment__wrapper {
   margin: 1.4375rem 0px 0px 0px;
 }
 
@@ -3544,7 +3564,7 @@ svg {
   align-self: center;
 }
 
-.header-card__checkbox .checkbox__input:checked + .checkbox__label {
+.header-card__checkbox .checkbox__input.checked + .checkbox__label {
   -webkit-box-orient: horizontal;
   -webkit-box-direction: reverse;
   -ms-flex-direction: row-reverse;
@@ -3553,13 +3573,13 @@ svg {
 }
 
 .header-card__checkbox
-  .checkbox__input:checked
+  .checkbox__input.checked
   + .checkbox__label
   .checkbox__text {
   color: #fff;
 }
 
-.header-card__checkbox .checkbox__input:checked + .checkbox__label:before {
+.header-card__checkbox .checkbox__input.checked + .checkbox__label:before {
   background: #fff;
 }
 
@@ -4164,7 +4184,7 @@ svg {
     padding: 0px 30px;
   }
 
-  .payment__body {
+  .payment__wrapper {
     -webkit-box-orient: horizontal;
     -webkit-box-direction: normal;
     -ms-flex-direction: row;
@@ -4178,7 +4198,7 @@ svg {
     padding-left:
       clamp(0.0000000625rem, -3.070803422rem + 15.3540174224vw, 12.0625rem)
   ) {
-    .payment__body {
+    .payment__wrapper {
       padding-left: clamp(
         0.0000000625rem,
         -3.070803422rem + 15.3540174224vw,
@@ -4191,7 +4211,7 @@ svg {
     padding-left:
       clamp(0.0000000625rem, -3.070803422rem + 15.3540174224vw, 12.0625rem)
   ) {
-    .payment__body {
+    .payment__wrapper {
       padding-left: calc(
         0.0000000625rem + 12.0624999375 * (100vw - 20rem) / 78.5625
       );
@@ -4202,7 +4222,7 @@ svg {
     padding-right:
       clamp(0.0000000625rem, -0.5409704864rem + 2.7048527446vw, 2.125rem)
   ) {
-    .payment__body {
+    .payment__wrapper {
       padding-right: clamp(
         0.0000000625rem,
         -0.5409704864rem + 2.7048527446vw,
@@ -4215,7 +4235,7 @@ svg {
     padding-right:
       clamp(0.0000000625rem, -0.5409704864rem + 2.7048527446vw, 2.125rem)
   ) {
-    .payment__body {
+    .payment__wrapper {
       padding-right: calc(
         0.0000000625rem + 2.1249999375 * (100vw - 20rem) / 78.5625
       );
@@ -4373,7 +4393,7 @@ svg {
     display: none;
   }
 
-  .payment__body::before {
+  .payment__wrapper::before {
     display: none;
   }
 
@@ -5056,7 +5076,7 @@ svg {
 
 /* Пример стилей для основной карточки */
 [data-mode-dark="true"] .card-payment__header,
-[data-mode-dark="true"] .card-payment__body,
+[data-mode-dark="true"] .card-payment__wrapper,
 [data-mode-dark="true"] .card-payment__footer {
   color: #fff;
 }

@@ -28,7 +28,23 @@ const CustomizationForm = ({
   isDark,
   customizeFormOpened,
   setCustomizeFormOpened,
+  selectedImage,
+  setSelectedImage,
 }) => {
+  const langList = ["EN", "UA", "FR"];
+  const handleImageChange = (event) => {
+    const file = event.target.files[0];
+    const reader = new FileReader();
+
+    reader.onload = () => {
+      const imageString = reader.result;
+      setSelectedImage(imageString);
+    };
+
+    if (file) {
+      reader.readAsDataURL(file);
+    }
+  };
   const onChangeInput = (e, func) => {
     func(e.target.value);
   };
@@ -55,26 +71,38 @@ const CustomizationForm = ({
           </div>
           <SlideDown className={"my-dropdown-slidedown"} closed={closed}>
             <ul className="languages__body">
-              <div className="checkbox languages__checkbox checked">
-                <input
-                  onChange={(e) => onOptionChange(e)}
-                  id="EN"
-                  value={"EN"}
-                  className="checkbox__input"
-                  type="radio"
-                  name="language"
-                  defaultChecked={languages === "EN"}
-                />
-                <label htmlFor="EN" className="checkbox__label">
-                  <span className="checkbox__text">EN</span>
-                </label>
-              </div>
-              <div className="checkbox languages__checkbox checked">
+              {langList.map((item, index) => {
+                return (
+                  <div key={index} className="checkbox languages__checkbox ">
+                    <input
+                      onClick={(e) => onOptionChange(e)}
+                      onChange={(e) => {
+                        onOptionChange(e);
+                      }}
+                      id={item}
+                      value={item}
+                      className={`checkbox__input ${
+                        languages === item ? "checked" : ""
+                      }`}
+                      type="radio"
+                      name="language"
+                      defaultChecked={languages === item}
+                    />
+                    <label htmlFor={item} className="checkbox__label">
+                      <span className="checkbox__text">{item}</span>
+                    </label>
+                  </div>
+                );
+              })}
+
+              {/* <div className="checkbox languages__checkbox ">
                 <input
                   onChange={(e) => onOptionChange(e)}
                   id="FR"
                   value={"FR"}
-                  className="checkbox__input"
+                  className={`checkbox__input ${
+                    languages === "FR" ? "checked" : ""
+                  }`}
                   type="radio"
                   name="language"
                   defaultChecked={languages === "FR"}
@@ -82,7 +110,7 @@ const CustomizationForm = ({
                 <label htmlFor="FR" className="checkbox__label">
                   <span className="checkbox__text">FR</span>
                 </label>
-              </div>
+              </div> */}
             </ul>
           </SlideDown>
         </div>
@@ -93,13 +121,14 @@ const CustomizationForm = ({
               id="logo_file"
               className="logo__file"
               type="file"
-              accept=".png, .jpg, .jpeg"
+              accept=".png, .jpg, .jpeg, .svg"
+              onChange={handleImageChange}
             />
             <label htmlFor="logo_file" className="logo__button">
               Browse ...
             </label>
             <div className="logo__preview">
-              {/* <img src={require("../../img" alt="" /> */}
+              {/* <img src={selectedImage} alt="" /> */}
             </div>
           </div>
         </div>
@@ -116,7 +145,7 @@ const CustomizationForm = ({
               value={theme}
               id="theme"
               data-error="Ошибка"
-              className="checkbox__input"
+              className={`checkbox__input ${theme ? "checked" : ""}`}
               type="checkbox"
               name="form[]"
             />
@@ -137,7 +166,7 @@ const CustomizationForm = ({
               value={"Outline"}
               id="Outline"
               data-error="Ошибка"
-              className="checkbox__input"
+              className={`checkbox__input ${outline ? "checked" : ""}`}
               type="checkbox"
               name="form[]"
             />
