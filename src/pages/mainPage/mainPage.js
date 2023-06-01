@@ -115,9 +115,9 @@ const MainPage = () => {
   useEffect(() => {
     // Обновляем класс элемента <html> при открытии/закрытии меню
     if (isMenuOpen) {
-      document.documentElement.classList.add("lock");
+      document.body.classList.add("lock");
     } else {
-      document.documentElement.classList.remove("lock");
+      document.body.classList.remove("lock");
     }
   }, [isMenuOpen]);
   const handleClickMenu = (item, e) => {

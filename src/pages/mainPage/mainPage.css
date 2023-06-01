@@ -188,6 +188,13 @@ h6 {
   -ms-scroll-chaining: none;
   overscroll-behavior: none;
 }
+body.lock {
+  overflow: hidden;
+  -ms-touch-action: none;
+  touch-action: none;
+  -ms-scroll-chaining: none;
+  overscroll-behavior: none;
+}
 
 .wrapper {
   min-height: 100%;
