@@ -112,6 +112,14 @@ const MainPage = () => {
   const [customizeFormOpened, setCustomizeFormOpened] = useState(false);
   const [activeItem, setActiveItem] = useState("item1");
   const [activeForm, setActiveForm] = useState("item1");
+  useEffect(() => {
+    // Обновляем класс элемента <html> при открытии/закрытии меню
+    if (isMenuOpen) {
+      document.documentElement.classList.add("lock");
+    } else {
+      document.documentElement.classList.remove("lock");
+    }
+  }, [isMenuOpen]);
   const handleClickMenu = (item, e) => {
     e.preventDefault();
     setActiveItem(item);
@@ -261,7 +269,6 @@ const MainPage = () => {
               <button
                 onClick={() => {
                   setIsMenuOpen(!isMenuOpen);
-                  document.documentElement.classList.toggle("lock");
                 }}
                 type="button"
                 className="menu__icon icon-menu"
