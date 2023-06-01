@@ -45,16 +45,17 @@ const MainPage = () => {
   const [isLanguagesListOpen, setIsLanguagesListOpen] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
   const [closed, setClosed] = useState(true);
-  const [isDark, setIsDark] = useState(false);
   const [languages, setLanguages] = useState("EN");
   const [theme, setTheme] = useState(false);
-  const [outline, setOutline] = useState(false);
-  const [unlockButtonColor, setUnlockButtonColor] = useState("#000000");
-  const [lockButtonColor, setLockButtonColor] = useState("#000000");
-  const [payButtonColor, setPayButtonColor] = useState("#000000");
-  const [orderTextColor, setOrderTextColor] = useState("#000000");
-  const [textColor, setTextColor] = useState("#000000");
+  const [isDark, setIsDark] = useState(false);
 
+  const [outline, setOutline] = useState(false);
+  const [unlockButtonColor, setUnlockButtonColor] = useState("green");
+  const [lockButtonColor, setLockButtonColor] = useState("#FF0000");
+  const [payButtonColor, setPayButtonColor] = useState("#ffffff");
+  const [orderTextColor, setOrderTextColor] = useState("#fbbd00");
+  const [textColor, setTextColor] = useState("#000000");
+  console.log(theme, isDark);
   const changeCheckbox = (e) => {
     setIsChecked((prev) => !prev);
   };
@@ -62,18 +63,27 @@ const MainPage = () => {
     setDefaulteLanguage(e.target.textContent);
     setIsLanguagesListOpen(false);
   };
+  let customizingStyles = {
+    language: languages,
+    theme: theme,
+    "input-outline": outline,
+    "unlock-btn-color": unlockButtonColor,
+    "lock-btn-color": lockButtonColor,
+    "text-color": textColor,
+    "pay-btn-color": payButtonColor,
+  };
   const onSubmit = (e) => {
     e.preventDefault();
-    const data = {
+    customizingStyles = {
       language: languages,
-      theme: theme ? "dark" : "light",
+      theme: theme,
       "input-outline": outline,
       "unlock-btn-color": unlockButtonColor,
       "lock-btn-color": lockButtonColor,
       "text-color": textColor,
       "pay-btn-color": payButtonColor,
     };
-    console.log(data);
+    console.log(customizingStyles);
   };
   return (
     <div className="wrapper">
@@ -373,6 +383,7 @@ const MainPage = () => {
                   onSubmit={onSubmit}
                   setClosed={setClosed}
                   changeCheckbox={changeCheckbox}
+                  setIsDark={setIsDark}
                 />
               </div>
               <div
@@ -489,7 +500,10 @@ const MainPage = () => {
                         {" "}
                         <span>BeezyyCashier</span>{" "}
                       </div>
-                      <div className="header-card__bottom">
+                      <div
+                        style={{ color: orderTextColor }}
+                        className="header-card__bottom"
+                      >
                         {" "}
                         Order <span>1234567890</span>{" "}
                       </div>
@@ -507,6 +521,7 @@ const MainPage = () => {
                               borderRadius: "10px",
                               minHeight: "23px",
                               gap: "83px",
+                              flexWrap: "nowrap",
                             }),
                             placeholder: (baseStyles, state) => ({
                               ...baseStyles,
@@ -562,14 +577,20 @@ const MainPage = () => {
                         />
                       </div>
                     </div>
-                    <div className="header-card__bottom">
+                    <div
+                      style={{ color: orderTextColor }}
+                      className="header-card__bottom"
+                    >
                       {" "}
                       Order <span>1234567890</span>{" "}
                     </div>
                   </div>
                   <div className="card-payment__wrapper">
                     <div className="card-payment__body body-card">
-                      <div className="body-card__amount">
+                      <div
+                        style={{ color: textColor }}
+                        className="body-card__amount"
+                      >
                         Amount: <span>10 USD</span>
                       </div>
                       <PaymentForm
@@ -581,6 +602,12 @@ const MainPage = () => {
                         setExpiryDate={setExpiryDate}
                         setCardHolder={setCardHolder}
                         setCardNumber={setCardNumber}
+                        unlockButtonColor={unlockButtonColor}
+                        outline={outline}
+                        lockButtonColor={lockButtonColor}
+                        payButtonColor={payButtonColor}
+                        orderTextColor={orderTextColor}
+                        textColor={textColor}
                       />
                     </div>
                     <div className="card-payment__footer footer-payment">

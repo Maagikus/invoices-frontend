@@ -22,6 +22,8 @@ const CustomizationForm = ({
   onSubmit,
   setClosed,
   changeCheckbox,
+  setIsDark,
+  isDark,
 }) => {
   const onChangeInput = (e, func) => {
     func(e.target.value);
@@ -99,6 +101,7 @@ const CustomizationForm = ({
               onChange={(e) => {
                 changeCheckbox(e);
                 setTheme(!theme);
+                setIsDark(!theme);
               }}
               defaultChecked={theme}
               value={theme}

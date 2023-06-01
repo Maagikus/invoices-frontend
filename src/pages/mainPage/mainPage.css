@@ -248,7 +248,7 @@ textarea {
   width: 100%;
   display: block;
   padding: 0px 20px;
-  outline: none;
+  /* outline: none; */
   background: transparent;
 }
 
@@ -3794,7 +3794,11 @@ svg {
   padding-left: clamp(3.4375rem, 3.2943019093rem + 0.7159904535vw, 4rem)
 ) {
   .information-card__input-cvv {
-    padding-left: clamp(3.4375rem, 3.2943019093rem + 0.7159904535vw, 4rem);
+    padding-left: clamp(
+      3.4375rem,
+      0.2943019093000001rem + 0.7159904535vw,
+      4rem
+    );
   }
 }
 

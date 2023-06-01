@@ -9,6 +9,12 @@ const PaymentForm = ({
   setExpiryDate,
   setCardHolder,
   setCardNumber,
+  unlockButtonColor,
+  outline,
+  lockButtonColor,
+  payButtonColor,
+  orderTextColor,
+  textColor,
 }) => {
   const [isValid, setIsValid] = useState(true);
   const [isFormValid, setIsFormValid] = useState(true);
@@ -128,10 +134,15 @@ const PaymentForm = ({
     >
       <div className="information-card__wrapper">
         <div className="information-card__item">
-          <div className="information-card__title">Card number</div>
+          <div style={{ color: textColor }} className="information-card__title">
+            Card number
+          </div>
+
           <div
             style={{
               borderColor: isCardNumberValid() ? "#fbbd00" : "red",
+              outline: outline ? "auto" : "none",
+              outlineColor: "#fbbd00",
             }}
             className="information-card__number"
           >
@@ -157,11 +168,18 @@ const PaymentForm = ({
         </div>
         <div className="information-card__items">
           <div className="information-card__item">
-            <div className="information-card__title">Expiration date</div>
+            <div
+              style={{ color: textColor }}
+              className="information-card__title"
+            >
+              Expiration date
+            </div>
             <div
               style={{
                 borderColor:
                   isExpDateValid() || expiryDate === "" ? "#fbbd00" : "red",
+                outline: outline ? "auto" : "none",
+                outlineColor: "#fbbd00",
               }}
               className="information-card__date"
             >
@@ -179,7 +197,12 @@ const PaymentForm = ({
             </div>
           </div>
           <div className="information-card__item">
-            <div className="information-card__title">CVV/CVC code</div>
+            <div
+              style={{ color: textColor }}
+              className="information-card__title"
+            >
+              CVV/CVC code
+            </div>
             <input
               autoComplete="off"
               type="text"
@@ -192,12 +215,16 @@ const PaymentForm = ({
               onChange={(e) => handleChangeСvv(e)}
               style={{
                 borderColor: isCvvValid() || cvv === "" ? "#fbbd00" : "red",
+                outline: outline ? "auto" : "none",
+                outlineColor: "#fbbd00",
               }}
             />
           </div>
         </div>
         <div className="information-card__item">
-          <div className="information-card__title">Card holder</div>
+          <div style={{ color: textColor }} className="information-card__title">
+            Card holder
+          </div>
           <input
             autoComplete="off"
             type="text"
@@ -210,6 +237,8 @@ const PaymentForm = ({
             style={{
               borderColor:
                 isCardHolderValid() || cardHolder === "" ? "#fbbd00" : "red",
+              outline: outline ? "auto" : "none",
+              outlineColor: "#fbbd00",
             }}
           />
         </div>
@@ -218,7 +247,8 @@ const PaymentForm = ({
         type="submit"
         className="information-card__button _icon-lock"
         style={{
-          borderColor: isFormValid ? "#fbbd00" : "red",
+          borderColor: isFormValid ? unlockButtonColor : lockButtonColor,
+          backgroundColor: payButtonColor,
         }}
         disabled={isFormValid}
       >
