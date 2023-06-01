@@ -1,6 +1,15 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useResize } from "../../hooks/useResize.hook";
 const Industries = () => {
-  const [itemsToShow, setItemsToShow] = useState(16);
+  const { isScreenLg } = useResize();
+  const [itemsToShow, setItemsToShow] = useState(12);
+  useEffect(() => {
+    if (isScreenLg) {
+      setItemsToShow(16);
+    } else {
+      setItemsToShow(12);
+    }
+  }, [isScreenLg]);
   const supportedIndunsry = [
     "RETAIL",
     "MARKETING",
@@ -44,7 +53,10 @@ const Industries = () => {
   };
 
   const showless = () => {
-    setItemsToShow(16);
+    if (isScreenLg) {
+      setItemsToShow(16);
+    }
+    setItemsToShow(12);
   };
   return (
     <section className="supported">
@@ -63,7 +75,7 @@ const Industries = () => {
               );
             })}
           </ul>
-          {itemsToShow === 16 ? (
+          {itemsToShow === 12 ? (
             <div
               onClick={showmore}
               className="supported__more more-button _icon-down_arrow"
