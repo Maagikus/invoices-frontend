@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import Select, { components } from "react-select";
 import Providers from "../../components/Providers/Providers";
 import vectorLogo from "../../img/icons/Vector-logo.svg";
-// import Select from "react-select";
+
 import { Link, animateScroll as scroll } from "react-scroll";
 import PaymentForm from "../../components/Forms/PaymentForm";
 import CustomizationForm from "../../components/Forms/CastomizationForm";
@@ -13,6 +13,23 @@ import "react-slidedown/lib/slidedown.css";
 import Industries from "../../components/industries/Industries";
 import { useCookies } from "react-cookie";
 const MainPage = () => {
+  const [isScrolled, setIsScrolled] = useState(false);
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.pageYOffset;
+
+      const scrollThreshold = 100;
+
+      setIsScrolled(scrollTop > scrollThreshold);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   const [cookies, setCookie] = useCookies(["name"]);
   const [cvv, setCVV] = useState("");
   const [expiryDate, setExpiryDate] = useState("");
@@ -43,6 +60,13 @@ const MainPage = () => {
     );
   };
   useEffect(() => {
+    const hasCookiePermission = cookies.cookiePermission;
+
+    if (!hasCookiePermission) {
+      setCookie("cookiePermission", true, { path: "/" });
+    }
+  }, [cookies, setCookie]);
+  useEffect(() => {
     if (JSON.stringify(cookies) !== "{}") {
       const {
         language,
@@ -67,17 +91,10 @@ const MainPage = () => {
       setIsDark(theme);
       setSelectedImage(selectedImage);
     }
-    //  setLanguages("EN");
-    //  setTheme(false);
-    //  setOutline(false);
-    //  setUnlockButtonColor("#333333");
-    //  setLockButtonColor("#333333");
-    //  setTextColor("#333333");
-    //  setPayButtonColor("transparent");
   }, [cookies]);
 
   const { isScreenSmalMobile, isScreenMmd } = useResize();
-  //   const [isHovered, setIsHovered] = useState(null);
+
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [defaulteLanguage, setDefaulteLanguage] = useState("EN");
   const [isLanguagesListOpen, setIsLanguagesListOpen] = useState(false);
@@ -134,11 +151,11 @@ const MainPage = () => {
       orderTextColor: orderTextColor,
       selectedImage: selectedImage,
     };
-    setCookie("name", customizingStyles);
+    setCookie("name", customizingStyles, { path: "/" });
   };
   return (
     <div className="wrapper">
-      <header className="header">
+      <header className={`header ${isScrolled ? "scroll" : ""}`}>
         <div className="header__container">
           <a href="#" className="header__logo _icon-logo">
             <span>BeezyyCashier</span>
@@ -242,7 +259,10 @@ const MainPage = () => {
               </div>
               <div className="header__apply button">Apply</div>
               <button
-                onClick={() => setIsMenuOpen(!isMenuOpen)}
+                onClick={() => {
+                  setIsMenuOpen(!isMenuOpen);
+                  document.documentElement.classList.toggle("lock");
+                }}
                 type="button"
                 className="menu__icon icon-menu"
               >
