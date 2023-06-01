@@ -34,14 +34,25 @@ const CustomizationForm = ({
   const langList = ["EN", "UA", "FR"];
   const handleImageChange = (event) => {
     const file = event.target.files[0];
-    const reader = new FileReader();
-
-    reader.onload = () => {
-      const imageString = reader.result;
-      setSelectedImage(imageString);
-    };
 
     if (file) {
+      // Проверка размера файла
+      const fileSize = file.size / 1024; // в килобайтах
+      const maxSize = 1024; // Максимальный допустимый размер в килобайтах
+
+      if (fileSize > maxSize) {
+        // Обработка ошибки при превышении максимального размера
+        alert("Изображение превышает допустимый размер");
+        return;
+      }
+
+      // Преобразование файла в base64
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        const base64String = reader.result;
+        // Сохранение строки с base64 в состоянии компонента или передача в другой компонент
+        setSelectedImage(base64String);
+      };
       reader.readAsDataURL(file);
     }
   };
