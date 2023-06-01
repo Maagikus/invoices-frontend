@@ -1,29 +1,80 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
+import Select, { components } from "react-select";
 
 // import Select from "react-select";
 import { Link, animateScroll as scroll } from "react-scroll";
-import { useResize } from "../../hooks/useResize.hook";
+import PaymentForm from "../../components/Forms/PaymentForm";
+import CustomizationForm from "../../components/Forms/CastomizationForm";
+// import { useResize } from "../../hooks/useResize.hook";
 import "./mainPage.css";
+// let currentIndex = 0;
+
 const MainPage = () => {
-  const { isScreenSm, isScreenMd } = useResize();
-  const [isHovered, setIsHovered] = useState(null);
+  const [cvv, setCVV] = useState("");
+  const [expiryDate, setExpiryDate] = useState("");
+  const [cardHolder, setCardHolder] = useState("");
+  const [cardNumber, setCardNumber] = useState(["", "", "", ""]);
+
+  //========================================================================================================================================================
+
+  const options = [
+    { value: "Ukraine", label: "Ukraine" },
+    { value: "Poland", label: "Poland" },
+  ];
+  const laguages = ["EN", "UA", "FR"];
+  const DropdownIndicator = (props) => {
+    return (
+      <components.DropdownIndicator {...props}>
+        <svg
+          width="13"
+          height="10"
+          viewBox="0 0 13 10"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path d="M6.5 10L0.00480938 0.25H12.9952L6.5 10Z" fill="#FBBD00" />
+        </svg>
+      </components.DropdownIndicator>
+    );
+  };
+
+  //   const { isScreenSm, isScreenMd } = useResize();
+  //   const [isHovered, setIsHovered] = useState(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [defaulteLanguage, setDefaulteLanguage] = useState("EN");
   const [isLanguagesListOpen, setIsLanguagesListOpen] = useState(false);
+  const [isChecked, setIsChecked] = useState(false);
+  const [closed, setClosed] = useState(true);
+  const [isDark, setIsDark] = useState(false);
+  const [languages, setLanguages] = useState("EN");
+  const [theme, setTheme] = useState(false);
+  const [outline, setOutline] = useState(false);
+  const [unlockButtonColor, setUnlockButtonColor] = useState("#000000");
+  const [lockButtonColor, setLockButtonColor] = useState("#000000");
+  const [payButtonColor, setPayButtonColor] = useState("#000000");
+  const [orderTextColor, setOrderTextColor] = useState("#000000");
+  const [textColor, setTextColor] = useState("#000000");
 
-  const laguages = ["EN", "UA", "FR"];
+  const changeCheckbox = (e) => {
+    setIsChecked((prev) => !prev);
+  };
   const selectLanguage = (e) => {
     setDefaulteLanguage(e.target.textContent);
     setIsLanguagesListOpen(false);
   };
-  //   const addHoverClass = (e) => {
-
-  //     console.log(e.target.);
-  //     //  if (isScreenMd || isScreenSm) {
-  //     //    e.target.classList.add("hover");
-  //     //    setIsHovered(!isHovered);
-  //     //  }
-  //   };
+  const onSubmit = (e) => {
+    e.preventDefault();
+    const data = {
+      language: languages,
+      theme: theme ? "dark" : "light",
+      "input-outline": outline,
+      "unlock-btn-color": unlockButtonColor,
+      "lock-btn-color": lockButtonColor,
+      "text-color": textColor,
+      "pay-btn-color": payButtonColor,
+    };
+    console.log(data);
+  };
   return (
     <div className="wrapper">
       <header className="header">
@@ -301,170 +352,123 @@ const MainPage = () => {
             <div className="payment__body">
               <div className="payment__options options">
                 <div className="options__customize _icon-hand"> Customize </div>
-                <form action="#" className="options__form">
-                  <div className="options__decor _icon-hand"></div>
-                  <div className="options__close _icon-cross-main"></div>
-                  <div className="options__body">
-                    <div className="options__item languages">
-                      <div className="options__title active">Languages</div>
-                      <ul className="languages__body">
-                        <div className="checkbox languages__checkbox checked">
-                          <input
-                            id="c_3"
-                            data-error="Ошибка"
-                            className="checkbox__input"
-                            type="radio"
-                            name="form[]"
-                            checked=""
-                          />
-                          <label htmlFor="c_3" className="checkbox__label">
-                            <span className="checkbox__text">EN</span>
-                          </label>
-                        </div>
-                        <div className="checkbox languages__checkbox checked">
-                          <input
-                            id="c_4"
-                            data-error="Ошибка"
-                            className="checkbox__input"
-                            type="radio"
-                            name="form[]"
-                            checked=""
-                          />
-                          <label htmlFor="c_4" className="checkbox__label">
-                            <span className="checkbox__text">FR</span>
-                          </label>
-                        </div>
-                      </ul>
-                    </div>
-                    <div className="options__item logo">
-                      <div className="options__title">Logo</div>
-                      <div className="logo__wrapp">
-                        <input
-                          id="logo_file"
-                          className="logo__file"
-                          type="file"
-                        />
-                        <label htmlFor="logo_file" className="logo__button">
-                          Browse ...
-                        </label>
-                        <div className="logo__preview">
-                          {/* <img src={require("../../img" alt="" /> */}
-                        </div>
-                      </div>
-                    </div>
-                    <div className="options__item">
-                      <div className="options__title">Switch to dark theme</div>
-                      <div className="checkbox options__checkbox checked">
-                        <input
-                          id="c_1"
-                          data-error="Ошибка"
-                          className="checkbox__input"
-                          type="checkbox"
-                          name="form[]"
-                        />
-                        <label htmlFor="c_1" className="checkbox__label">
-                          <span className="checkbox__text">No</span>
-                        </label>
-                      </div>
-                    </div>
-                    <div className="options__item">
-                      <div className="options__title">
-                        Outline of the input area
-                      </div>
-                      <div className="checkbox options__checkbox checked">
-                        <input
-                          id="c_2"
-                          data-error="Ошибка"
-                          className="checkbox__input"
-                          type="checkbox"
-                          name="form[]"
-                          checked=""
-                        />
-                        <label htmlFor="c_2" className="checkbox__label">
-                          <span className="checkbox__text">Yes</span>
-                        </label>
-                      </div>
-                    </div>
-                    <div className="options__item">
-                      <div className="options__title">Unlock button color</div>
-                      <input
-                        autoComplete="off"
-                        type="text"
-                        name="form[]"
-                        data-error="Ошибка"
-                        placeholder=""
-                        className="options__input input"
-                      />
-                    </div>
-                    <div className="options__item">
-                      <div className="options__title">Lock button color</div>
-                      <input
-                        autoComplete="off"
-                        type="text"
-                        name="form[]"
-                        data-error="Ошибка"
-                        placeholder=""
-                        className="options__input input"
-                      />
-                    </div>
-                    <div className="options__item">
-                      <div className="options__title">Order text color</div>
-                      <input
-                        autoComplete="off"
-                        type="text"
-                        name="form[]"
-                        data-error="Ошибка"
-                        placeholder=""
-                        className="options__input input"
-                      />
-                    </div>
-                    <div className="options__item">
-                      <div className="options__title">Text color</div>
-                      <input
-                        autoComplete="off"
-                        type="text"
-                        name="form[]"
-                        data-error="Ошибка"
-                        placeholder=""
-                        className="options__input input"
-                      />
-                    </div>
-                    <div className="options__item">
-                      <div className="options__title">Pay button color</div>
-                      <input
-                        autoComplete="off"
-                        type="text"
-                        name="form[]"
-                        data-error="Ошибка"
-                        placeholder=""
-                        className="options__input input"
-                      />
-                    </div>
-                  </div>
-                  <button type="submit" className="options__save">
-                    Save
-                  </button>
-                </form>
+                <CustomizationForm
+                  languages={languages}
+                  theme={theme}
+                  outline={outline}
+                  closed={closed}
+                  unlockButtonColor={unlockButtonColor}
+                  lockButtonColor={lockButtonColor}
+                  payButtonColor={payButtonColor}
+                  orderTextColor={orderTextColor}
+                  textColor={textColor}
+                  setTheme={setTheme}
+                  setOutline={setOutline}
+                  setUnlockButtonColor={setUnlockButtonColor}
+                  setLockButtonColor={setLockButtonColor}
+                  setPayButtonColor={setPayButtonColor}
+                  setOrderTextColor={setOrderTextColor}
+                  setTextColor={setTextColor}
+                  setLanguages={setLanguages}
+                  onSubmit={onSubmit}
+                  setClosed={setClosed}
+                  changeCheckbox={changeCheckbox}
+                />
               </div>
-              <div className="payment__form  form-payment">
+              <div
+                data-mode-dark={isDark}
+                className="payment__form  form-payment"
+              >
                 <div className="form-payment__card card-payment">
                   <div className="card-payment__header header-card">
                     <div className="header-card__top">
                       <div className="header-card__lang">EN</div>
                       <div className="header-card__select header-card__select-mobile">
-                        Select country
+                        <Select
+                          components={{ DropdownIndicator }}
+                          //   defaultInputValue="Select country"
+                          className="react-select-container"
+                          classNamePrefix="react-select"
+                          options={options}
+                          styles={{
+                            control: (baseStyles, state) => ({
+                              ...baseStyles,
+                              border: "1px solid #FBBD00",
+                              borderRadius: "10px",
+                              minHeight: "23px",
+                              gap: "83px",
+                            }),
+                            placeholder: (baseStyles, state) => ({
+                              ...baseStyles,
+                              fontWeight: "500",
+                              fontSize: "12px",
+                              color: "#FBBD00",
+                            }),
+
+                            input: (baseStyles, state) => ({
+                              ...baseStyles,
+                              fontWeight: "500",
+                              fontSize: "12px",
+                              color: "#FBBD00",
+                            }),
+
+                            singleValue: (baseStyles, state) => ({
+                              ...baseStyles,
+                              fontWeight: "500",
+                              fontSize: "12px",
+                              color: "#FBBD00",
+                            }),
+                            option: (baseStyles, state) => ({
+                              ...baseStyles,
+                              fontWeight: "500",
+                              fontSize: "12px",
+                              color: state.isDisabled
+                                ? "#FBBD00"
+                                : state.isSelected
+                                ? "#fff"
+                                : state.isFocused
+                                ? "#fff"
+                                : "#FBBD00",
+                              minHeight: "23px",
+                              transition: "all 0.3s ease 0s",
+                              backgroundColor: state.isDisabled
+                                ? undefined
+                                : state.isSelected
+                                ? "#FBBD00"
+                                : state.isFocused
+                                ? "#FBBD00"
+                                : undefined,
+                              ":active": {
+                                backgroundColor: state.isSelected
+                                  ? "#FBBD00"
+                                  : "#fff",
+                              },
+                              ":hover": {
+                                backgroundColor: "#FBBD00",
+                                color: "#fff",
+                              },
+                            }),
+                          }}
+                        />
                       </div>
                       <div className="checkbox header-card__checkbox checked">
                         <input
-                          id="c_5"
+                          id="c_6"
                           data-error="Ошибка"
                           className="checkbox__input"
                           type="checkbox"
                           name="form[]"
-                          checked=""
+                          onChange={(e) => {
+                            changeCheckbox(e);
+                            setIsDark(!isDark);
+                          }}
+                          defaultChecked={isDark}
+                          value={isDark}
                         />
-                        <label htmlFor="c_5" className="checkbox__label">
-                          <span className="checkbox__text">light</span>
+                        <label htmlFor="c_6" className="checkbox__label">
+                          <span className="checkbox__text">
+                            {isDark ? "Dark" : "Light"}
+                          </span>
                         </label>
                       </div>
                     </div>
@@ -489,7 +493,74 @@ const MainPage = () => {
                         {" "}
                         Order <span>1234567890</span>{" "}
                       </div>
-                      <div className="header-card__select">Select country</div>
+                      <div className="header-card__select">
+                        <Select
+                          components={{ DropdownIndicator }}
+                          //   defaultInputValue="Select country"
+                          className="react-select-container"
+                          classNamePrefix="react-select"
+                          options={options}
+                          styles={{
+                            control: (baseStyles, state) => ({
+                              ...baseStyles,
+                              border: "1px solid #FBBD00",
+                              borderRadius: "10px",
+                              minHeight: "23px",
+                              gap: "83px",
+                            }),
+                            placeholder: (baseStyles, state) => ({
+                              ...baseStyles,
+                              fontWeight: "500",
+                              fontSize: "12px",
+                              color: "#FBBD00",
+                            }),
+
+                            input: (baseStyles, state) => ({
+                              ...baseStyles,
+                              fontWeight: "500",
+                              fontSize: "12px",
+                              color: "#FBBD00",
+                            }),
+
+                            singleValue: (baseStyles, state) => ({
+                              ...baseStyles,
+                              fontWeight: "500",
+                              fontSize: "12px",
+                              color: "#FBBD00",
+                            }),
+                            option: (baseStyles, state) => ({
+                              ...baseStyles,
+                              fontWeight: "500",
+                              fontSize: "12px",
+                              color: state.isDisabled
+                                ? "#FBBD00"
+                                : state.isSelected
+                                ? "#fff"
+                                : state.isFocused
+                                ? "#fff"
+                                : "#FBBD00",
+                              minHeight: "23px",
+                              transition: "all 0.3s ease 0s",
+                              backgroundColor: state.isDisabled
+                                ? undefined
+                                : state.isSelected
+                                ? "#FBBD00"
+                                : state.isFocused
+                                ? "#FBBD00"
+                                : undefined,
+                              ":active": {
+                                backgroundColor: state.isSelected
+                                  ? "#FBBD00"
+                                  : "#fff",
+                              },
+                              ":hover": {
+                                backgroundColor: "#FBBD00",
+                                color: "#fff",
+                              },
+                            }),
+                          }}
+                        />
+                      </div>
                     </div>
                     <div className="header-card__bottom">
                       {" "}
@@ -501,118 +572,16 @@ const MainPage = () => {
                       <div className="body-card__amount">
                         Amount: <span>10 USD</span>
                       </div>
-                      <form
-                        action="#"
-                        className="body-card__information information-card"
-                      >
-                        <div className="information-card__wrapper">
-                          <div className="information-card__item">
-                            <div className="information-card__title">
-                              Card number
-                            </div>
-                            <div className="information-card__number">
-                              <input
-                                autoComplete="off"
-                                type="text"
-                                name="form[]"
-                                data-error="Ошибка"
-                                placeholder=" "
-                                maxLength="4"
-                                className="information-card__input information-card__input-number input"
-                              />
-                              <input
-                                autoComplete="off"
-                                type="text"
-                                name="form[]"
-                                data-error="Ошибка"
-                                placeholder=" "
-                                maxLength="4"
-                                className="information-card__input information-card__input-number input"
-                              />
-                              <input
-                                autoComplete="off"
-                                type="text"
-                                name="form[]"
-                                data-error="Ошибка"
-                                placeholder=" "
-                                maxLength="4"
-                                className="information-card__input information-card__input-number input"
-                              />
-                              <input
-                                autoComplete="off"
-                                type="text"
-                                name="form[]"
-                                data-error="Ошибка"
-                                placeholder=" "
-                                maxLength="4"
-                                className="information-card__input information-card__input-number input"
-                              />
-                            </div>
-                          </div>
-                          <div className="information-card__items">
-                            <div className="information-card__item">
-                              <div className="information-card__title">
-                                Expiration date
-                              </div>
-                              <div className="information-card__date">
-                                <input
-                                  autoComplete="off"
-                                  type="text"
-                                  name="form[]"
-                                  data-error="Ошибка"
-                                  maxLength="2"
-                                  placeholder="MM"
-                                  className="information-card__input information-card__input-date input"
-                                />
-                                <span>/</span>
-                                <input
-                                  autoComplete="off"
-                                  type="text"
-                                  name="form[]"
-                                  data-error="Ошибка"
-                                  maxLength="2"
-                                  placeholder="DD"
-                                  className="information-card__input information-card__input-date input"
-                                />
-                              </div>
-                            </div>
-                            <div className="information-card__item">
-                              <div className="information-card__title">
-                                CVV/CVC code
-                              </div>
-                              <input
-                                autoComplete="off"
-                                type="text"
-                                name="form[]"
-                                data-error="Ошибка"
-                                placeholder=" "
-                                maxLength="3"
-                                className="information-card__input information-card__input-cvv input"
-                              />
-                            </div>
-                          </div>
-                          <div className="information-card__item">
-                            <div className="information-card__title">
-                              Card holder
-                            </div>
-                            <input
-                              autoComplete="off"
-                              type="text"
-                              name="form[]"
-                              data-error="Ошибка"
-                              placeholder=""
-                              className="information-card__input information-card__input-holder input"
-                            />
-                          </div>
-                        </div>
-                        <button
-                          type="submit"
-                          className="information-card__button _icon-lock"
-                        >
-                          {" "}
-                          <span>Pay</span>{" "}
-                        </button>
-                      </form>
+                      <PaymentForm
+                        cvv={cvv}
+                        expiryDate={expiryDate}
+                        cardHolder={cardHolder}
+                        cardNumber={cardNumber}
+                        setCVV={setCVV}
+                        setExpiryDate={setExpiryDate}
+                        setCardHolder={setCardHolder}
+                        setCardNumber={setCardNumber}
+                      />
                     </div>
                     <div className="card-payment__footer footer-payment">
                       <ul className="footer-payment__list">

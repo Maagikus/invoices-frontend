@@ -249,6 +249,7 @@ textarea {
   display: block;
   padding: 0px 20px;
   outline: none;
+  background: transparent;
 }
 
 textarea.input {
@@ -3413,6 +3414,7 @@ svg {
 }
 
 .logo__button {
+  cursor: pointer;
   font-weight: 600;
   font-size: 0.75rem;
   line-height: 1.1666666667;
@@ -3738,7 +3740,7 @@ svg {
 
 .information-card__input-date {
   outline: none;
-  width: 1.3125rem;
+  width: 3rem;
   font-size: 0.75rem;
   border: none;
   padding: 0px 0px 0px 0px;
@@ -3785,6 +3787,7 @@ svg {
 
 .information-card__input-cvv {
   height: 32px;
+  font-size: 0.75rem;
 }
 
 @supports (
@@ -4984,4 +4987,94 @@ svg {
 }
 .menu-open .webp {
   overflow: hidden;
+}
+.react-select__indicator svg {
+  width: auto;
+  height: auto;
+}
+.react-select__indicator-separator {
+  display: none;
+}
+
+/* dark-mode */
+[data-mode-dark="true"] {
+  background-color: #222;
+  color: #fff;
+}
+
+[data-mode-dark="true"] input,
+[data-mode-dark="true"] select,
+[data-mode-dark="true"] textarea {
+  background-color: transparent;
+  color: #fff;
+}
+
+[data-mode-dark="true"] .header-card__lang,
+[data-mode-dark="true"] .header-card__select,
+[data-mode-dark="true"] .checkbox__text {
+  color: #fff;
+}
+
+[data-mode-dark="true"] .react-select__control {
+  background-color: #333;
+  color: #fff;
+  border-color: #555;
+}
+
+[data-mode-dark="true"] .react-select__placeholder,
+[data-mode-dark="true"] .react-select__single-value {
+  color: #fff;
+}
+
+[data-mode-dark="true"] .react-select__indicator-separator,
+[data-mode-dark="true"] .react-select__dropdown-indicator {
+  /* background-color: #555; */
+}
+[data-mode-dark="true"] .checkbox__label {
+  background-color: #666;
+}
+[data-mode-dark="true"] .checkbox__input:checked + .checkbox__label::before {
+  background-color: #fff;
+  border-color: #fff;
+}
+
+[data-mode-dark="true"] .navigation-header__link {
+  color: #fff;
+}
+[data-mode-dark="true"] .information-card__title {
+  color: #fff;
+}
+/* Продолжите добавление стилей для остальных элементов в блоке payment__form */
+
+/* Пример стилей для основной карточки */
+[data-mode-dark="true"] .card-payment__header,
+[data-mode-dark="true"] .card-payment__body,
+[data-mode-dark="true"] .card-payment__footer {
+  color: #fff;
+}
+
+[data-mode-dark="true"] .card-payment__wrapper {
+  border-color: #555;
+}
+[data-mode-dark="true"] .body-card__amount {
+  color: #fff;
+}
+/* Пример стилей для кнопки "Pay" */
+[data-mode-dark="true"] .information-card__button {
+  /* background-color: #444; */
+  color: #fbbd00;
+  border-color: #666;
+}
+
+/* Пример стилей для ошибок */
+[data-mode-dark="true"] .information-card__input:invalid {
+  border-color: #ff0000;
+}
+
+/* Пример стилей для успешного заполнения */
+[data-mode-dark="true"] .information-card__input:valid {
+  border-color: #00ff00;
+}
+[data-mode-dark="true"] .react-select__menu {
+  background-color: #666;
 }
