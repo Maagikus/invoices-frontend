@@ -1,6 +1,8 @@
 import { useState, useEffect, useRef } from "react";
 import { SlideDown } from "react-slidedown";
 import "react-slidedown/lib/slidedown.css";
+import { useResize } from "../../hooks/useResize.hook";
+
 const CustomizationForm = ({
   languages,
   theme,
@@ -24,6 +26,8 @@ const CustomizationForm = ({
   changeCheckbox,
   setIsDark,
   isDark,
+  customizeFormOpened,
+  setCustomizeFormOpened,
 }) => {
   const onChangeInput = (e, func) => {
     func(e.target.value);
@@ -31,11 +35,16 @@ const CustomizationForm = ({
   const onOptionChange = (e) => {
     setLanguages(e.target.value);
   };
+  const { isScreenSmalMobile, isScreenSm } = useResize();
 
   return (
     <form onSubmit={(e) => onSubmit(e)} className="options__form">
       <div className="options__decor _icon-hand"></div>
-      <div className="options__close _icon-cross-main"></div>
+      <div
+        onClick={() => setCustomizeFormOpened(!customizeFormOpened)}
+        className="options__close _icon-cross-main"
+        style={{ display: isScreenSmalMobile ? "block" : "none" }}
+      ></div>
       <div className="options__body">
         <div className="options__item languages">
           <div

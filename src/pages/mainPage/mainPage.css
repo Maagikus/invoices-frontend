@@ -2871,7 +2871,10 @@ svg {
 .supported__more {
   line-height: 1.1764705882;
 }
-
+.supported__more-rotate::before,
+.body-providers__more-rotate::before {
+  transform: rotate(-180deg) !important;
+}
 @supports (
   font-size: clamp(0.9375rem, 0.6351929196rem + 1.5115354018vw, 2.125rem)
 ) {
@@ -3149,7 +3152,7 @@ svg {
 }
 
 .options__customize {
-  display: none;
+  /* display: none; */
 }
 
 .options__form {
@@ -4398,6 +4401,7 @@ svg {
 
   .options__customize::before {
     position: absolute;
+    z-index: 10;
     -webkit-transform: rotate(-180deg);
     -ms-transform: rotate(-180deg);
     transform: rotate(-180deg);

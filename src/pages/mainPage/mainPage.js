@@ -1,14 +1,15 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import Select, { components } from "react-select";
-
+import Providers from "../../components/Providers/Providers";
 // import Select from "react-select";
 import { Link, animateScroll as scroll } from "react-scroll";
 import PaymentForm from "../../components/Forms/PaymentForm";
 import CustomizationForm from "../../components/Forms/CastomizationForm";
-// import { useResize } from "../../hooks/useResize.hook";
+import { useResize } from "../../hooks/useResize.hook";
 import "./mainPage.css";
-// let currentIndex = 0;
-
+import { SlideDown } from "react-slidedown";
+import "react-slidedown/lib/slidedown.css";
+import Industries from "../../components/industries/Industries";
 const MainPage = () => {
   const [cvv, setCVV] = useState("");
   const [expiryDate, setExpiryDate] = useState("");
@@ -38,7 +39,7 @@ const MainPage = () => {
     );
   };
 
-  //   const { isScreenSm, isScreenMd } = useResize();
+  const { isScreenSmalMobile } = useResize();
   //   const [isHovered, setIsHovered] = useState(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [defaulteLanguage, setDefaulteLanguage] = useState("EN");
@@ -52,10 +53,11 @@ const MainPage = () => {
   const [outline, setOutline] = useState(false);
   const [unlockButtonColor, setUnlockButtonColor] = useState("green");
   const [lockButtonColor, setLockButtonColor] = useState("#FF0000");
-  const [payButtonColor, setPayButtonColor] = useState("#ffffff");
+  const [payButtonColor, setPayButtonColor] = useState("transparent");
   const [orderTextColor, setOrderTextColor] = useState("#fbbd00");
   const [textColor, setTextColor] = useState("#000000");
-  console.log(theme, isDark);
+  const [customizeFormOpened, setCustomizeFormOpened] = useState(false);
+
   const changeCheckbox = (e) => {
     setIsChecked((prev) => !prev);
   };
@@ -361,30 +363,75 @@ const MainPage = () => {
             </div>
             <div className="payment__body">
               <div className="payment__options options">
-                <div className="options__customize _icon-hand"> Customize </div>
-                <CustomizationForm
-                  languages={languages}
-                  theme={theme}
-                  outline={outline}
-                  closed={closed}
-                  unlockButtonColor={unlockButtonColor}
-                  lockButtonColor={lockButtonColor}
-                  payButtonColor={payButtonColor}
-                  orderTextColor={orderTextColor}
-                  textColor={textColor}
-                  setTheme={setTheme}
-                  setOutline={setOutline}
-                  setUnlockButtonColor={setUnlockButtonColor}
-                  setLockButtonColor={setLockButtonColor}
-                  setPayButtonColor={setPayButtonColor}
-                  setOrderTextColor={setOrderTextColor}
-                  setTextColor={setTextColor}
-                  setLanguages={setLanguages}
-                  onSubmit={onSubmit}
-                  setClosed={setClosed}
-                  changeCheckbox={changeCheckbox}
-                  setIsDark={setIsDark}
-                />
+                <div
+                  style={{
+                    display: customizeFormOpened ? "block" : "none",
+                    //   transition: "opacity 0.3s ease 0s",
+                  }}
+                  onClick={() => setCustomizeFormOpened(!customizeFormOpened)}
+                  className="options__customize _icon-hand"
+                >
+                  {" "}
+                  Customize{" "}
+                </div>
+                {isScreenSmalMobile ? (
+                  <SlideDown
+                    className={"my-dropdown-slidedown"}
+                    closed={customizeFormOpened}
+                  >
+                    <CustomizationForm
+                      customizeFormOpened={customizeFormOpened}
+                      setCustomizeFormOpened={setCustomizeFormOpened}
+                      languages={languages}
+                      theme={theme}
+                      outline={outline}
+                      closed={closed}
+                      unlockButtonColor={unlockButtonColor}
+                      lockButtonColor={lockButtonColor}
+                      payButtonColor={payButtonColor}
+                      orderTextColor={orderTextColor}
+                      textColor={textColor}
+                      setTheme={setTheme}
+                      setOutline={setOutline}
+                      setUnlockButtonColor={setUnlockButtonColor}
+                      setLockButtonColor={setLockButtonColor}
+                      setPayButtonColor={setPayButtonColor}
+                      setOrderTextColor={setOrderTextColor}
+                      setTextColor={setTextColor}
+                      setLanguages={setLanguages}
+                      onSubmit={onSubmit}
+                      setClosed={setClosed}
+                      changeCheckbox={changeCheckbox}
+                      setIsDark={setIsDark}
+                    />
+                  </SlideDown>
+                ) : (
+                  <CustomizationForm
+                    customizeFormOpened={customizeFormOpened}
+                    setCustomizeFormOpened={setCustomizeFormOpened}
+                    languages={languages}
+                    theme={theme}
+                    outline={outline}
+                    closed={closed}
+                    unlockButtonColor={unlockButtonColor}
+                    lockButtonColor={lockButtonColor}
+                    payButtonColor={payButtonColor}
+                    orderTextColor={orderTextColor}
+                    textColor={textColor}
+                    setTheme={setTheme}
+                    setOutline={setOutline}
+                    setUnlockButtonColor={setUnlockButtonColor}
+                    setLockButtonColor={setLockButtonColor}
+                    setPayButtonColor={setPayButtonColor}
+                    setOrderTextColor={setOrderTextColor}
+                    setTextColor={setTextColor}
+                    setLanguages={setLanguages}
+                    onSubmit={onSubmit}
+                    setClosed={setClosed}
+                    changeCheckbox={changeCheckbox}
+                    setIsDark={setIsDark}
+                  />
+                )}
               </div>
               <div
                 data-mode-dark={isDark}
@@ -608,6 +655,8 @@ const MainPage = () => {
                         payButtonColor={payButtonColor}
                         orderTextColor={orderTextColor}
                         textColor={textColor}
+                        isDark={isDark}
+                        setTextColor={setTextColor}
                       />
                     </div>
                     <div className="card-payment__footer footer-payment">
@@ -750,95 +799,7 @@ const MainPage = () => {
             </div>
           </div>
         </section>
-        <section id="providers" className="providers">
-          <div className="providers__container">
-            <div className="providers__header">
-              <h2 className="providers__title">
-                {" "}
-                AVAILABLE <span>PROVIDERS</span>
-              </h2>
-            </div>
-            <div className="providers__body body-providers">
-              <ul className="body-providers__list">
-                <li className="body-providers__item">
-                  <div className="body-providers__image-ibg">
-                    <img
-                      src={require("../../img/desctop/prov1.png")}
-                      alt="Connectum"
-                    />
-                  </div>
-                </li>
-                <li className="body-providers__item">
-                  <div className="body-providers__image-ibg">
-                    <img
-                      src={require("../../img/desctop/prov2.png")}
-                      alt="Interkassa"
-                    />
-                  </div>
-                </li>
-                <li className="body-providers__item">
-                  <div className="body-providers__image-ibg">
-                    <img
-                      src={require("../../img/desctop/prov3.png")}
-                      alt="xanpay"
-                    />
-                  </div>
-                </li>
-                <li className="body-providers__item">
-                  <div className="body-providers__image-ibg">
-                    <img
-                      src={require("../../img/desctop/prov4.png")}
-                      alt="Decta"
-                    />
-                  </div>
-                </li>
-                <li className="body-providers__item">
-                  <div className="body-providers__image-ibg">
-                    <img
-                      src={require("../../img/desctop/prov5.png")}
-                      alt="Fibonatix"
-                    />
-                  </div>
-                </li>
-                <li className="body-providers__item">
-                  <div className="body-providers__image-ibg">
-                    <img
-                      src={require("../../img/desctop/prov6.png")}
-                      alt="MoonPay"
-                    />
-                  </div>
-                </li>
-                <li className="body-providers__item">
-                  <div className="body-providers__image-ibg">
-                    <img
-                      src={require("../../img/desctop/prov7.png")}
-                      alt="NexPay"
-                    />
-                  </div>
-                </li>
-                <li className="body-providers__item">
-                  <div className="body-providers__image-ibg">
-                    <img
-                      src={require("../../img/desctop/prov8.png")}
-                      alt="cryptopay"
-                    />
-                  </div>
-                </li>
-                <li className="body-providers__item">
-                  <div className="body-providers__image-ibg">
-                    <img
-                      src={require("../../img/desctop/prov9.png")}
-                      alt="icepay"
-                    />
-                  </div>
-                </li>
-              </ul>
-              <div className="body-providers__more more-button _icon-down_arrow">
-                SEE MORE
-              </div>
-            </div>
-          </div>
-        </section>
+        <Providers />
         <section className="features">
           <div className="features__container">
             <h2 className="features__title">
@@ -1157,59 +1118,7 @@ const MainPage = () => {
             </div>
           </div>
         </section>
-        <section className="supported">
-          <div className="supported__decor"></div>
-          <div className="supported__container">
-            <div className="supported__title">
-              SUPPORTED <span>INDUSTRIES</span>{" "}
-            </div>
-            <div className="supported__body">
-              <ul className="supported__industries">
-                <li className="supported__industry">RETAIL</li>
-                <li className="supported__industry">MARKETING</li>
-                <li className="supported__industry">E-COMMERCE</li>
-                <li className="supported__industry">COINS</li>
-                <li className="supported__industry">HOSTING</li>
-                <li className="supported__industry">GAMBLING</li>
-                <li className="supported__industry">WEBSITE DEVELOPMENT</li>
-                <li className="supported__industry">WHITE LABEL</li>
-                <li className="supported__industry">CASINO</li>
-                <li className="supported__industry">CREDIT REPAIR</li>
-                <li className="supported__industry">VPN</li>
-                <li className="supported__industry">BITCOIN</li>
-                <li className="supported__industry">CASUAL GAMING</li>
-                <li className="supported__industry">SEO</li>
-                <li className="supported__industry">FANTASY SPORTS</li>
-                <li className="supported__industry">
-                  MULTIPLE MERCHANTS ACCOUNTS
-                </li>
-                <li className="supported__industry">ICO MERCHANT</li>
-                <li className="supported__industry">DATING</li>
-                <li className="supported__industry">ONLINE GAMING</li>
-                <li className="supported__industry">COLLECTIBLE</li>
-                <li className="supported__industry">TRAVEL AGENCY</li>
-                <li className="supported__industry">ONLINE TUTORIALS</li>
-                <li className="supported__industry">APPLICATION DEVELOPMENT</li>
-                <li className="supported__industry">TECH SUPPORT</li>
-                <li className="supported__industry">FOREX</li>
-                <li className="supported__industry">NUMEROLOGY</li>
-                <li className="supported__industry">ESSAY WRITING</li>
-                <li className="supported__industry">ASTROLOGY</li>
-                <li className="supported__industry">SUBSCRIPTION BOX</li>
-                <li className="supported__industry">CRYPTOCURRENCY</li>
-                <li className="supported__industry">CRYPTO EXCHANGE</li>
-                <li className="supported__industry">ICO MERCHANT</li>
-                <li className="supported__industry">CBD OIL</li>
-                <li className="supported__industry">TIMESHARE</li>
-                <li className="supported__industry">COLLECTION AGENCY</li>
-                <li className="supported__industry">SKILL GAMING</li>
-              </ul>
-              <div className="supported__more more-button _icon-down_arrow">
-                SEE MORE
-              </div>
-            </div>
-          </div>
-        </section>
+        <Industries />
       </main>
       <footer className="footer">
         <div className="footer__wrapper">

@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 
 const PaymentForm = ({
   cvv,
@@ -15,8 +15,9 @@ const PaymentForm = ({
   payButtonColor,
   orderTextColor,
   textColor,
+  isDark,
+  setTextColor,
 }) => {
-  const [isValid, setIsValid] = useState(true);
   const [isFormValid, setIsFormValid] = useState(true);
   const inputRefs = [useRef(null), useRef(null), useRef(null), useRef(null)];
 
@@ -127,6 +128,7 @@ const PaymentForm = ({
       }
     }
   };
+
   return (
     <form
       onChange={() => checkForm()}

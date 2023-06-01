@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import {
+  SCREEN_SMAL_MOBILE,
   SCREEN_SM,
   SCREEN_MD,
   SCREEN_LG,
@@ -22,6 +23,7 @@ export const useResize = () => {
 
   return {
     width,
+    isScreenSmalMobile: width <= SCREEN_SMAL_MOBILE,
     isScreenSm: width >= SCREEN_SM,
     isScreenMd: width >= SCREEN_MD,
     isScreenLg: width >= SCREEN_LG,
