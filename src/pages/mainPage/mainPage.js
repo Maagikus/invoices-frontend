@@ -59,17 +59,17 @@ const MainPage = () => {
       </components.DropdownIndicator>
     );
   };
-  useEffect(() => {
-    const hasCookiePermission = cookies.cookiePermission;
+  //   useEffect(() => {
+  //     const hasCookiePermission = cookies.cookiePermission;
 
-    if (!hasCookiePermission) {
-      setCookie("cookiePermission", true, { path: "/" });
-    }
-  }, [cookies, setCookie]);
+  //     if (!hasCookiePermission) {
+  //       setCookie("cookiePermission", true);
+  //     }
+  //   }, [cookies, setCookie]);
   useEffect(() => {
     if (JSON.stringify(cookies) !== "{}") {
       const {
-        language,
+        languages,
         theme,
         inputOutline,
         unlockBtnColor,
@@ -80,7 +80,7 @@ const MainPage = () => {
         selectedImage,
       } = cookies.name;
 
-      setLanguages(language);
+      setLanguages(languages);
       setTheme(theme);
       setOutline(inputOutline);
       setUnlockButtonColor(unlockBtnColor);
@@ -136,7 +136,7 @@ const MainPage = () => {
     setIsLanguagesListOpen(false);
   };
   let customizingStyles = {
-    language: languages,
+    languages: languages,
     theme: theme,
     inputOutline: outline,
     unlockBtnColor: unlockButtonColor,
@@ -149,7 +149,7 @@ const MainPage = () => {
   const onSubmit = (e) => {
     e.preventDefault();
     customizingStyles = {
-      language: languages,
+      languages: languages,
       theme: theme,
       inputOutline: outline,
       unlockBtnColor: unlockButtonColor,
