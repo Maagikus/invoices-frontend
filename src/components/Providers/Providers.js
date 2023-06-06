@@ -1,7 +1,6 @@
 import { useState } from "react";
 
 const Providers = () => {
-  const [itemsToShow, setItemsToShow] = useState(3);
   const providers = [
     "prov1",
     "prov2",
@@ -13,13 +12,7 @@ const Providers = () => {
     "prov8",
     "prov9",
   ];
-  const showmore = () => {
-    setItemsToShow(providers.length);
-  };
 
-  const showless = () => {
-    setItemsToShow(3);
-  };
   return (
     <section id="providers" className="providers">
       <div className="providers__container">
@@ -31,7 +24,7 @@ const Providers = () => {
         </div>
         <div className="providers__body body-providers">
           <ul className="body-providers__list">
-            {providers.slice(0, itemsToShow).map((item, index) => {
+            {providers.map((item, index) => {
               return (
                 <li key={index} className="body-providers__item">
                   <div className="body-providers__image-ibg">
@@ -44,21 +37,13 @@ const Providers = () => {
               );
             })}
           </ul>
-          {itemsToShow === 3 ? (
-            <div
-              onClick={showmore}
-              className="body-providers__more  more-button _icon-down_arrow"
-            >
-              SEE MORE
-            </div>
-          ) : (
-            <div
-              onClick={showless}
-              className="body-providers__more  body-providers__more-rotate more-button _icon-down_arrow"
-            >
-              SEE LESS
-            </div>
-          )}
+
+          <a
+            href="#"
+            className="body-providers__more  more-button _icon-down_arrow"
+          >
+            SEE MORE
+          </a>
         </div>
       </div>
     </section>

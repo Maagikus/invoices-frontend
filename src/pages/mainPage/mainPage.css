@@ -10,7 +10,12 @@
   font-weight: 400;
   font-style: normal;
 }
-
+body {
+  background: linear-gradient(180deg, #ffffff 57.85%, #ffe2a1 100%);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
 .payment__wrapper::before,
 [class*="_icon-"]:before {
   font-family: "icomoon";
@@ -136,7 +141,10 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
+#svgId {
+  width: 100%;
+  height: 100%;
+}
 input,
 button,
 textarea {
@@ -206,7 +214,7 @@ body.lock {
   -ms-flex-direction: column;
   flex-direction: column;
   overflow: hidden;
-  background: -webkit-gradient(
+  /* background: -webkit-gradient(
     linear,
     left top,
     left bottom,
@@ -214,7 +222,7 @@ body.lock {
     to(#fff8e7)
   );
   background: -o-linear-gradient(top, #ffffff 57.85%, #fff8e7 100%);
-  background: linear-gradient(180deg, #ffffff 57.85%, #fff8e7 100%);
+  background: linear-gradient(180deg, #ffffff 57.85%, #fff8e7 100%); */
 }
 
 .wrapper > main {
@@ -1857,7 +1865,9 @@ textarea.input {
   transform: translate(-25px, 0px);
   padding-bottom: 75.8022759602%;
 }
-
+.providers {
+  background-color: #fff;
+}
 @supports (
   padding-top: clamp(3.625rem, 2.224840891rem + 7.0007955449vw, 9.125rem)
 ) {

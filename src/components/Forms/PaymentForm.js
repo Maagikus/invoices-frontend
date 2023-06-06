@@ -33,12 +33,28 @@ const PaymentForm = ({
       setIsFormValid(false);
     }
   };
+  //   console.log(cardNumber[3]);
   const handleKeyDown = (e, index) => {
-    if (e.key === "Backspace" && cardNumber[index] === "") {
-      // Move focus to the previous input field
+    //  console.log(cardNumber[index].length);
+    if (e.key === "Tab" && e.target.value.length < 4) {
+      e.preventDefault();
+    }
+    if (e.key === "Backspace" && cardNumber[index].length === 1) {
       if (index > 0) {
-        inputRefs[index - 1].current.focus();
+        //   inputRefs[index - 1].current.focus();
+
+        const newCardNumber = [...cardNumber];
+        //   console.log(newCardNumber);
+        const previousValue = cardNumber[index - 1];
+        newCardNumber[index - 1] = previousValue.slice(0, -1);
+
+        setCardNumber(newCardNumber);
+        //   inputRefs[index - 1].current.focus();
+        return;
       }
+    }
+    if (cardNumber[index].length === 0 && e.key === "Backspace") {
+      inputRefs[index - 1].current.focus();
     }
   };
 
@@ -84,8 +100,11 @@ const PaymentForm = ({
     setCardHolder(inputValue);
   };
   const handleChangeСvv = (e) => {
-    const inputValue = e.target.value;
-    setCVV(inputValue);
+    const value = e.target.value;
+    const digitsOnly = value.replace(/\D/g, "");
+    let formattedCvvValue = digitsOnly;
+    setCVV(formattedCvvValue);
+    //  console.log(cvv);
   };
   const handleChangeExpDate = (e) => {
     const value = e.target.value;
@@ -107,7 +126,6 @@ const PaymentForm = ({
   };
   const handleChange = (e, index) => {
     const value = e.target.value;
-
     if (value === "") {
       const newCardNumber = [...cardNumber];
       newCardNumber[index] = "";
@@ -116,6 +134,7 @@ const PaymentForm = ({
       // Move focus to the previous input field
       if (index > 0) {
         inputRefs[index - 1].current.focus();
+        inputRefs[index - 1].current.setSelectionRange(4, 4);
       }
     } else if (/^\d*$/.test(value) && value.length <= 4) {
       const newCardNumber = [...cardNumber];
@@ -127,8 +146,22 @@ const PaymentForm = ({
         inputRefs[index + 1].current.focus();
       }
     }
+    //  console.log(value.length, index);
   };
-
+  const onFocus = (e, index) => {
+    if (cardNumber[0].length === 0) {
+      inputRefs[0].current.focus();
+    }
+  };
+  const onSkip = (e, index) => {
+    if (index > 0) {
+      let i = cardNumber.findIndex((item) => item.length !== 4);
+      if (i === -1) {
+        i = cardNumber.findIndex((item) => item.length === 0) + 1;
+      }
+      inputRefs[i].current.focus();
+    }
+  };
   return (
     <form
       onChange={() => checkForm()}
@@ -152,6 +185,12 @@ const PaymentForm = ({
                 <input
                   key={index}
                   value={value}
+                  onFocus={(e) => {
+                    onFocus(e, index);
+                  }}
+                  onClick={(e) => {
+                    onSkip(e, index);
+                  }}
                   onChange={(e) => handleChange(e, index)}
                   onKeyDown={(e) => handleKeyDown(e, index)}
                   ref={inputRefs[index]}
@@ -184,6 +223,7 @@ const PaymentForm = ({
               className="information-card__date"
             >
               <input
+                disabled={cardNumber.join("").length === 16 ? false : true}
                 autoComplete="off"
                 type="text"
                 name="form[]"
@@ -204,8 +244,13 @@ const PaymentForm = ({
               CVV/CVC code
             </div>
             <input
+              disabled={
+                cardNumber.join("").length === 16 && expiryDate.length === 5
+                  ? false
+                  : true
+              }
               autoComplete="off"
-              type="text"
+              type="password"
               name="form[]"
               data-error="Ошибка"
               placeholder=" "

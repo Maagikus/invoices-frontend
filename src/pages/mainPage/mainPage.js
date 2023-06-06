@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import Select, { components } from "react-select";
 import Providers from "../../components/Providers/Providers";
 import vectorLogo from "../../img/icons/Vector-logo.svg";
-
 import { Link, animateScroll as scroll } from "react-scroll";
 import PaymentForm from "../../components/Forms/PaymentForm";
 import CustomizationForm from "../../components/Forms/CastomizationForm";
@@ -12,8 +11,35 @@ import { SlideDown } from "react-slidedown";
 import "react-slidedown/lib/slidedown.css";
 import Industries from "../../components/industries/Industries";
 import { useCookies } from "react-cookie";
+import line from "../../img/desctop/03.svg";
 const MainPage = () => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [svgFillColor, setSvgFillColor] = useState("#FFE2A1");
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const body = document.body;
+      const scrollTop =
+        window.pageYOffset ||
+        document.documentElement.scrollTop ||
+        document.body.scrollTop ||
+        0;
+      const gradientHeight = body.scrollHeight - window.innerHeight;
+
+      // Проверка, находится ли скролл в зоне наложения фонового градиента
+      if (scrollTop < 362.5) {
+        setSvgFillColor("#FFFFFF");
+      } else {
+        setSvgFillColor("#FFE2A1");
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
   useEffect(() => {
     const handleScroll = () => {
       const scrollTop = window.pageYOffset;
@@ -36,7 +62,7 @@ const MainPage = () => {
   const [cardHolder, setCardHolder] = useState("");
   const [cardNumber, setCardNumber] = useState(["", "", "", ""]);
   const [selectedImage, setSelectedImage] = useState("");
-  console.log(!!selectedImage);
+
   //========================================================================================================================================================
 
   const options = [
@@ -285,7 +311,44 @@ const MainPage = () => {
             <img src={require("../../img/desctop/07.png")} alt="decor" />
           </div>
           <div className="introduction__decor introduction__decor-bottom">
-            <img src={require("../../img/desctop/03.png")} alt="decor" />
+            {/* <img src={`data:image/svg+xml;utf8,`} alt="decor" /> */}
+            <svg
+              id="svgId"
+              width="603"
+              height="241"
+              viewBox="0 0 603 241"
+              //   fill={svgFillColor}
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fill={svgFillColor}
+                style={{
+                  transition: "all 0.3s ease 0s",
+                }}
+                d="M585.885 9.53674e-05C576.982 9.53674e-05 569.765 7.5849 569.765 16.9413C569.765 26.2976 576.982 33.8824 585.885 33.8824C594.788 33.8824 602.005 26.2976 602.005 16.9413C602.005 7.5849 594.788 9.53674e-05 585.885 9.53674e-05Z"
+              />
+              <path
+                fill={svgFillColor}
+                style={{
+                  transition: "all 0.3s ease 0s",
+                }}
+                d="M438.656 109.176C429.16 109.176 421.462 116.761 421.462 126.118C421.462 135.474 429.16 143.059 438.656 143.059C448.152 143.059 455.851 135.474 455.851 126.118C455.851 116.761 448.152 109.176 438.656 109.176Z"
+              />
+              <path
+                fill={svgFillColor}
+                style={{
+                  transition: "all 0.3s ease 0s",
+                }}
+                d="M292.503 9.53674e-05C283.007 9.53674e-05 275.309 7.5849 275.309 16.9413C275.309 26.2976 283.007 33.8824 292.503 33.8824C302 33.8824 309.698 26.2976 309.698 16.9413C309.698 7.5849 302 9.53674e-05 292.503 9.53674e-05Z"
+              />
+              <path
+                fill={svgFillColor}
+                style={{
+                  transition: "all 0.3s ease 0s",
+                }}
+                d="M585.418 16.9412L586.959 19.015L438.315 129.82L292.57 20.9711L144.83 181.58L144.565 181.689L1.18427 240.941L0.199036 238.551L143.317 179.408L292.249 17.5049L438.317 126.596L585.418 16.9412Z"
+              />
+            </svg>
           </div>
           <div className="introduction__container">
             <div className="introduction__wrapper">
