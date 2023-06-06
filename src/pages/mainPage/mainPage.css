@@ -2084,6 +2084,10 @@ textarea.input {
   }
 }
 
+.features {
+  background: url("../../img/desctop/babl-bg.png");
+  background-size: cover;
+}
 .features__container {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -2670,6 +2674,29 @@ svg {
     );
   }
 }
+@supports (
+  padding-bottom:
+    clamp(3.625rem, 1.7384447096rem + 9.4327764519vw, 11.035625rem)
+) {
+  .providers {
+    padding-bottom: clamp(
+      3.625rem,
+      1.7384447096rem + 9.4327764519vw,
+      11.035625rem
+    );
+  }
+}
+@supports (
+  padding-top: clamp(3.625rem, 1.7384447096rem + 9.4327764519vw, 11.035625rem)
+) {
+  .supported {
+    padding-top: clamp(
+      3.625rem,
+      1.7384447096rem + 9.4327764519vw,
+      11.035625rem
+    );
+  }
+}
 
 @supports not (
   padding-bottom:
@@ -2679,6 +2706,14 @@ svg {
     padding-bottom: calc(3.625rem + 7.410625 * (100vw - 20rem) / 78.5625);
   }
 }
+
+/* @supports not (
+  padding-top: clamp(3.625rem, 1.7384447096rem + 9.4327764519vw, 11.035625rem)
+) {
+  .supported {
+    padding-top: calc(3.625rem + 7.410625 * (100vw - 20rem) / 78.5625);
+  }
+} */
 
 .supported__decor {
   position: absolute;
@@ -2830,26 +2865,8 @@ svg {
   padding: 0px 5px;
   line-height: 1.16;
   color: #ffffff;
-  background: -webkit-gradient(
-    linear,
-    left top,
-    left bottom,
-    from(rgba(251, 189, 0, 0.65)),
-    color-stop(48.44%, rgba(251, 190, 8, 0.65)),
-    color-stop(98.96%, rgba(251, 209, 102, 0.65))
-  );
-  background: -o-linear-gradient(
-    top,
-    rgba(251, 189, 0, 0.65) 0%,
-    rgba(251, 190, 8, 0.65) 48.44%,
-    rgba(251, 209, 102, 0.65) 98.96%
-  );
-  background: linear-gradient(
-    180deg,
-    rgba(251, 189, 0, 0.65) 0%,
-    rgba(251, 190, 8, 0.65) 48.44%,
-    rgba(251, 209, 102, 0.65) 98.96%
-  );
+  background: url("../../img/desctop/balloon-bg-ind.png");
+  background-size: cover;
   border-radius: 15px;
 }
 
@@ -2909,7 +2926,8 @@ svg {
 }
 
 .payment {
-  background: rgba(255, 244, 220, 0.58);
+  background-image: url("../../img/desctop/babl-bg.png");
+  background-size: cover;
   position: relative;
 }
 
