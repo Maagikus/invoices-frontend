@@ -69,11 +69,8 @@ const PaymentForm = ({
     for (let i = cardNumberDigitsOnly.length - 1; i >= 0; i--) {
       let digit = parseInt(cardNumberDigitsOnly.charAt(i));
 
-      if (doubleUp) {
-        digit *= 2;
-        if (digit > 9) {
-          digit -= 9;
-        }
+      if (doubleUp && (digit *= 2) > 9) {
+        digit -= 9;
       }
 
       sum += digit;

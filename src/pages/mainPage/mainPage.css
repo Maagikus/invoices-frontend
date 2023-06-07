@@ -2088,6 +2088,11 @@ textarea.input {
   background: url("../../img/desctop/babl-bg.png");
   background-size: cover;
 }
+@media (max-width: 425px) {
+  .features {
+    background: none;
+  }
+}
 .features__container {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -2929,6 +2934,11 @@ svg {
   background-image: url("../../img/desctop/babl-bg.png");
   background-size: cover;
   position: relative;
+}
+@media (max-width: 425px) {
+  .payment {
+    background: none;
+  }
 }
 
 @supports (
