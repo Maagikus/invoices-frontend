@@ -425,6 +425,15 @@ const MainPage = () => {
                 offset={-70}
                 duration={500}
               ></Link>
+              <Link
+                className="introduction__item"
+                activeClass="active"
+                to="features"
+                spy={true}
+                smooth={true}
+                offset={-70}
+                duration={500}
+              ></Link>
             </ul>
           </div>
         </section>
@@ -1164,7 +1173,7 @@ const MainPage = () => {
           </div>
         </section>
         <Providers />
-        <section className="features">
+        <section id="features" className="features">
           <div className="features__container">
             <h2 className="features__title">
               {" "}
