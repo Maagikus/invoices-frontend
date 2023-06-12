@@ -84,7 +84,7 @@ const CustomizationForm = ({
             <ul className="languages__body">
               {langList.map((item, index) => {
                 return (
-                  <div key={index} className="checkbox languages__checkbox ">
+                  <li key={index} className="checkbox languages__checkbox ">
                     <input
                       onClick={(e) => onOptionChange(e)}
                       onChange={(e) => {
@@ -102,26 +102,9 @@ const CustomizationForm = ({
                     <label htmlFor={item} className="checkbox__label">
                       <span className="checkbox__text">{item}</span>
                     </label>
-                  </div>
+                  </li>
                 );
               })}
-
-              {/* <div className="checkbox languages__checkbox ">
-                <input
-                  onChange={(e) => onOptionChange(e)}
-                  id="FR"
-                  value={"FR"}
-                  className={`checkbox__input ${
-                    languages === "FR" ? "checked" : ""
-                  }`}
-                  type="radio"
-                  name="language"
-                  defaultChecked={languages === "FR"}
-                />
-                <label htmlFor="FR" className="checkbox__label">
-                  <span className="checkbox__text">FR</span>
-                </label>
-              </div> */}
             </ul>
           </SlideDown>
         </div>

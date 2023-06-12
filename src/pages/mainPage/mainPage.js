@@ -12,8 +12,9 @@ import "react-slidedown/lib/slidedown.css";
 import Industries from "../../components/industries/Industries";
 import { useCookies } from "react-cookie";
 import line from "../../img/desctop/03.svg";
+import HeaderMain from "../../components/Header/HeaderMain";
+import Footer from "../../components/Footer/Footer";
 const MainPage = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
   const [svgFillColor, setSvgFillColor] = useState("#FFE2A1");
 
   useEffect(() => {
@@ -40,21 +41,6 @@ const MainPage = () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollTop = window.pageYOffset;
-
-      const scrollThreshold = 100;
-
-      setIsScrolled(scrollTop > scrollThreshold);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
 
   const [cookies, setCookie] = useCookies(["name"]);
   const [cvv, setCVV] = useState("");
@@ -69,7 +55,6 @@ const MainPage = () => {
     { value: "Ukraine", label: "Ukraine" },
     { value: "Poland", label: "Poland" },
   ];
-  const laguages = ["EN", "UA", "FR"];
   const DropdownIndicator = (props) => {
     return (
       <components.DropdownIndicator {...props}>
@@ -121,9 +106,6 @@ const MainPage = () => {
 
   const { isScreenSmalMobile, isScreenMmd } = useResize();
 
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [defaulteLanguage, setDefaulteLanguage] = useState("EN");
-  const [isLanguagesListOpen, setIsLanguagesListOpen] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
   const [closed, setClosed] = useState(true);
   const [languages, setLanguages] = useState("EN");
@@ -138,14 +120,7 @@ const MainPage = () => {
   const [customizeFormOpened, setCustomizeFormOpened] = useState(false);
   const [activeItem, setActiveItem] = useState("item1");
   const [activeForm, setActiveForm] = useState("item1");
-  useEffect(() => {
-    // Обновляем класс элемента <html> при открытии/закрытии меню
-    if (isMenuOpen) {
-      document.body.classList.add("lock");
-    } else {
-      document.body.classList.remove("lock");
-    }
-  }, [isMenuOpen]);
+
   const handleClickMenu = (item, e) => {
     e.preventDefault();
     setActiveItem(item);
@@ -157,10 +132,7 @@ const MainPage = () => {
   const changeCheckbox = (e) => {
     setIsChecked((prev) => !prev);
   };
-  const selectLanguage = (e) => {
-    setDefaulteLanguage(e.target.textContent);
-    setIsLanguagesListOpen(false);
-  };
+
   let customizingStyles = {
     languages: languages,
     theme: theme,
@@ -189,122 +161,7 @@ const MainPage = () => {
   };
   return (
     <div className="wrapper">
-      <header className={`header ${isScrolled ? "scroll" : ""}`}>
-        <div className="header__container">
-          <a href="#" className="header__logo _icon-logo">
-            <span>BeezyyCashier</span>
-          </a>
-          <div className="menu__login menu__login-hidden">
-            <span className="prev-decor"></span>
-            <a href="#">Log in</a>
-            <span className="next-decor"></span>
-          </div>
-          <div
-            className={
-              isMenuOpen ? "header__menu menu  menu-open" : "header__menu menu"
-            }
-          >
-            <div className="menu__wrapper">
-              <nav className="menu__body">
-                <ul className="menu__list list-left">
-                  <li className="menu__item">
-                    <a href="#" className="menu__link">
-                      About us
-                    </a>
-                  </li>
-                  <li className="menu__item">
-                    <a href="#" className="menu__link">
-                      Services
-                    </a>
-                  </li>
-                  <li className="menu__item">
-                    <a href="#" className="menu__link">
-                      Carreers
-                    </a>
-                  </li>
-                </ul>
-                <div className="menu__login">
-                  <span className="prev-decor"></span>
-                  <a href="#">Log in</a>
-                  <span className="next-decor"></span>
-                </div>
-                <ul className="menu__list list-right">
-                  <li className="menu__item">
-                    <a href="#" className="menu__link">
-                      Blog
-                    </a>
-                  </li>
-                  <li className="menu__item">
-                    <a href="#" className="menu__link">
-                      Contact
-                    </a>
-                  </li>
-                </ul>
-                <div className="header__apply button header__apply-mobile">
-                  Apply
-                </div>
-                <div className="header__social social">
-                  <ul className="social__list">
-                    <li className="social__item">
-                      <a href="#" className="social__link _icon-f1"></a>
-                    </li>
-                    <li className="social__item">
-                      <a href="#" className="social__link _icon-f2"></a>
-                    </li>
-                    <li className="social__item">
-                      <a href="#" className="social__link _icon-linkedin"></a>
-                    </li>
-                    <li className="social__item">
-                      <a href="#" className="social__link _icon-f4"></a>
-                    </li>
-                    <li className="social__item">
-                      <a href="#" className="social__link _icon-f5"></a>
-                    </li>
-                    <li className="social__item">
-                      <a href="#" className="social__link _icon-f6"></a>
-                    </li>
-                  </ul>
-                </div>
-              </nav>
-              <div
-                onClick={() => setIsLanguagesListOpen(!isLanguagesListOpen)}
-                className={
-                  isLanguagesListOpen
-                    ? "header__lang lang-select opened"
-                    : "header__lang lang-select "
-                }
-              >
-                {" "}
-                <span>{defaulteLanguage}</span>
-                {/* <Select options={options} /> */}
-                <ul className="lang-select__body">
-                  {laguages.map((item, index) => {
-                    return (
-                      <li
-                        onClick={(e) => selectLanguage(e)}
-                        key={index}
-                        className="lang-select__item"
-                      >
-                        {item}
-                      </li>
-                    );
-                  })}
-                </ul>
-              </div>
-              <div className="header__apply button">Apply</div>
-              <button
-                onClick={() => {
-                  setIsMenuOpen(!isMenuOpen);
-                }}
-                type="button"
-                className="menu__icon icon-menu"
-              >
-                <span></span>
-              </button>
-            </div>
-          </div>
-        </div>
-      </header>
+      <HeaderMain />
       <main className="page">
         <section id="introduction" className="introduction">
           <div className="introduction__decor introduction__decor-top">
@@ -1493,184 +1350,7 @@ const MainPage = () => {
         </section>
         <Industries />
       </main>
-      <footer className="footer">
-        <div className="footer__wrapper">
-          <div className="footer__top top-footer">
-            <div className="top-footer__main">
-              <div className="top-footer__header">
-                <div className="top-footer__logo _icon-logo">BeezyyCashier</div>
-                <div className="top-footer__img">
-                  <img
-                    src={require("../../img/mobile/dss-footer-mabile.png")}
-                    alt="PCI DSS"
-                  />
-                </div>
-              </div>
-              <div className="top-footer__social social">
-                <ul className="social__list">
-                  <li className="social__item">
-                    <a href="#" className="social__link _icon-f1"></a>
-                  </li>
-                  <li className="social__item">
-                    <a href="#" className="social__link _icon-f2"></a>
-                  </li>
-                  <li className="social__item">
-                    <a href="#" className="social__link _icon-linkedin"></a>
-                  </li>
-                  <li className="social__item">
-                    <a href="#" className="social__link _icon-f4"></a>
-                  </li>
-                  <li className="social__item">
-                    <a href="#" className="social__link _icon-f5"></a>
-                  </li>
-                  <li className="social__item">
-                    <a href="#" className="social__link _icon-f6"></a>
-                  </li>
-                </ul>
-              </div>
-              <div className="top-footer__img">
-                <img
-                  src={require("../../img/desctop/dss2.png")}
-                  alt="PCI DSS"
-                />
-              </div>
-              <div className="top-footer__rights">
-                {" "}
-                2022 <span>BEEZYY CASHIER SYSTEM LTD</span>, ALL RIGHTS RESERVED{" "}
-              </div>
-              <div className="top-footer__address">
-                85 Great Portland Street, London, England, W1W 7LT Registration
-                number 13076709
-              </div>
-            </div>
-            <ul className="top-footer__information information-list">
-              <li className="information-list__item">
-                <h2 className="information-list__title">About us</h2>
-                <ul className="information-list__sublist sublist-information">
-                  <li className="sublist-information__item">
-                    <a href="#" className="sublist-information__link">
-                      Why Beezyy Cashier?
-                    </a>
-                  </li>
-                </ul>
-              </li>
-              <li className="information-list__item">
-                <h2 className="information-list__title">Our services</h2>
-                <ul className="information-list__sublist sublist-information">
-                  <li className="sublist-information__item">
-                    <a href="#" className="sublist-information__link">
-                      Our plans
-                    </a>
-                  </li>
-                </ul>
-              </li>
-              <li className="information-list__item">
-                <h2 className="information-list__title">Our oroduct</h2>
-                <ul className="information-list__sublist sublist-information">
-                  <li className="sublist-information__item">
-                    <a href="#" className="sublist-information__link">
-                      One integration
-                    </a>
-                  </li>
-                  <li className="sublist-information__item">
-                    <a href="#" className="sublist-information__link">
-                      Increase Revenue
-                    </a>
-                  </li>
-                  <li className="sublist-information__item">
-                    <a href="#" className="sublist-information__link">
-                      Modular and Dynamic
-                    </a>
-                  </li>
-                  <li className="sublist-information__item">
-                    <a href="#" className="sublist-information__link">
-                      Financial Management
-                    </a>
-                  </li>
-                  <li className="sublist-information__item">
-                    <a href="#" className="sublist-information__link">
-                      Virtual Terminal
-                    </a>
-                  </li>
-                </ul>
-              </li>
-              <li className="information-list__item">
-                <h2 className="information-list__title">Beezyy</h2>
-                <ul className="information-list__sublist sublist-information">
-                  <li className="sublist-information__item">
-                    <a href="#" className="sublist-information__link">
-                      Contact
-                    </a>
-                  </li>
-                  <li className="sublist-information__item">
-                    <a href="#" className="sublist-information__link">
-                      FAQ
-                    </a>
-                  </li>
-                  <li className="sublist-information__item">
-                    <a href="#" className="sublist-information__link">
-                      Careers
-                    </a>
-                  </li>
-                  <li className="sublist-information__item">
-                    <a href="#" className="sublist-information__link">
-                      Blog
-                    </a>
-                  </li>
-                </ul>
-              </li>
-              <li className="information-list__item">
-                <h2 className="information-list__title">
-                  Terms and conditions
-                </h2>
-                <ul className="information-list__sublist sublist-information">
-                  <li className="sublist-information__item">
-                    <a href="#" className="sublist-information__link">
-                      Privacy policy
-                    </a>
-                  </li>
-                  <li className="sublist-information__item">
-                    <a href="#" className="sublist-information__link">
-                      Terms of use
-                    </a>
-                  </li>
-                  <li className="sublist-information__item">
-                    <a href="#" className="sublist-information__link">
-                      Cookie policy
-                    </a>
-                  </li>
-                  <li className="sublist-information__item">
-                    <a href="#" className="sublist-information__link">
-                      AML/CTF AND
-                    </a>
-                  </li>
-                  <li className="sublist-information__item">
-                    <a href="#" className="sublist-information__link">
-                      KYC POLICY
-                    </a>
-                  </li>
-                  <li className="sublist-information__item">
-                    <a href="#" className="sublist-information__link">
-                      Refund policy
-                    </a>
-                  </li>
-                  <li className="sublist-information__item">
-                    <a href="#" className="sublist-information__link">
-                      Formal offer
-                    </a>
-                  </li>
-                </ul>
-              </li>
-            </ul>
-          </div>
-          <div className="footer__bottom">
-            <p>
-              SERVICES ARE INTEGRATION AND DATA TRANSFER ONLY. AND DO NOT
-              INCLUBE TRANSACTION PROCESSING
-            </p>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 };

@@ -1,3 +1,4 @@
+import Providers from "../../pages/providers/providers";
 import Page from "../Page/Page";
 
 export function AddLibrary(urlOfTheLibrary) {
@@ -9,7 +10,9 @@ export function AddLibrary(urlOfTheLibrary) {
 function App() {
   return (
     <>
-      <Page />
+      {/* <Page /> */}
+      <Providers />
+
       {AddLibrary("../../app.min.js")}
     </>
   );
