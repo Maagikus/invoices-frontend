@@ -555,6 +555,8 @@ body {
 
 	&__input-search {
 		margin-bottom: 25px;
+		position: relative;
+		z-index: 10;
 	}
 
 	&__item {
