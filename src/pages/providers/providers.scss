@@ -478,7 +478,7 @@ body {
 			left: -100%;
 			transition: all 0.3s ease 0s;
 			align-items: center;
-			justify-content: center;
+			padding: 250px 0px 10px 0px;
 			z-index: 10;
 			background-color: #fff;
 
@@ -495,6 +495,14 @@ body {
 		flex-direction: column;
 		margin-bottom: 25px;
 
+
+	}
+
+	&__selects {
+		overflow: auto;
+		display: flex;
+		flex-direction: column;
+		@include adaptiveValue("gap", 25, 17);
 
 	}
 
@@ -570,6 +578,10 @@ body {
 			left: 19px;
 			font-size: rem(16);
 
+		}
+
+		@media (max-width:$mobile) {
+			align-self: center;
 		}
 	}
 

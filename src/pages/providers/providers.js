@@ -216,6 +216,14 @@ const Providers = () => {
                       } `}
                     >
                       <div className="filters-providersPage__item filters-providersPage__item-space">
+                        {/* <div class="filters-providersPage__item _icon-search">
+                          <input
+                            class="filters-providersPage__input filters-providersPage__input-search  input"
+                            type="text"
+                            name=""
+                            placeholder="Search"
+                          />
+                        </div> */}
                         <div class="filters-providersPage__title ">
                           Which service are you looking for?{" "}
                           <span
@@ -252,16 +260,31 @@ const Providers = () => {
                           })}
                         </div>
                       </div>
-                      <IndustrySelect
-                        state={firstIndustry}
-                        setState={setFirstIndustry}
-                        industryList={industryList}
-                      />
-                      <IndustrySelect
-                        state={secondIndustry}
-                        industryList={industryList2}
-                        setState={setSecondIndustry}
-                      />
+                      <div
+                        className="filters-providersPage__selects"
+                        style={{ overflow: "auto" }}
+                      >
+                        <IndustrySelect
+                          state={firstIndustry}
+                          setState={setFirstIndustry}
+                          industryList={industryList}
+                        />
+                        <IndustrySelect
+                          state={secondIndustry}
+                          industryList={industryList2}
+                          setState={setSecondIndustry}
+                        />
+                        <IndustrySelect
+                          state={secondIndustry}
+                          industryList={industryList2}
+                          setState={setSecondIndustry}
+                        />
+                        <IndustrySelect
+                          state={secondIndustry}
+                          industryList={industryList2}
+                          setState={setSecondIndustry}
+                        />
+                      </div>
                     </div>
                   </form>
                 </div>
