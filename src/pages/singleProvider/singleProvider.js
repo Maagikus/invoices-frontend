@@ -12,6 +12,7 @@ const SingleProvider = () => {
 
   return (
     <div className="wrapper">
+      <div className="bg"></div>
       <HeaderMain />
       <main className="page">
         <section className="pitch">

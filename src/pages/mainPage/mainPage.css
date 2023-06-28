@@ -11,10 +11,10 @@
   font-style: normal;
 }
 body {
-  background: linear-gradient(180deg, #ffffff 57.85%, #ffe2a1 100%);
+  /* background: linear-gradient(180deg, #ffffff 57.85%, #ffe2a1 100%);
   background-size: cover;
   background-repeat: no-repeat;
-  background-attachment: fixed;
+  background-attachment: fixed; */
 }
 .payment__wrapper::before,
 [class*="_icon-"]:before {
@@ -214,6 +214,9 @@ body.lock {
   -ms-flex-direction: column;
   flex-direction: column;
   overflow: hidden;
+  position: relative;
+  z-index: 10;
+
   /* background: -webkit-gradient(
     linear,
     left top,
@@ -223,12 +226,17 @@ body.lock {
   );
   background: -o-linear-gradient(top, #ffffff 57.85%, #fff8e7 100%);
   background: linear-gradient(180deg, #ffffff 57.85%, #fff8e7 100%); */
-  background: linear-gradient(180deg, #ffffff 57.85%, #ffe2a1 100%);
+  /* background: linear-gradient(180deg, #ffffff 57.85%, #ffe2a1 100%);
   background-size: cover;
   background-repeat: no-repeat;
-  background-attachment: fixed;
+  background-attachment: fixed; */
 }
-
+.bg {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, #ffffff 57.85%, #ffe2a1 100%);
+}
 .wrapper > main {
   -webkit-box-flex: 1;
   -ms-flex: 1 1 auto;
@@ -903,6 +911,8 @@ textarea.input {
 }
 
 .footer {
+  position: relative;
+  z-index: 10;
   background-image: url("../../img/desctop/bg-decor.png"),
     url("../../img/desctop/bg-decor.png"),
     -webkit-gradient(linear, left top, left bottom, color-stop(46.35%, rgba(251, 189, 0, 0.4914)), color-stop(88.02%, rgba(251, 189, 0, 0.91)));
