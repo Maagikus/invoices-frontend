@@ -9,24 +9,24 @@ import { useResize } from "../../hooks/useResize.hook";
 const SingleProvider = () => {
   const { isScreenMmd } = useResize();
   const providers = ["prov1", "prov1", "prov1", "prov1", "prov1", "prov1"];
-  console.log(isScreenMmd);
+
   return (
-    <div class="wrapper">
+    <div className="wrapper">
       <HeaderMain />
       <main className="page">
-        <section class="pitch">
-          <div class="pitch__container">
-            <div class="pitch__body">
-              <div class="pitch__left">
-                <div class="pitch__image-ibg">
+        <section className="pitch">
+          <div className="pitch__container">
+            <div className="pitch__body">
+              <div className="pitch__left">
+                <div className="pitch__image-ibg">
                   <img
                     src={require("../../img/desctop/singleProvider/connectum.png")}
                     alt=""
                   />
                 </div>
               </div>
-              <div class="pitch__right">
-                <h2 class="pitch__title">
+              <div className="pitch__right">
+                <h2 className="pitch__title">
                   <span>Effective acquiring. Reliable payments.</span>
                   <span>Effective acquiring. Reliable payments.</span>
                   <span>Effective acquiring. Reliable payments.</span>
@@ -34,40 +34,42 @@ const SingleProvider = () => {
               </div>
             </div>
           </div>
-          <div class="pitch__decor pitch__decor-light"></div>
-          <div class="pitch__decor pitch__decor-darck"></div>
+          <div className="pitch__decor pitch__decor-light"></div>
+          <div className="pitch__decor pitch__decor-darck"></div>
         </section>
-        <section class="singleProvider__information provider-information">
+        <section className="singleProvider__information provider-information">
           <div className="provider-information__header header-information">
-            <div class="header-information__container">
-              <ul class="header-information__list">
-                <li class="header-information__item">
-                  <h2 class="header-information__title">Website</h2>
-                  <span class="header-information__text header-information__title-highlighted">
+            <div className="header-information__container">
+              <ul className="header-information__list">
+                <li className="header-information__item">
+                  <h2 className="header-information__title">Website</h2>
+                  <span className="header-information__text header-information__title-highlighted">
                     https://connectum.eu/
                   </span>
                 </li>
-                <li class="header-information__item">
-                  <h2 class="header-information__title header-information__title-highlighted">
+                <li className="header-information__item">
+                  <h2 className="header-information__title header-information__title-highlighted">
                     Country
                   </h2>
-                  <span class="header-information__text">United Kingdom</span>
+                  <span className="header-information__text">
+                    United Kingdom
+                  </span>
                 </li>
-                <li class="header-information__item">
-                  <h2 class="header-information__title">Processing in</h2>
-                  <span class="header-information__text header-information__text-highlighted">
+                <li className="header-information__item">
+                  <h2 className="header-information__title">Processing in</h2>
+                  <span className="header-information__text header-information__text-highlighted">
                     Europe
                   </span>
                 </li>
               </ul>
             </div>
           </div>
-          <div class="provider-information__body body-information">
-            <div class="body-information__container">
-              <div class="body-information__left">
-                <ul class="body-information__list">
-                  <li class="body-information__item">
-                    <h2 class="body-information__title">
+          <div className="provider-information__body body-information">
+            <div className="body-information__container">
+              <div className="body-information__left">
+                <ul className="body-information__list">
+                  <li className="body-information__item">
+                    <h2 className="body-information__title">
                       <span>
                         <img
                           src={
@@ -80,12 +82,12 @@ const SingleProvider = () => {
                       </span>{" "}
                       Payment methods
                     </h2>
-                    <span class="body-information__text">
+                    <span className="body-information__text">
                       Bank Wire, Credit card, E-wallet
                     </span>
                   </li>
-                  <li class="body-information__item">
-                    <h2 class="body-information__title">
+                  <li className="body-information__item">
+                    <h2 className="body-information__title">
                       <span>
                         <img
                           src={
@@ -98,13 +100,13 @@ const SingleProvider = () => {
                       </span>
                       Payment options
                     </h2>
-                    <span class="body-information__text">
+                    <span className="body-information__text">
                       Apple Pay, Google Pay, Maestro, Mastercard, UnionPay,
                       Visa, Visa Electron
                     </span>
                   </li>
-                  <li class="body-information__item">
-                    <h2 class="body-information__title">
+                  <li className="body-information__item">
+                    <h2 className="body-information__title">
                       {" "}
                       <span>
                         <img
@@ -118,13 +120,13 @@ const SingleProvider = () => {
                       </span>
                       Features
                     </h2>
-                    <span class="body-information__text">
+                    <span className="body-information__text">
                       Currency conversion, Payment Link, Payouts, Recurring
                       Payments, Refunds
                     </span>
                   </li>
-                  <li class="body-information__item">
-                    <h2 class="body-information__title">
+                  <li className="body-information__item">
+                    <h2 className="body-information__title">
                       {" "}
                       <span>
                         <img
@@ -138,13 +140,13 @@ const SingleProvider = () => {
                       </span>
                       Solutions
                     </h2>
-                    <span class="body-information__text">
+                    <span className="body-information__text">
                       Solutions Fraud Prevention, IBAN account, Mobile Checkout,
                       Online Payments, Payment Gateway, Virtual Terminal
                     </span>
                   </li>
-                  <li class="body-information__item">
-                    <h2 class="body-information__title">
+                  <li className="body-information__item">
+                    <h2 className="body-information__title">
                       {" "}
                       <span>
                         <img
@@ -158,13 +160,13 @@ const SingleProvider = () => {
                       </span>
                       Plugins
                     </h2>
-                    <span class="body-information__text"> WooCommerce</span>
+                    <span className="body-information__text"> WooCommerce</span>
                   </li>
                   {isScreenMmd ? (
                     <>
                       {" "}
-                      <li class="body-information__item">
-                        <h2 class="body-information__title">
+                      <li className="body-information__item">
+                        <h2 className="body-information__title">
                           {" "}
                           <span>
                             <img
@@ -178,13 +180,13 @@ const SingleProvider = () => {
                           </span>
                           Accepted industries
                         </h2>
-                        <span class="body-information__text">
+                        <span className="body-information__text">
                           Adult, E-commerce, Financial Services, Gambling,
                           Gaming, Hospitality, Travel
                         </span>
                       </li>
-                      <li class="body-information__item">
-                        <h2 class="body-information__title">
+                      <li className="body-information__item">
+                        <h2 className="body-information__title">
                           {" "}
                           <span>
                             <img
@@ -198,7 +200,7 @@ const SingleProvider = () => {
                           </span>
                           Integration methods
                         </h2>
-                        <span class="body-information__text">
+                        <span className="body-information__text">
                           Integration Methods Hosted Checkout, Server to Server
                         </span>
                       </li>
@@ -206,11 +208,11 @@ const SingleProvider = () => {
                   ) : null}
                 </ul>
               </div>
-              <div class="body-information__right">
-                <div class="body-information__social social-hexa">
-                  <div class="social-hexa__column social-hexa__column-left">
+              <div className="body-information__right">
+                <div className="body-information__social social-hexa">
+                  <div className="social-hexa__column social-hexa__column-left">
                     {!isScreenMmd ? (
-                      <div class="social-hexa__item">
+                      <div className="social-hexa__item">
                         <svg
                           width="147"
                           height="119"
@@ -221,14 +223,14 @@ const SingleProvider = () => {
                           <path
                             d="M110.813 8.13494e-05L37.0893 0L0 59.2673L37.0893 119H110.813L147 59.2673L110.813 8.13494e-05Z"
                             fill="#FBBD00"
-                            fill-opacity="0.18"
+                            fillOpacity="0.18"
                           />
                         </svg>
-                        <a href="#" class="social-hexa__link"></a>
+                        <a href="#" className="social-hexa__link"></a>
                       </div>
                     ) : null}
 
-                    <div class="social-hexa__item">
+                    <div className="social-hexa__item">
                       <svg
                         width="147"
                         height="119"
@@ -241,12 +243,12 @@ const SingleProvider = () => {
                           fill="#FBBD00"
                         />
                       </svg>
-                      <a href="#" class="social-hexa__link _icon-f2"></a>
+                      <a href="#" className="social-hexa__link _icon-f2"></a>
                     </div>
                   </div>
-                  <div class="social-hexa__column social-hexa__column-middle">
+                  <div className="social-hexa__column social-hexa__column-middle">
                     {!isScreenMmd ? (
-                      <div class="social-hexa__item">
+                      <div className="social-hexa__item">
                         <svg
                           width="147"
                           height="119"
@@ -257,15 +259,15 @@ const SingleProvider = () => {
                           <path
                             d="M110.813 8.13494e-05L37.0893 0L0 59.2673L37.0893 119H110.813L147 59.2673L110.813 8.13494e-05Z"
                             fill="#FBBD00"
-                            fill-opacity="0.07"
+                            fillOpacity="0.07"
                           />
                         </svg>
 
-                        <a href="#" class="social-hexa__link"></a>
+                        <a href="#" className="social-hexa__link"></a>
                       </div>
                     ) : null}
 
-                    <div class="social-hexa__item">
+                    <div className="social-hexa__item">
                       <svg
                         width="147"
                         height="119"
@@ -278,9 +280,9 @@ const SingleProvider = () => {
                           fill="#FBBD00"
                         />
                       </svg>
-                      <a href="#" class="social-hexa__link _icon-f4"></a>
+                      <a href="#" className="social-hexa__link _icon-f4"></a>
                     </div>
-                    <div class="social-hexa__item">
+                    <div className="social-hexa__item">
                       <svg
                         width="147"
                         height="119"
@@ -293,12 +295,15 @@ const SingleProvider = () => {
                           fill="#FBBD00"
                         />
                       </svg>
-                      <a href="#" class="social-hexa__link _icon-linkedin"></a>
+                      <a
+                        href="#"
+                        className="social-hexa__link _icon-linkedin"
+                      ></a>
                     </div>
                   </div>
                   {!isScreenMmd ? (
-                    <div class="social-hexa__column social-hexa__column-right">
-                      <div class="social-hexa__item">
+                    <div className="social-hexa__column social-hexa__column-right">
+                      <div className="social-hexa__item">
                         <svg
                           width="147"
                           height="120"
@@ -309,12 +314,12 @@ const SingleProvider = () => {
                           <path
                             d="M110.813 8.2033e-05L37.0893 0L0 59.7653L37.0893 120H110.813L147 59.7653L110.813 8.2033e-05Z"
                             fill="#FBBD00"
-                            fill-opacity="0.16"
+                            fillOpacity="0.16"
                           />
                         </svg>
-                        <a href="#" class="social-hexa__link"></a>
+                        <a href="#" className="social-hexa__link"></a>
                       </div>
-                      <div class="social-hexa__item">
+                      <div className="social-hexa__item">
                         <svg
                           width="147"
                           height="119"
@@ -325,19 +330,19 @@ const SingleProvider = () => {
                           <path
                             d="M110.813 8.13494e-05L37.0893 0L0 59.2673L37.0893 119H110.813L147 59.2673L110.813 8.13494e-05Z"
                             fill="#FBBD00"
-                            fill-opacity="0.31"
+                            fillOpacity="0.31"
                           />
                         </svg>
 
-                        <a href="#" class="social-hexa__link"></a>
+                        <a href="#" className="social-hexa__link"></a>
                       </div>
                     </div>
                   ) : null}
                 </div>
                 {!isScreenMmd ? (
-                  <ul class="body-information__list">
-                    <li class="body-information__item">
-                      <h2 class="body-information__title">
+                  <ul className="body-information__list">
+                    <li className="body-information__item">
+                      <h2 className="body-information__title">
                         {" "}
                         <span>
                           <img
@@ -351,13 +356,13 @@ const SingleProvider = () => {
                         </span>
                         Accepted industries
                       </h2>
-                      <span class="body-information__text">
+                      <span className="body-information__text">
                         Adult, E-commerce, Financial Services, Gambling, Gaming,
                         Hospitality, Travel
                       </span>
                     </li>
-                    <li class="body-information__item">
-                      <h2 class="body-information__title">
+                    <li className="body-information__item">
+                      <h2 className="body-information__title">
                         {" "}
                         <span>
                           <img
@@ -371,7 +376,7 @@ const SingleProvider = () => {
                         </span>
                         Integration methods
                       </h2>
-                      <span class="body-information__text">
+                      <span className="body-information__text">
                         Integration Methods Hosted Checkout, Server to Server
                       </span>
                     </li>
@@ -380,24 +385,24 @@ const SingleProvider = () => {
               </div>
             </div>
           </div>
-          <div class="singleProvider__decor"></div>
+          <div className="singleProvider__decor"></div>
         </section>
-        <section class="alternative">
-          <div class="alternative__header">
-            <div class="alternative__container">
-              <h2 class="alternative__title">ALTERNATIVE PROVIDERS</h2>
+        <section className="alternative">
+          <div className="alternative__header">
+            <div className="alternative__container">
+              <h2 className="alternative__title">ALTERNATIVE PROVIDERS</h2>
             </div>
           </div>
-          <div class="alternative__body">
-            <div class="alternative__container alternative__container-wide">
-              <div class="alternative__content">
-                <ul class="alternative__list">
+          <div className="alternative__body">
+            <div className="alternative__container alternative__container-wide">
+              <div className="alternative__content">
+                <ul className="alternative__list">
                   {}
                   {isScreenMmd
                     ? providers.slice(0, 3).map((item, index) => {
                         return (
-                          <li key={index} class="alternative__item">
-                            <div class="alternative__image-ibg">
+                          <li key={index} className="alternative__item">
+                            <div className="alternative__image-ibg">
                               <img
                                 src={require(`../../img/desctop/prov1.png`)}
                                 alt=""
@@ -408,8 +413,8 @@ const SingleProvider = () => {
                       })
                     : providers.map((item, index) => {
                         return (
-                          <li key={index} class="alternative__item">
-                            <div class="alternative__image-ibg">
+                          <li key={index} className="alternative__item">
+                            <div className="alternative__image-ibg">
                               <img
                                 src={require(`../../img/desctop/prov1.png`)}
                                 alt=""
@@ -419,7 +424,7 @@ const SingleProvider = () => {
                         );
                       })}
                 </ul>
-                <div class="alternative__all _icon-down_arrow"></div>
+                <div className="alternative__all _icon-down_arrow"></div>
               </div>
             </div>
           </div>

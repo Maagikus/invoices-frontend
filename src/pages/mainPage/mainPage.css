@@ -223,6 +223,10 @@ body.lock {
   );
   background: -o-linear-gradient(top, #ffffff 57.85%, #fff8e7 100%);
   background: linear-gradient(180deg, #ffffff 57.85%, #fff8e7 100%); */
+  background: linear-gradient(180deg, #ffffff 57.85%, #ffe2a1 100%);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
 .wrapper > main {
