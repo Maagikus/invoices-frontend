@@ -223,7 +223,7 @@ $responsiveType: 1;
 .header-information {
 	background: url('../../img/desctop/singleProvider/bg.png') 0 0 no-repeat;
 	background-size: cover;
-	@include adaptiveValue("padding-top", 67, 25);
+	@include adaptiveValue("padding-top", 67, 15);
 	@include adaptiveValue("padding-bottom", 62, 11);
 
 	// .header-information__container
@@ -240,9 +240,11 @@ $responsiveType: 1;
 		@media (max-width:$mobileSmall) {
 			flex-wrap: wrap;
 			justify-content: center;
-			column-gap: rem(114);
+
+			@include adaptiveValue("column-gap", 145, 125);
 			row-gap: rem(18);
 			flex-direction: row-reverse;
+			padding: 0px 0px;
 
 			:nth-child(1) {
 				.header-information__title {
@@ -364,6 +366,11 @@ $responsiveType: 1;
 		display: flex;
 		align-items: center;
 		@include adaptiveValue("gap", 12, 8);
+
+		span {
+			display: flex;
+			align-items: center
+		}
 	}
 
 	// .body-information__text
@@ -453,6 +460,7 @@ $responsiveType: 1;
 
 	// .alternative__header
 	&__header {
+		position: relative;
 		background: url('../../img/desctop/singleProvider/bg.png') 0 0 no-repeat;
 		background-size: cover;
 		@include adaptiveValue("padding-top", 34, 9);
