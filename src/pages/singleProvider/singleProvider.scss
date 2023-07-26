@@ -161,6 +161,7 @@ $responsiveType: 1;
 	// .pitch__image-ibg
 	&__image-ibg {
 		padding-bottom: percent(384, 695);
+		z-index: 1;
 
 	}
 

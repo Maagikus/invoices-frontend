@@ -45,7 +45,9 @@ const SingleProvider = () => {
                 <li className="header-information__item">
                   <h2 className="header-information__title">Website</h2>
                   <span className="header-information__text header-information__title-highlighted">
-                    https://connectum.eu/
+                    <a href="#" className="">
+                      https://connectum.eu/
+                    </a>
                   </span>
                 </li>
                 <li className="header-information__item">
@@ -415,12 +417,14 @@ const SingleProvider = () => {
                     : providers.map((item, index) => {
                         return (
                           <li key={index} className="alternative__item">
-                            <div className="alternative__image-ibg">
-                              <img
-                                src={require(`../../img/desctop/prov1.png`)}
-                                alt=""
-                              />
-                            </div>
+                            <a href="#" class="alternative__link">
+                              <div className="alternative__image-ibg">
+                                <img
+                                  src={require(`../../img/desctop/prov1.png`)}
+                                  alt=""
+                                />
+                              </div>
+                            </a>
                           </li>
                         );
                       })}
